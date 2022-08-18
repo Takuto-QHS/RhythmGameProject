@@ -63,7 +63,7 @@ public class NotesManager : MonoBehaviour
             // ノーツ間の長さ
             float beatSec = kankaku * (float)inputJson.notes[i].LPB;
             // ノーツの降ってくる時間
-            float time = (beatSec * inputJson.notes[i].num / (float)inputJson.notes[i].LPB) + inputJson.offset + 0.01f;
+            float time = (beatSec * inputJson.notes[i].num / (float)inputJson.notes[i].LPB) + inputJson.offset * 0.01f;
             
             // リスト追加
             listNotesTime.Add(time);
