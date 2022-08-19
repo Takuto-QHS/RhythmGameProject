@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class NotesJudgeController : MonoBehaviour
 {
@@ -29,7 +31,7 @@ public class NotesJudgeController : MonoBehaviour
         }
         //Debug.Log(notesManager.listNotesTime.Count);
 
-        if (Input.GetKeyDown(KeyCode.A))//〇キーが押されたとき
+        if (Keyboard.current.aKey.isPressed)//〇キーが押されたとき
         {
             if (notesManager.listLaneNum[0] == 0)//押されたボタンはレーンの番号とあっているか？
             {
@@ -41,7 +43,7 @@ public class NotesJudgeController : MonoBehaviour
                 PlaySceneManager.psManager.soundManager.StartSE(0);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.S))
+        else if (Keyboard.current.sKey.isPressed)
         {
             if (notesManager.listLaneNum[0] == 1)
             {
@@ -49,7 +51,7 @@ public class NotesJudgeController : MonoBehaviour
                 PlaySceneManager.psManager.soundManager.StartSE(0);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (Keyboard.current.dKey.isPressed)
         {
             if (notesManager.listLaneNum[0] == 2)
             {
@@ -57,7 +59,7 @@ public class NotesJudgeController : MonoBehaviour
                 PlaySceneManager.psManager.soundManager.StartSE(0);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.F))
+        else if (Keyboard.current.fKey.isPressed)
         {
             if (notesManager.listLaneNum[0] == 3)
             {
