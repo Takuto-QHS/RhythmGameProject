@@ -4,17 +4,9 @@ using UnityEngine;
 
 public class Notes : MonoBehaviour
 {
-    public int notesSpeed = 5;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
-        transform.position -= transform.forward * Time.deltaTime * notesSpeed;
+        transform.position -= transform.forward * Time.deltaTime * PlaySceneManager.psManager.notesSpeed;
     }
 }

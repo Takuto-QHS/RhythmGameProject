@@ -13,11 +13,11 @@ public class MusicData
 
 public class SoundManager : MonoBehaviour
 {
-    [SerializeField]
     private AudioSource listAudioSourcesBGM;
     [SerializeField]
     private List<AudioSource> listAudioSourcesSE = new List<AudioSource>();
     private int indexAudioSourcesSE;
+
     [SerializeField]
     private List<MusicData> listMusic = new List<MusicData> ();
     [SerializeField]
@@ -28,7 +28,6 @@ public class SoundManager : MonoBehaviour
     void Start()
     {
         Init();
-        StartBGM(0);
     }
 
     void Init()
@@ -36,7 +35,7 @@ public class SoundManager : MonoBehaviour
         listAudioSourcesBGM = this.gameObject.AddComponent<AudioSource>();
         listAudioSourcesBGM.volume = 0.5f;
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
             AudioSource audioSource = this.gameObject.AddComponent<AudioSource>();
             audioSource.volume = 0.5f;
@@ -44,13 +43,13 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    void StartBGM(int index)
+    public void StartBGM(int index)
     {
         listAudioSourcesBGM.clip = listMusic[index].audioClip;
         listAudioSourcesBGM.Play();
     }
 
-    void StartSE(int index)
+    public void StartSE(int index)
     {
         listAudioSourcesSE[indexAudioSourcesSE].PlayOneShot(listSE[index]);
         IncrementIndexSE();

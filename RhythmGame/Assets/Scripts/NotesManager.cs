@@ -25,22 +25,24 @@ public class Note
 public class NotesManager : MonoBehaviour
 {
     [SerializeField]
-    private TextAsset notesData;
-
-    public int noteNum;
-    private string songName;
-
-    public List<int> listLaneNum = new List<int>();
-    public List<int> listNoteType = new List<int>();
-    public List<float> listNotesTime = new List<float>();
-    public List<GameObject> listNotesObj = new List<GameObject>();
-
-    [SerializeField]
-    private float notesSpeed;
-    [SerializeField]
     GameObject noteObj;
 
-    void OnEnable()
+    [SerializeField]
+    private TextAsset notesData;
+
+    [HideInInspector]
+    public int noteNum;
+    private string songName;
+    [HideInInspector]
+    public List<int> listLaneNum = new List<int>();
+    [HideInInspector]
+    public List<int> listNoteType = new List<int>();
+    //[HideInInspector]
+    public List<float> listNotesTime = new List<float>();
+    [HideInInspector]
+    public List<GameObject> listNotesObj = new List<GameObject>();
+
+    void Start()
     {
         noteNum = 0;
         songName = "テスト";
@@ -62,8 +64,10 @@ public class NotesManager : MonoBehaviour
             float kankaku = 60 / (inputJson.BPM * (float)inputJson.notes[i].LPB);
             // ノーツ間の長さ
             float beatSec = kankaku * (float)inputJson.notes[i].LPB;
+            // 開始前の長さ
+            float preStartTime = inputJson.offset * 0.01f + PlaySceneManager.psManager.preStartTime;
             // ノーツの降ってくる時間
-            float time = (beatSec * inputJson.notes[i].num / (float)inputJson.notes[i].LPB) + inputJson.offset * 0.01f;
+            float time = (beatSec * inputJson.notes[i].num / (float)inputJson.notes[i].LPB) + preStartTime;
             
             // リスト追加
             listNotesTime.Add(time);
@@ -71,7 +75,7 @@ public class NotesManager : MonoBehaviour
             listNoteType.Add(inputJson.notes[i].type);
 
             // ノーツ生成
-            float z = listNotesTime[i] * notesSpeed;
+            float z = listNotesTime[i] * PlaySceneManager.psManager.notesSpeed;
             listNotesObj.Add(Instantiate(noteObj, new Vector3(inputJson.notes[i].block - 1.5f, 0.55f, z), Quaternion.identity));
         }
     }
