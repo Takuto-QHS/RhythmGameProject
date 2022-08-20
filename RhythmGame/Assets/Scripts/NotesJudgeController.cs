@@ -40,7 +40,6 @@ public class NotesJudgeController : MonoBehaviour
                 その絶対値をJudgement関数に送る
                 */
                 Judgement(GetABS(Time.time - notesManager.listNotesTime[0]));
-                PlaySceneManager.psManager.soundManager.StartSE(0);
             }
         }
         else if (Keyboard.current.sKey.isPressed)
@@ -48,7 +47,6 @@ public class NotesJudgeController : MonoBehaviour
             if (notesManager.listLaneNum[0] == 1)
             {
                 Judgement(GetABS(Time.time - notesManager.listNotesTime[0]));
-                PlaySceneManager.psManager.soundManager.StartSE(0);
             }
         }
         else if (Keyboard.current.dKey.isPressed)
@@ -56,7 +54,6 @@ public class NotesJudgeController : MonoBehaviour
             if (notesManager.listLaneNum[0] == 2)
             {
                 Judgement(GetABS(Time.time - notesManager.listNotesTime[0]));
-                PlaySceneManager.psManager.soundManager.StartSE(0);
             }
         }
         else if (Keyboard.current.fKey.isPressed)
@@ -64,7 +61,6 @@ public class NotesJudgeController : MonoBehaviour
             if (notesManager.listLaneNum[0] == 3)
             {
                 Judgement(GetABS(Time.time - notesManager.listNotesTime[0]));
-                PlaySceneManager.psManager.soundManager.StartSE(0);
             }
         }
         else if (Time.time > notesManager.listNotesTime[0] + timeBadMiss)//本来ノーツをたたくべき時間から0.2秒たっても入力がなかった場合
@@ -90,6 +86,8 @@ public class NotesJudgeController : MonoBehaviour
             scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo++);
             scoreBoxWindow.UpdateTxtPerfect(PlaySceneManager.psManager.valuePerfect++);
             deleteData();
+
+            PlaySceneManager.psManager.soundManager.StartSE(0);
         }
         else if (timeLag <= timeGood)
         {
@@ -100,6 +98,8 @@ public class NotesJudgeController : MonoBehaviour
             scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo++);
             scoreBoxWindow.UpdateTxtGreat(PlaySceneManager.psManager.valueGreat++);
             deleteData();
+
+            PlaySceneManager.psManager.soundManager.StartSE(0);
         }
         else if (timeLag <= timeGreat)
         {
@@ -110,6 +110,8 @@ public class NotesJudgeController : MonoBehaviour
             scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo++);
             scoreBoxWindow.UpdateTxtGood(PlaySceneManager.psManager.valueGood++);
             deleteData();
+
+            PlaySceneManager.psManager.soundManager.StartSE(0);
         }
         else if (timeLag <= timeBadMiss)
         {
@@ -120,6 +122,8 @@ public class NotesJudgeController : MonoBehaviour
             scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo++);
             scoreBoxWindow.UpdateTxtBad(PlaySceneManager.psManager.valueBad++);
             deleteData();
+
+            PlaySceneManager.psManager.soundManager.StartSE(0);
         }
     }
 
