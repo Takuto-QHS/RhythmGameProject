@@ -72,14 +72,14 @@ public class NotesJudgeController : MonoBehaviour
             scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo);
             scoreBoxWindow.UpdateTxtMiss(PlaySceneManager.psManager.valueMiss++);
             deleteData();
-            Debug.Log("Miss");
+            //Debug.Log("Miss");
         }
     }
     void Judgement(float timeLag)
     {
         if (timeLag <= timePerfect)//–{—ˆƒm[ƒc‚ð‚½‚½‚­‚×‚«ŽžŠÔ‚ÆŽÀÛ‚Éƒm[ƒc‚ð‚½‚½‚¢‚½ŽžŠÔ‚ÌŒë·‚ªtimePerfect•bˆÈ‰º‚¾‚Á‚½‚ç
         {
-            Debug.Log("Perfect");
+            //Debug.Log("Perfect");
             message(0);
             PlaySceneManager.psManager.valueScore = PlaySceneManager.psManager.valueScore + PlaySceneManager.psManager.addScoreValuePerfect;
             scoreBoxWindow.UpdateTxtScore(PlaySceneManager.psManager.valueScore);
@@ -91,7 +91,7 @@ public class NotesJudgeController : MonoBehaviour
         }
         else if (timeLag <= timeGood)
         {
-            Debug.Log("Great");
+            //Debug.Log("Great");
             message(1);
             PlaySceneManager.psManager.valueScore = PlaySceneManager.psManager.valueScore + PlaySceneManager.psManager.addScoreValueGreat;
             scoreBoxWindow.UpdateTxtScore(PlaySceneManager.psManager.valueScore);
@@ -103,7 +103,7 @@ public class NotesJudgeController : MonoBehaviour
         }
         else if (timeLag <= timeGreat)
         {
-            Debug.Log("Great");
+            //Debug.Log("Great");
             message(2);
             PlaySceneManager.psManager.valueScore = PlaySceneManager.psManager.valueScore + PlaySceneManager.psManager.addScoreValueGood;
             scoreBoxWindow.UpdateTxtScore(PlaySceneManager.psManager.valueScore);
@@ -115,7 +115,7 @@ public class NotesJudgeController : MonoBehaviour
         }
         else if (timeLag <= timeBadMiss)
         {
-            Debug.Log("Bad");
+            //Debug.Log("Bad");
             message(3);
             PlaySceneManager.psManager.valueScore = PlaySceneManager.psManager.valueScore + PlaySceneManager.psManager.addScoreValueBad;
             scoreBoxWindow.UpdateTxtScore(PlaySceneManager.psManager.valueScore);

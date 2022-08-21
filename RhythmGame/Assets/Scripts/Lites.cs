@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Lites : MonoBehaviour
 {
     [SerializeField] private float lightSpeed = 3;
-    [SerializeField] private float lightNum = 0;
+    public float lightNum = 0;
     private Renderer rend;
     private float alfa = 0.0f;
 
@@ -34,25 +35,25 @@ public class Lites : MonoBehaviour
         switch(lightNum)
         {
             case 0:
-                if(Input.GetKeyDown(KeyCode.A))
+                if(Keyboard.current.aKey.isPressed)
                 {
                     ColorChange();
                 }
                 break;
             case 1:
-                if (Input.GetKeyDown(KeyCode.S))
+                if (Keyboard.current.sKey.isPressed)
                 {
                     ColorChange();
                 }
                 break;
             case 2:
-                if (Input.GetKeyDown(KeyCode.D))
+                if (Keyboard.current.dKey.isPressed)
                 {
                     ColorChange();
                 }
                 break;
             case 3:
-                if (Input.GetKeyDown(KeyCode.F))
+                if (Keyboard.current.fKey.isPressed)
                 {
                     ColorChange();
                 }

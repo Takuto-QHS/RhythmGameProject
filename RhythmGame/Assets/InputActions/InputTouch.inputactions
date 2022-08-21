@@ -1,0 +1,45 @@
+{
+    "name": "InputTouch",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "a40d9e4c-d09e-4942-bb99-5c2505dd0464",
+            "actions": [
+                {
+                    "name": "Press",
+                    "type": "Button",
+                    "id": "22c20050-4f4a-432e-9e55-35b4f92eb2c0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c79e4a30-773a-4f67-8062-6974c7f08fbb",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Press",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8c6fa5a4-a1db-4c4c-a2e1-c65a75b4b766",
+                    "path": "<Touchscreen>/touch*/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Press",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
