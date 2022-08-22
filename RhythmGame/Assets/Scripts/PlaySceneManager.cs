@@ -24,6 +24,8 @@ public class PlaySceneManager : MonoBehaviour
     public int addScoreValueBad = 10;
     public int addScoreValueMiss = 0;
     [Space(10)]
+    public List<Lites> listRaneLite = new List<Lites>();
+    [Space(10)]
     public ScoreBoxWindow scoreBoxWin;
     public SoundManager soundManager;
 

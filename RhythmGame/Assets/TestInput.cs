@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 using UnityEngine.InputSystem.EnhancedTouch;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TMPro;
@@ -11,7 +10,6 @@ using UnityEngine.InputSystem.Controls;
 
 public class TestInput : MonoBehaviour
 {
-    public Camera camera;
     public GameObject pressObject;
     public GameObject findObject;
     public GameObject noFindObject;

@@ -1605,8 +1605,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 361063387}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 0.5, z: 1.53}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.5, y: 0.5, z: 1.5299997}
   m_LocalScale: {x: 1, y: -0.01, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2433,8 +2433,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 751082916}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0.5, z: 1.53}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.5, y: 0.5, z: 1.5299997}
   m_LocalScale: {x: 1, y: -0.01, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2545,8 +2545,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 865178673}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.5, z: 1.53}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 0.5, z: 1.5299997}
   m_LocalScale: {x: 1, y: -0.01, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2799,6 +2799,7 @@ GameObject:
   m_Component:
   - component: {fileID: 980538896}
   - component: {fileID: 980538897}
+  - component: {fileID: 980538898}
   m_Layer: 0
   m_Name: InputTouchManager
   m_TagString: Untagged
@@ -2833,6 +2834,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3178be92511c69a40bee9a8d6bc65261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notesJudgeCon: {fileID: 1690243370}
+--- !u!114 &980538898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980538895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: a955aee91fa90634784979ef7b93fb24, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &988195581
 GameObject:
   m_ObjectHideFlags: 0
@@ -2896,6 +2928,11 @@ MonoBehaviour:
   addScoreValueGood: 20
   addScoreValueBad: 10
   addScoreValueMiss: 0
+  listRaneLite:
+  - {fileID: 2043431722}
+  - {fileID: 751082918}
+  - {fileID: 865178675}
+  - {fileID: 361063389}
   scoreBoxWin: {fileID: 1347926551}
   soundManager: {fileID: 159992323}
 --- !u!1 &1044350160
@@ -3404,7 +3441,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1206477938}
   m_Layer: 0
-  m_Name: LitesParent
+  m_Name: TouchRaneParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5205,8 +5242,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043431720}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5, y: 0.5, z: 1.53}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.5, y: 0.5, z: 1.5299997}
   m_LocalScale: {x: 1, y: -0.01, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children: []

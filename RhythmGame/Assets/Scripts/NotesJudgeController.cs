@@ -24,48 +24,14 @@ public class NotesJudgeController : MonoBehaviour
 
     void Update()
     {
-
-        if(notesManager.listNotesTime.Count == 0)
+        if (notesManager.listNotesTime.Count == 0)
         {
             return;
         }
-        //Debug.Log(notesManager.listNotesTime.Count);
 
-        if (Keyboard.current.aKey.isPressed)//〇キーが押されたとき
+        if (Time.time > notesManager.listNotesTime[0] + timeBadMiss)//本来ノーツをたたくべき時間から0.15秒たっても入力がなかった場合
         {
-            if (notesManager.listLaneNum[0] == 0)//押されたボタンはレーンの番号とあっているか？
-            {
-                /*
-                本来ノーツをたたく場所と実際にたたいた場所がどれくらいずれているかを求め、
-                その絶対値をJudgement関数に送る
-                */
-                Judgement(GetABS(Time.time - notesManager.listNotesTime[0]));
-            }
-        }
-        else if (Keyboard.current.sKey.isPressed)
-        {
-            if (notesManager.listLaneNum[0] == 1)
-            {
-                Judgement(GetABS(Time.time - notesManager.listNotesTime[0]));
-            }
-        }
-        else if (Keyboard.current.dKey.isPressed)
-        {
-            if (notesManager.listLaneNum[0] == 2)
-            {
-                Judgement(GetABS(Time.time - notesManager.listNotesTime[0]));
-            }
-        }
-        else if (Keyboard.current.fKey.isPressed)
-        {
-            if (notesManager.listLaneNum[0] == 3)
-            {
-                Judgement(GetABS(Time.time - notesManager.listNotesTime[0]));
-            }
-        }
-        else if (Time.time > notesManager.listNotesTime[0] + timeBadMiss)//本来ノーツをたたくべき時間から0.2秒たっても入力がなかった場合
-        {
-            message(4);
+            Message(4);
             PlaySceneManager.psManager.valueScore = PlaySceneManager.psManager.valueScore + PlaySceneManager.psManager.addScoreValueMiss;
             scoreBoxWindow.UpdateTxtScore(PlaySceneManager.psManager.valueScore);
             PlaySceneManager.psManager.valueCombo = 0;
@@ -75,12 +41,31 @@ public class NotesJudgeController : MonoBehaviour
             //Debug.Log("Miss");
         }
     }
+
+    public void RaneJudge(int _hitsRaneNum)
+    {
+        if (notesManager.listNotesTime.Count == 0)
+        {
+            return;
+        }
+        //Debug.Log(notesManager.listNotesTime.Count);
+
+        if (notesManager.listLaneNum[0] == _hitsRaneNum)
+        {
+            /*
+            本来ノーツをたたく場所と実際にたたいた場所がどれくらいずれているかを求め、
+            その絶対値をJudgement関数に送る
+            */
+            Judgement(GetABS(Time.time - notesManager.listNotesTime[0]));
+        }
+    }
+
     void Judgement(float timeLag)
     {
         if (timeLag <= timePerfect)//本来ノーツをたたくべき時間と実際にノーツをたたいた時間の誤差がtimePerfect秒以下だったら
         {
             //Debug.Log("Perfect");
-            message(0);
+            Message(0);
             PlaySceneManager.psManager.valueScore = PlaySceneManager.psManager.valueScore + PlaySceneManager.psManager.addScoreValuePerfect;
             scoreBoxWindow.UpdateTxtScore(PlaySceneManager.psManager.valueScore);
             scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo++);
@@ -92,7 +77,7 @@ public class NotesJudgeController : MonoBehaviour
         else if (timeLag <= timeGood)
         {
             //Debug.Log("Great");
-            message(1);
+            Message(1);
             PlaySceneManager.psManager.valueScore = PlaySceneManager.psManager.valueScore + PlaySceneManager.psManager.addScoreValueGreat;
             scoreBoxWindow.UpdateTxtScore(PlaySceneManager.psManager.valueScore);
             scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo++);
@@ -104,7 +89,7 @@ public class NotesJudgeController : MonoBehaviour
         else if (timeLag <= timeGreat)
         {
             //Debug.Log("Great");
-            message(2);
+            Message(2);
             PlaySceneManager.psManager.valueScore = PlaySceneManager.psManager.valueScore + PlaySceneManager.psManager.addScoreValueGood;
             scoreBoxWindow.UpdateTxtScore(PlaySceneManager.psManager.valueScore);
             scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo++);
@@ -116,7 +101,7 @@ public class NotesJudgeController : MonoBehaviour
         else if (timeLag <= timeBadMiss)
         {
             //Debug.Log("Bad");
-            message(3);
+            Message(3);
             PlaySceneManager.psManager.valueScore = PlaySceneManager.psManager.valueScore + PlaySceneManager.psManager.addScoreValueBad;
             scoreBoxWindow.UpdateTxtScore(PlaySceneManager.psManager.valueScore);
             scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo++);
@@ -137,8 +122,7 @@ public class NotesJudgeController : MonoBehaviour
         notesManager.listLaneNum.RemoveAt(0);
         notesManager.listNoteType.RemoveAt(0);
     }
-
-    void message(int judge)//判定を表示する
+    void Message(int judge)//判定を表示する
     {
         Instantiate(MessageObj[judge], new Vector3(notesManager.listLaneNum[0] - 1.5f, 0.76f, 0.15f), Quaternion.Euler(45, 0, 0));
     }

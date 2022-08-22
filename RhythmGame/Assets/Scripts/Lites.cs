@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class Lites : MonoBehaviour
 {
     [SerializeField] private float lightSpeed = 3;
-    public float lightNum = 0;
+    public int lightNum = 0;
     private Renderer rend;
     private float alfa = 0.0f;
 
@@ -32,38 +32,10 @@ public class Lites : MonoBehaviour
             ColorChange(0.0f);
         }
 
-        switch(lightNum)
-        {
-            case 0:
-                if(Keyboard.current.aKey.isPressed)
-                {
-                    ColorChange();
-                }
-                break;
-            case 1:
-                if (Keyboard.current.sKey.isPressed)
-                {
-                    ColorChange();
-                }
-                break;
-            case 2:
-                if (Keyboard.current.dKey.isPressed)
-                {
-                    ColorChange();
-                }
-                break;
-            case 3:
-                if (Keyboard.current.fKey.isPressed)
-                {
-                    ColorChange();
-                }
-                break;
-        }
-
         alfa -= lightSpeed*Time.deltaTime;
     }
 
-    void ColorChange(float _alfa = 0.3f)
+    public void ColorChange(float _alfa = 0.3f)
     {
         alfa = _alfa;
         rend.material.color = new Color(
