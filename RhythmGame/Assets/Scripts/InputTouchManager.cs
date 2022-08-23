@@ -60,20 +60,25 @@ public class InputTouchManager : MonoBehaviour
 
             for (int j = 0; j < hitNum; j++)
             {
-                // hitを検索してLitesスクリプトのあるオブジェクトにヒットしているか
-                Lites liteObj = hits[j].collider.GetComponent<Lites>();
-                if (liteObj != null)
+                foreach(RaycastHit hit in hits)
                 {
-                    Debug.Log("LaneNum = " + liteObj.lightNum);
+                    // hitを検索してBoxColliderのあるオブジェクトにヒットしているか
+                    BoxCollider touchObj = hit.collider.GetComponent<BoxCollider>();
+                    if (touchObj != null)
+                    {
+                        Lites liteObj = touchObj.transform.GetChild(0).GetComponent<Lites>();
 
-                    liteObj.ColorChange();
+                        Debug.Log("LaneNum = " + liteObj.lightNum);
 
-                    notesJudgeCon.RaneJudge(liteObj.lightNum);
-                    break;
-                }
-                else
-                {
-                    Debug.Log("そこにオブジェクトは無いよ");
+                        liteObj.ColorChange();
+
+                        notesJudgeCon.RaneJudge(liteObj.lightNum);
+                        break;
+                    }
+                    else
+                    {
+                        Debug.Log("そこにオブジェクトは無いよ");
+                    }
                 }
             }
         }

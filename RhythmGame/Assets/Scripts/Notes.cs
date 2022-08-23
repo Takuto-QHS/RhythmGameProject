@@ -7,6 +7,6 @@ public class Notes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position -= transform.forward * Time.deltaTime * PlaySceneManager.psManager.notesSpeed;
+        transform.position -= transform.up * Time.deltaTime * PlaySceneManager.psManager.notesSpeed;
     }
 }

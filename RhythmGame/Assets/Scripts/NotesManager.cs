@@ -76,7 +76,7 @@ public class NotesManager : MonoBehaviour
 
             // ÉmÅ[Écê∂ê¨
             float z = listNotesTime[i] * PlaySceneManager.psManager.notesSpeed;
-            listNotesObj.Add(Instantiate(noteObj, new Vector3(inputJson.notes[i].block - 1.5f, 0.55f, z), Quaternion.identity));
+            listNotesObj.Add(Instantiate(noteObj, new Vector3(inputJson.notes[i].block - 2.5f, 0.03f, z), noteObj.transform.rotation));
         }
     }
 }
