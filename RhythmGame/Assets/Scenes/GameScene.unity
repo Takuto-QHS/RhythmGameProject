@@ -3247,10 +3247,12 @@ MonoBehaviour:
   addScoreValueBad: 10
   addScoreValueMiss: 0
   listRaneLite:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1267238851}
+  - {fileID: 1666685763}
+  - {fileID: 1400513068}
+  - {fileID: 609667581}
+  - {fileID: 1879773071}
+  - {fileID: 2011758252}
   scoreBoxWin: {fileID: 1347926551}
   soundManager: {fileID: 159992323}
 --- !u!1 &1044350160
@@ -5359,13 +5361,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42cd980725f8b484fa42b9f74f784e9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteObj: {fileID: 1424879572930352929, guid: 60219f7d5c0589d45a0923eba8825e96, type: 3}
+  noteTapObj: {fileID: 468231567830911126, guid: 60219f7d5c0589d45a0923eba8825e96, type: 3}
+  noteLongObj: {fileID: 759364179843213216, guid: 4a855c4e449a00e47be04d501b15c7e1, type: 3}
   notesData: {fileID: 4900000, guid: b2824d676fff400419df5c8aac278663, type: 3}
   noteNum: 0
   listLaneNum: 
   listNoteType: 
   listNotesTime: []
   listNotesObj: []
+  listLongLaneNum: 
+  listLongNoteType: 
+  listLongNotesTime: []
+  listLongNotesObj: []
 --- !u!1 &1709295035
 GameObject:
   m_ObjectHideFlags: 0
