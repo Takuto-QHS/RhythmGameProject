@@ -20,7 +20,7 @@ public class InputTouchManager : MonoBehaviour
 
     public void OnPress()
     {
-        Debug.Log("Press");
+        //Debug.Log("Press");
 
         TouchJudgement();
     }
@@ -68,7 +68,7 @@ public class InputTouchManager : MonoBehaviour
                     {
                         Lites liteObj = touchObj.transform.GetChild(0).GetComponent<Lites>();
 
-                        Debug.Log("LaneNum = " + liteObj.lightNum);
+                        //Debug.Log("LaneNum = " + liteObj.lightNum);
 
                         liteObj.ColorChange();
 
@@ -77,7 +77,7 @@ public class InputTouchManager : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("そこにオブジェクトは無いよ");
+                        //Debug.Log("そこにオブジェクトは無いよ");
                     }
                 }
             }
