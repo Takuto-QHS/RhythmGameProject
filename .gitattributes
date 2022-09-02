@@ -1,2 +1,4 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+NotoSansJP-Regular filter=lfs diff=lfs merge=lfs -text
+SDF} filter=lfs diff=lfs merge=lfs -text
