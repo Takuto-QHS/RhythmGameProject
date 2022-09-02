@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class Notes : MonoBehaviour
 {
+    public bool isMoveZ = false;
+
     // Update is called once per frame
     void Update()
     {
-        transform.position -= transform.up * Time.deltaTime * PlaySceneManager.psManager.notesSpeed;
+        if(isMoveZ)
+        {
+            transform.position -= transform.forward * Time.deltaTime * PlaySceneManager.psManager.notesSpeed;
+        }
+        else
+        {
+            transform.position -= transform.up * Time.deltaTime * PlaySceneManager.psManager.notesSpeed;
+        }
     }
 }
