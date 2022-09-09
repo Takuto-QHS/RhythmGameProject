@@ -26,6 +26,7 @@ public class PlaySceneManager : MonoBehaviour
     [Space(10)]
     public List<Lites> listRaneLite = new List<Lites>();
     [Space(10)]
+    public NotesManager notesManager;
     public ScoreBoxWindow scoreBoxWin;
     public SoundManager soundManager;
 

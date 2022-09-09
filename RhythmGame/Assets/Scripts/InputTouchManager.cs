@@ -6,11 +6,16 @@ using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.Events;
 
 public class InputTouchManager : MonoBehaviour
 {
     [SerializeField]
     private NotesJudgeController notesJudgeCon;
+
+    static public UnityAction<int> deligateJudge;
+
+    public 
 
     void Awake()
     {
@@ -55,8 +60,7 @@ public class InputTouchManager : MonoBehaviour
         {
             RaycastHit[] hits = new RaycastHit[10]; // Rayがヒットするオブジェクトを格納
 
-            // Rayがヒットしているオブジェクトを検索する
-            int hitNum = Physics.RaycastNonAlloc(_ray, hits);
+            int hitNum = Physics.RaycastNonAlloc(_ray, hits);　// Rayがヒットしているオブジェクトを検索する
 
             for (int j = 0; j < hitNum; j++)
             {
@@ -67,12 +71,10 @@ public class InputTouchManager : MonoBehaviour
                     if (touchObj != null)
                     {
                         Lites liteObj = touchObj.transform.GetChild(0).GetComponent<Lites>();
-
                         //Debug.Log("LaneNum = " + liteObj.lightNum);
-
                         liteObj.ColorChange();
 
-                        notesJudgeCon.RaneJudge(liteObj.lightNum);
+                        deligateJudge(liteObj.lightNum); // 全TypeのNotesコンポーネントのJudge関数起動
                         break;
                     }
                     else
@@ -89,22 +91,22 @@ public class InputTouchManager : MonoBehaviour
     {
         if (Keyboard.current.aKey.isPressed)//〇キーが押されたとき
         {
-            notesJudgeCon.RaneJudge(0);
+            deligateJudge(0);
             PlaySceneManager.psManager.listRaneLite[0].ColorChange();
         }
         else if (Keyboard.current.sKey.isPressed)
         {
-            notesJudgeCon.RaneJudge(1);
+            deligateJudge(1);
             PlaySceneManager.psManager.listRaneLite[1].ColorChange();
         }
         else if (Keyboard.current.dKey.isPressed)
         {
-            notesJudgeCon.RaneJudge(2);
+            deligateJudge(2);
             PlaySceneManager.psManager.listRaneLite[2].ColorChange();
         }
         else if (Keyboard.current.fKey.isPressed)
         {
-            notesJudgeCon.RaneJudge(3);
+            deligateJudge(3);
             PlaySceneManager.psManager.listRaneLite[3].ColorChange();
         }
     }

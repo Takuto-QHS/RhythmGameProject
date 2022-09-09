@@ -25,28 +25,19 @@ public class Note
 
 public class NotesManager : MonoBehaviour
 {
-    [SerializeField]
-    GameObject noteTapObj;
+    public TapNotesComponent tapNotesComp;
+    public LongNotesComponent longNotesComp;
+
     [SerializeField]
     GameObject noteLongObj;
 
-    [SerializeField]
-    private TextAsset notesData;
+    public TextAsset notesData;
 
     [HideInInspector]
     public int noteNum;
     private string songName;
     private int bpm;
     private int offset;
-
-    [HideInInspector]
-    public List<int> listLaneNum = new List<int>();
-    [HideInInspector]
-    public List<int> listNoteType = new List<int>();
-    //[HideInInspector]
-    public List<float> listNotesTime = new List<float>();
-    [HideInInspector]
-    public List<GameObject> listNotesObj = new List<GameObject>();
 
     public Material longNoteLineMaterial;
     public Color longNoteLineColor;
@@ -59,7 +50,7 @@ public class NotesManager : MonoBehaviour
     [HideInInspector]
     public List<GameObject> listLongNotesObj = new List<GameObject>();
 
-    void Start()
+    void Awake()
     {
         noteNum = 0;
         songName = "テスト";
@@ -82,22 +73,8 @@ public class NotesManager : MonoBehaviour
         {
             switch (inputJson.notes[i].type)
             {
-                case 1: // タップノーツ
-                    // ノーツの降ってくる時間
-                    float time = GetNoteTime(inputJson.notes[i]);
-
-                    // リスト追加
-                    listNotesTime.Add(time);
-                    listLaneNum.Add(inputJson.notes[i].block);
-                    listNoteType.Add(inputJson.notes[i].type);
-
-                    // 生成
-                    InstantiateTapNotes(time, inputJson.notes[i].block);
-                    break;
-
                 case 2: // ロングノーツ
-                    // ノーツの降ってくる時間
-                    float timeLongNote = GetNoteTime(inputJson.notes[i]);
+                    float timeLongNote = GetNoteTime(inputJson.notes[i]); // ノーツの降ってくる時間
 
                     // リスト追加
                     listLongNotesTime.Add(timeLongNote);
@@ -112,7 +89,7 @@ public class NotesManager : MonoBehaviour
         }
     }
 
-    float GetNoteTime(Note note)
+    public float GetNoteTime(Note note)
     {
         // 一小節の長さ
         float kankaku = 60 / (bpm * (float)note.LPB);
@@ -124,13 +101,6 @@ public class NotesManager : MonoBehaviour
         float time = (beatSec * note.num / (float)note.LPB) + preStartTime;
 
         return time;
-    }
-
-    void InstantiateTapNotes(float time, int block)
-    {
-        float z = time * PlaySceneManager.psManager.notesSpeed;
-        GameObject obj = Instantiate(noteTapObj, new Vector3(block - 2.5f, 0.03f, z), noteTapObj.transform.rotation);
-        listNotesObj.Add(obj);
     }
 
     void InstantiateLongNotes(Note note , float time , LineRenderer line = null)
