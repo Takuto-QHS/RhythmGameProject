@@ -166,6 +166,13 @@ public class LongNotesComponent : MonoBehaviour
         notes.isMoveZ = true;
     }
 
+    public void DeleteData()//すでにたたいたノーツ判定を削除する関数
+    {
+        listNotesTime.RemoveAt(0);
+        listLaneNum.RemoveAt(0);
+        listNoteType.RemoveAt(0);
+    }
+
     public void RaneJudge(int _hitsRaneNum)
     {
         if (listNotesTime.Count == 0)
@@ -182,12 +189,5 @@ public class LongNotesComponent : MonoBehaviour
                 DeleteData();
             }
         }
-    }
-
-    public void DeleteData()//すでにたたいたノーツ判定を削除する関数
-    {
-        listNotesTime.RemoveAt(0);
-        listLaneNum.RemoveAt(0);
-        listNoteType.RemoveAt(0);
     }
 }
