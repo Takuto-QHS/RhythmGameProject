@@ -77,7 +77,6 @@ public class NotesJudgeController : MonoBehaviour
         scoreBoxWindow.UpdateTxtScore(PlaySceneManager.psManager.valueScore);
         scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo++);
         scoreBoxWindow.UpdateTxtPerfect(PlaySceneManager.psManager.valuePerfect++);
-        tapNotesComp.DeleteData();
 
         PlaySceneManager.psManager.soundManager.StartSE(0);
     }
@@ -90,7 +89,6 @@ public class NotesJudgeController : MonoBehaviour
         scoreBoxWindow.UpdateTxtScore(PlaySceneManager.psManager.valueScore);
         scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo++);
         scoreBoxWindow.UpdateTxtGood(PlaySceneManager.psManager.valueGood++);
-        tapNotesComp.DeleteData();
 
         PlaySceneManager.psManager.soundManager.StartSE(0);
     }
@@ -103,7 +101,6 @@ public class NotesJudgeController : MonoBehaviour
         scoreBoxWindow.UpdateTxtScore(PlaySceneManager.psManager.valueScore);
         scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo++);
         scoreBoxWindow.UpdateTxtGreat(PlaySceneManager.psManager.valueGreat++);
-        tapNotesComp.DeleteData();
 
         PlaySceneManager.psManager.soundManager.StartSE(0);
     }
@@ -117,7 +114,6 @@ public class NotesJudgeController : MonoBehaviour
         PlaySceneManager.psManager.valueCombo = 0;
         scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo);
         scoreBoxWindow.UpdateTxtBad(PlaySceneManager.psManager.valueBad++);
-        tapNotesComp.DeleteData();
 
         PlaySceneManager.psManager.soundManager.StartSE(0);
     }
