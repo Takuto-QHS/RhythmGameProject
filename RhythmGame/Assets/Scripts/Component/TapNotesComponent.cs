@@ -34,9 +34,11 @@ public class TapNotesComponent : MonoBehaviour
             return;
         }
 
-        if (Time.time > listNotesTime[0] + notesJudgeController.timeBadMiss)//–{—ˆƒm[ƒc‚ð‚½‚½‚­‚×‚«ŽžŠÔ‚©‚ç0.15•b‚½‚Á‚Ä‚à“ü—Í‚ª‚È‚©‚Á‚½ê‡
+        //–{—ˆƒm[ƒc‚ð‚½‚½‚­‚×‚«ŽžŠÔ‚©‚ç0.15•b‚½‚Á‚Ä‚à“ü—Í‚ª‚È‚©‚Á‚½ê‡
+        if (Time.time > listNotesTime[0] + notesJudgeController.timeBadMiss)
         {
-            notesJudgeController.JudgeBadMiss();
+            notesJudgeController.JudgeMiss(listLaneNum[0]);
+            DeleteData();
         }
     }
 
@@ -86,7 +88,12 @@ public class TapNotesComponent : MonoBehaviour
 
         if (listLaneNum[0] == _hitsRaneNum)
         {
-            notesJudgeController.Judgement(listNotesTime[0]);
+            NotesJudgeController.EJudgeType eJudgeType;
+            eJudgeType = notesJudgeController.Judgement(listNotesTime[0], listLaneNum[0]);
+            if(eJudgeType != NotesJudgeController.EJudgeType.Ignore)
+            {
+                DeleteData();
+            }
         }
     }
 }

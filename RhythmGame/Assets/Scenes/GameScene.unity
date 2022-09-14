@@ -5384,7 +5384,7 @@ MonoBehaviour:
   - {fileID: 7904614710978310548, guid: 76e6d4e09740a6d48910d749ef0d2b00, type: 3}
   - {fileID: 7827360810604924419, guid: 5811edd4f97dcd842a4c02a4f95f51c1, type: 3}
   - {fileID: 4331619196327845257, guid: f7ea775bece0a6b48a0608c40239d763, type: 3}
-  - {fileID: 7827360810604924419, guid: 5811edd4f97dcd842a4c02a4f95f51c1, type: 3}
+  - {fileID: 3004235084494409234, guid: 5460eb4f290a2ff4bb04ed6b6ac6323a, type: 3}
   - {fileID: 2458415205950753459, guid: 6c7446329a0177b4fadc4bff1cdde7f9, type: 3}
   timePerfect: 0.05
   timeGreat: 0.1
@@ -5404,15 +5404,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tapNotesComp: {fileID: 1690243372}
   longNotesComp: {fileID: 1690243373}
-  noteLongObj: {fileID: 759364179843213216, guid: 4a855c4e449a00e47be04d501b15c7e1, type: 3}
   notesData: {fileID: 4900000, guid: b2824d676fff400419df5c8aac278663, type: 3}
   noteNum: 0
-  longNoteLineMaterial: {fileID: 2100000, guid: e2611590d38a77d4b8ba596adbbfb4f4, type: 2}
-  longNoteLineColor: {r: 0, g: 1, b: 1, a: 1}
-  listLongLaneNum: 
-  listLongNoteType: 
-  listLongNotesTime: []
-  listLongNotesObj: []
 --- !u!114 &1690243372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5443,6 +5436,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2906d557fa8d81b4e8b90e4b3c98dc27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notesJudgeController: {fileID: 1690243370}
+  longNoteLineMaterial: {fileID: 2100000, guid: e2611590d38a77d4b8ba596adbbfb4f4, type: 2}
+  noteLongObj: {fileID: 759364179843213216, guid: 4a855c4e449a00e47be04d501b15c7e1, type: 3}
+  listLaneNum: 
+  listNoteType: 
+  listNotesTime: []
+  listLongNotesObj: []
 --- !u!1 &1709295035
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,36 +28,20 @@ public class NotesManager : MonoBehaviour
     public TapNotesComponent tapNotesComp;
     public LongNotesComponent longNotesComp;
 
-    [SerializeField]
-    GameObject noteLongObj;
-
     public TextAsset notesData;
 
     [HideInInspector]
     public int noteNum;
-    private string songName;
     private int bpm;
     private int offset;
-
-    public Material longNoteLineMaterial;
-    public Color longNoteLineColor;
-    [HideInInspector]
-    public List<int> listLongLaneNum = new List<int>();
-    [HideInInspector]
-    public List<int> listLongNoteType = new List<int>();
-    //[HideInInspector]
-    public List<float> listLongNotesTime = new List<float>();
-    [HideInInspector]
-    public List<GameObject> listLongNotesObj = new List<GameObject>();
 
     void Awake()
     {
         noteNum = 0;
-        songName = "テスト";
-        Load(songName);
+        Load();
     }
 
-    private void Load(string SongName)
+    void Load()
     {
         string inputString = notesData.text;
         Data inputJson = JsonUtility.FromJson<Data>(inputString);
@@ -69,24 +53,7 @@ public class NotesManager : MonoBehaviour
         offset = inputJson.offset;
 
         // 時間計算＆List追加＆生成関数
-        for (int i = 0; i < inputJson.notes.Length; i++)
-        {
-            switch (inputJson.notes[i].type)
-            {
-                case 2: // ロングノーツ
-                    float timeLongNote = GetNoteTime(inputJson.notes[i]); // ノーツの降ってくる時間
-
-                    // リスト追加
-                    listLongNotesTime.Add(timeLongNote);
-                    listLongLaneNum.Add(inputJson.notes[i].block);
-                    listLongNoteType.Add(inputJson.notes[i].type);
-
-                    // 生成
-                    InstantiateLongNotes(inputJson.notes[i], timeLongNote);
-                    break;
-            }
-            
-        }
+        
     }
 
     public float GetNoteTime(Note note)
@@ -103,102 +70,5 @@ public class NotesManager : MonoBehaviour
         return time;
     }
 
-    void InstantiateLongNotes(Note note , float time , LineRenderer line = null)
-    {
-        // 生成
-        float z = time * PlaySceneManager.psManager.notesSpeed;
-        GameObject obj1 = Instantiate(noteLongObj, new Vector3(note.block - 2.5f, 0.03f, z), noteLongObj.transform.rotation);
-        listLongNotesObj.Add(obj1);
-
-        // 線を引く準備(Meshの下頂点)
-        Vector3[] lineVerticesVec3 = new Vector3[4];
-        Vector3[] upperVec3 = GetObjVerticsUpperLower(obj1,true);
-        lineVerticesVec3[0] = upperVec3[0];
-        lineVerticesVec3[1] = upperVec3[1];
-
-        // Noteの中のnotes配列から生成
-        for (int x = 0; x < note.notes.Length; x++)
-        {
-            // ノーツの降ってくる時間
-            float timeLongNote = GetNoteTime(note.notes[x]);
-
-            // リスト追加
-            listLongNotesTime.Add(timeLongNote);
-            listLongLaneNum.Add(note.notes[x].block);
-            listLongNoteType.Add(note.notes[x].type);
-
-            // 生成
-            float z2 = timeLongNote * PlaySceneManager.psManager.notesSpeed;
-            GameObject obj2 = Instantiate(noteLongObj, new Vector3(note.notes[x].block - 2.5f, 0.03f, z2), noteLongObj.transform.rotation);
-            listLongNotesObj.Add(obj2);
-
-            // 線を引く準備(Meshの上頂点)
-            Vector3[] lowerVec3 = GetObjVerticsUpperLower(obj2, false);
-            lineVerticesVec3[2] = lowerVec3[0];
-            lineVerticesVec3[3] = lowerVec3[1];
-
-            InstantiateLongNotesLine(lineVerticesVec3);
-
-            // 次の線を引く準備(Meshの下頂点)
-            Vector3[] upperVec3Obj2 = GetObjVerticsUpperLower(obj2, true);
-            lineVerticesVec3[0] = upperVec3Obj2[0];
-            lineVerticesVec3[1] = upperVec3Obj2[1];
-        }
-
-        // リスト内を降ってくる時間順に整理
-
-    }
-
-    Vector3[] GetObjVerticsUpperLower(GameObject obj,bool upper)
-    {
-        Transform targetTransform = obj.transform;
-
-        // 各頂点をワールド座標に変換する
-        Vector3[] vertices = obj.GetComponent<MeshFilter>().mesh.vertices;
-        for (int i = 0; i < vertices.Length; i++)
-        {
-            vertices[i] = targetTransform.TransformPoint(vertices[i]);
-        }
-
-        // objの上頂点か下頂点を返す
-        Vector3[] pos = new Vector3[2];
-        if (upper)
-        {
-            pos[0] = vertices[2];
-            pos[1] = vertices[3];
-        }
-        else
-        {
-            pos[0] = vertices[0];
-            pos[1] = vertices[1];
-        }
-        return pos;
-    }
-
-    void InstantiateLongNotesLine(Vector3[] _lineVerticesVec3)
-    {
-        // Quadを生成
-        GameObject lineObj = GameObject.CreatePrimitive(PrimitiveType.Quad);
-
-        // Meshを作成し、Mesh端4点の頂点情報をセット
-        Mesh mesh = new Mesh();
-        mesh.SetVertices(_lineVerticesVec3);
-
-        // QuadのMeshは2つの三角形で構成されています
-        // 作成する頂点の順番をセット
-        int[] triangles = new int[6];
-        triangles[0] = 0;
-        triangles[1] = 2;
-        triangles[2] = 1;
-        triangles[3] = 2;
-        triangles[4] = 3;
-        triangles[5] = 1;
-        mesh.SetTriangles(triangles, 0);
-
-        // 生成したQuadに各種情報をセット
-        lineObj.GetComponent<MeshFilter>().mesh = mesh;
-        lineObj.GetComponent<MeshRenderer>().material = longNoteLineMaterial;
-        Notes notes = lineObj.AddComponent<Notes>();
-        notes.isMoveZ = true;
-    }
+    
 }
