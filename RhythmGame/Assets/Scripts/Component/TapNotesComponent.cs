@@ -23,7 +23,7 @@ public class TapNotesComponent : MonoBehaviour
     void Start()
     {
         InitNotes();
-        InputTouchManager.deligateJudge += RaneJudge;
+        InputTouchManager.deligateTapJudge += RaneJudge;
     }
 
     // Update is called once per frame
@@ -88,8 +88,10 @@ public class TapNotesComponent : MonoBehaviour
 
         if (listLaneNum[0] == _hitsRaneNum)
         {
+            // ”»’èƒ^ƒCƒvŽæ“¾
             NotesJudgeController.EJudgeType eJudgeType;
             eJudgeType = notesJudgeController.Judgement(listNotesTime[0], listLaneNum[0]);
+
             if(eJudgeType != NotesJudgeController.EJudgeType.Ignore)
             {
                 DeleteData();

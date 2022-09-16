@@ -31,33 +31,35 @@ public class NotesJudgeController : MonoBehaviour
         Ignore // 無視
     }
 
-    public EJudgeType Judgement(float noteTime, int laneNum)
+    public EJudgeType Judgement(float noteTime, int laneNum ,bool typeOnly = false)
     {
         // 本来ノーツを叩く時間と実際に叩いた時間がどれくらいずれているかを求め、
         // その絶対値をtimeLagとする
         float timeLag = GetABS(Time.time - noteTime);
-        EJudgeType type = EJudgeType.Miss;
+        EJudgeType type = EJudgeType.Ignore;
 
         if (timeLag <= timePerfect)//本来ノーツをたたくべき時間と実際にノーツをたたいた時間の誤差がtimePerfect秒以下だったら
         {
-            JudgePerfect(laneNum);
             type = EJudgeType.Perfect;
         }
         else if (timeLag <= timeGreat)
         {
-            JudgeGreat(laneNum);
             type = EJudgeType.Great;
         }
         else if (timeLag <= timeGood)
         {
-            JudgeGood(laneNum);
             type = EJudgeType.Good;
         }
         else if (timeLag <= timeBadMiss)
         {
-            JudgeBad(laneNum);
             type = EJudgeType.Bad;
         }
+
+        if(!typeOnly)
+        {
+            JudgeTypeProcess(type, laneNum);
+        }
+
         return type;
     }
 
@@ -65,10 +67,31 @@ public class NotesJudgeController : MonoBehaviour
     {
         return num >= 0 ? num : -num;
     }
+
     void Message(int judge,int laneNum)//判定を表示する
     {
         Instantiate(MessageObj[judge], new Vector3(laneNum - 1.5f, 0.76f, 0.15f), Quaternion.Euler(45, 0, 0));
     }
+
+    void JudgeTypeProcess(EJudgeType eJudgeType, int laneNum)
+    {
+        switch (eJudgeType)
+        {
+            case EJudgeType.Perfect:
+                JudgePerfect(laneNum);
+                break;
+            case EJudgeType.Great:
+                JudgeGreat(laneNum);
+                break;
+            case EJudgeType.Good:
+                JudgeGood(laneNum);
+                break;
+            case EJudgeType.Bad:
+                JudgeBad(laneNum);
+                break;
+        }
+    }
+
     public void JudgePerfect(int laneNum)
     {
         //Debug.Log("Perfect");

@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/* 仕様
+ * 生成→InputTouchManagerで判定→Perfect内時にレーンを押した状態ならOK
+ * */
+
 public class LongNotesComponent : MonoBehaviour
 {
     [SerializeField]
@@ -24,7 +28,7 @@ public class LongNotesComponent : MonoBehaviour
     void Start()
     {
         InitNotes();
-        InputTouchManager.deligateJudge += RaneJudge;
+        InputTouchManager.deligateLongTapJudge += RaneJudge;
     }
 
     // Update is called once per frame
@@ -182,10 +186,14 @@ public class LongNotesComponent : MonoBehaviour
 
         if (listLaneNum[0] == _hitsRaneNum)
         {
+            // 判定タイプ取得
             NotesJudgeController.EJudgeType eJudgeType;
-            eJudgeType = notesJudgeController.Judgement(listNotesTime[0], listLaneNum[0]);
-            if (eJudgeType != NotesJudgeController.EJudgeType.Ignore)
+            eJudgeType = notesJudgeController.Judgement(listNotesTime[0], listLaneNum[0], true);
+            
+            // パーフェクト時、判定処理後にList要素削除
+            if (eJudgeType == NotesJudgeController.EJudgeType.Perfect)
             {
+                notesJudgeController.Judgement(listNotesTime[0], listLaneNum[0]);
                 DeleteData();
             }
         }
