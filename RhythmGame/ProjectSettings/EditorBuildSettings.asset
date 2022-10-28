@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/TouchTestScene.unity
     guid: f6f22205ef2ab554cb6f60a485b2d359
+  - enabled: 1
+    path: Assets/Scenes/Select&ResultScene.unity
+    guid: 24be92022cf465a4aa53d646ab8935a6
   m_configObjects: {}
