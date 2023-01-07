@@ -6,8 +6,8 @@ using UnityEngine;
 [Serializable]
 public class MusicData
 {
-    public string title;
-    public string composer;
+    public string name;
+    public string artist;
     public AudioClip audioClip;
 }
 
@@ -25,7 +25,7 @@ public class SoundManager : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Init();
     }
@@ -46,6 +46,11 @@ public class SoundManager : MonoBehaviour
     public void StartBGM(int index)
     {
         listAudioSourcesBGM.clip = listMusic[index].audioClip;
+        listAudioSourcesBGM.Play();
+    }
+    public void StartBGM(AudioClip clip)
+    {
+        listAudioSourcesBGM.clip = clip;
         listAudioSourcesBGM.Play();
     }
 

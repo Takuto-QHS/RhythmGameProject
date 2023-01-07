@@ -34,8 +34,8 @@ public class MusicListScrollElement : TableNodeElement
 
         imageLv.sprite = data.spriteLv;
         imageMusic.sprite = data.spriteMusic;
-        txtMusicName.text = data.musicData.title;
-        txtMusicArtist.text = data.musicData.composer;
+        txtMusicName.text = data.musicData.name;
+        txtMusicArtist.text = data.musicData.artist;
     }
 
     // OnEffectChange‚Í‹N“®‚·‚é‚ª0Element‚¾‚¯ˆÚ“®‚µ‚È‚¢

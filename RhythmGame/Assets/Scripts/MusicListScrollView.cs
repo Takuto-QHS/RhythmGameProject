@@ -6,8 +6,10 @@ using UnityEngine;
 public class MusicListScrollView : MonoBehaviour
 {
     public ScriptableMusicData sourceData;
+    public SelectBoxMusicDetail boxMusicDetail;
 
-    List<object> viewerList = new List<object>();
+    private List<object> viewerList = new List<object>();
+    private int selectIndex = 0;
 
     void Start()
     {
@@ -16,26 +18,33 @@ public class MusicListScrollView : MonoBehaviour
         {
             viewerList.Add(sourceData.musicDataList[i]);
         }
-        //for (int i = 0; i < 16; i++)
-        //{
-        //    viewerList.Add(i);
-        //}
         viewer?.Initialize();
         viewer?.SetTable(viewerList.ToArray());
         viewer?.OnSelect.AddListener(OnSelect);
         viewer?.OnKeyDown.AddListener(OnKeyDown);
         viewer?.OnCursorMove.AddListener(onCursorMove);
+
+        // èâÇﬂÇƒorâÊñ Ç…ñﬂÇ¡ÇƒóàÇΩç€ÇÃé©ìÆëIëèàóù
+        viewer?.SetSelectedIndex(selectIndex);
     }
 
     public void onCursorMove(List<object> table, int itemIndex, int subIndex, bool userInput)
     {
-        int row = (int)table[itemIndex];
-        Debug.Log($"move: {row + 1}");
+        // ëIëÇµÇΩMusicDataäiî[
+        MusicDataParam data = (MusicDataParam)table[itemIndex];
+
+        // çXêV
+        UpdateMusicDetail(data);
+        RhythmGameManager.soundManager.StartBGM(data.musicData.audioClip);
     }
     public void OnSelect(List<object> table, int itemIndex, int subIndex, bool isCancel)
     {
-        int row = (int)table[itemIndex];
-        Debug.Log($"selected : {row + 1}");
+        // ëIëÇµÇΩMusicDataäiî[
+        MusicDataParam data = (MusicDataParam)table[itemIndex];
+
+        // çXêV
+        UpdateMusicDetail(data);
+        RhythmGameManager.soundManager.StartBGM(data.musicData.audioClip);
     }
     public void OnKeyDown(TableScrollViewer.KeyDownArgs args)
     {
@@ -53,5 +62,9 @@ public class MusicListScrollView : MonoBehaviour
         {
             args.Flag = TableScrollViewer.eKeyMoveFlag.Down;
         }
+    }
+    void UpdateMusicDetail(MusicDataParam data)
+    {
+        boxMusicDetail.SelectMusicDetail(data);
     }
 }

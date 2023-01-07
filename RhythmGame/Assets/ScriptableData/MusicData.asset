@@ -16,84 +16,84 @@ MonoBehaviour:
   - spriteLv: {fileID: 21300000, guid: fda5eb57b13dcc74fa3aa4ee74d716cd, type: 3}
     spriteMusic: {fileID: 21300000, guid: b18896dd923941b4fa5bddf6ebb0152a, type: 3}
     musicData:
-      title: "\u3077\u3093\u3061\u304D\u3071\u3084\u3063\u3071\u30FC"
-      composer: Carinho
+      name: "\u3077\u3093\u3061\u304D\u3071\u3084\u3063\u3071\u30FC"
+      artist: Carinho
       audioClip: {fileID: 8300000, guid: 50dc922438344f1429f32e7506efe8e1, type: 3}
     notesDataSource: {fileID: 4900000, guid: b2824d676fff400419df5c8aac278663, type: 3}
   - spriteLv: {fileID: 21300000, guid: 0a076cd4169614f4f8808b31cc617691, type: 3}
     spriteMusic: {fileID: 21300000, guid: 2c3fa093f05657b4ebec919786ff8e8d, type: 3}
     musicData:
-      title: aaa
-      composer: a
+      name: aa
+      artist: a
       audioClip: {fileID: 0}
     notesDataSource: {fileID: 0}
   - spriteLv: {fileID: 21300000, guid: 0a076cd4169614f4f8808b31cc617691, type: 3}
     spriteMusic: {fileID: 21300000, guid: 2c3fa093f05657b4ebec919786ff8e8d, type: 3}
     musicData:
-      title: 
-      composer: 
+      name: 
+      artist: 
       audioClip: {fileID: 0}
     notesDataSource: {fileID: 0}
   - spriteLv: {fileID: 21300000, guid: 0a076cd4169614f4f8808b31cc617691, type: 3}
     spriteMusic: {fileID: 21300000, guid: 2c3fa093f05657b4ebec919786ff8e8d, type: 3}
     musicData:
-      title: 
-      composer: 
+      name: 
+      artist: 
       audioClip: {fileID: 0}
     notesDataSource: {fileID: 0}
   - spriteLv: {fileID: 21300000, guid: 0a076cd4169614f4f8808b31cc617691, type: 3}
     spriteMusic: {fileID: 21300000, guid: 2c3fa093f05657b4ebec919786ff8e8d, type: 3}
     musicData:
-      title: 
-      composer: 
+      name: 
+      artist: 
       audioClip: {fileID: 0}
     notesDataSource: {fileID: 0}
   - spriteLv: {fileID: 21300000, guid: 0a076cd4169614f4f8808b31cc617691, type: 3}
     spriteMusic: {fileID: 21300000, guid: 2c3fa093f05657b4ebec919786ff8e8d, type: 3}
     musicData:
-      title: 
-      composer: 
+      name: 
+      artist: 
       audioClip: {fileID: 0}
     notesDataSource: {fileID: 0}
   - spriteLv: {fileID: 21300000, guid: 0a076cd4169614f4f8808b31cc617691, type: 3}
     spriteMusic: {fileID: 21300000, guid: 2c3fa093f05657b4ebec919786ff8e8d, type: 3}
     musicData:
-      title: 
-      composer: 
+      name: 
+      artist: 
       audioClip: {fileID: 0}
     notesDataSource: {fileID: 0}
   - spriteLv: {fileID: 21300000, guid: 0a076cd4169614f4f8808b31cc617691, type: 3}
     spriteMusic: {fileID: 21300000, guid: 2c3fa093f05657b4ebec919786ff8e8d, type: 3}
     musicData:
-      title: 
-      composer: 
+      name: 
+      artist: 
       audioClip: {fileID: 0}
     notesDataSource: {fileID: 0}
   - spriteLv: {fileID: 21300000, guid: 0a076cd4169614f4f8808b31cc617691, type: 3}
     spriteMusic: {fileID: 21300000, guid: 2c3fa093f05657b4ebec919786ff8e8d, type: 3}
     musicData:
-      title: 
-      composer: 
+      name: 
+      artist: 
       audioClip: {fileID: 0}
     notesDataSource: {fileID: 0}
   - spriteLv: {fileID: 21300000, guid: 0a076cd4169614f4f8808b31cc617691, type: 3}
     spriteMusic: {fileID: 21300000, guid: 2c3fa093f05657b4ebec919786ff8e8d, type: 3}
     musicData:
-      title: 
-      composer: 
+      name: 
+      artist: 
       audioClip: {fileID: 0}
     notesDataSource: {fileID: 0}
   - spriteLv: {fileID: 21300000, guid: 0a076cd4169614f4f8808b31cc617691, type: 3}
     spriteMusic: {fileID: 21300000, guid: 2c3fa093f05657b4ebec919786ff8e8d, type: 3}
     musicData:
-      title: 
-      composer: 
+      name: 
+      artist: 
       audioClip: {fileID: 0}
     notesDataSource: {fileID: 0}
   - spriteLv: {fileID: 21300000, guid: 0a076cd4169614f4f8808b31cc617691, type: 3}
     spriteMusic: {fileID: 21300000, guid: 2c3fa093f05657b4ebec919786ff8e8d, type: 3}
     musicData:
-      title: 
-      composer: 
+      name: 
+      artist: 
       audioClip: {fileID: 0}
     notesDataSource: {fileID: 0}
