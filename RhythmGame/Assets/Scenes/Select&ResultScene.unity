@@ -1644,6 +1644,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabSoundManager: {fileID: 2917721237349872437, guid: aa311195b7f8a514799271ec5015727d, type: 3}
+  musicDataParam:
+    spriteLv: {fileID: 0}
+    spriteMusic: {fileID: 0}
+    musicData:
+      name: 
+      artist: 
+      audioClip: {fileID: 0}
+    notesDataSource: {fileID: 0}
+  amgSelectScene: {fileID: 6049236655301633653, guid: 3f530d9bd29f8f9418412a4cacadd71e, type: 2}
+  amgResultScene: {fileID: 5837658200423479410, guid: 3f530d9bd29f8f9418412a4cacadd71e, type: 2}
+  snapshotSelect: {fileID: 24500006, guid: 3f530d9bd29f8f9418412a4cacadd71e, type: 2}
+  snapshotResult: {fileID: -6044646688271703011, guid: 3f530d9bd29f8f9418412a4cacadd71e, type: 2}
+  snapshotMute: {fileID: -6541033398542888815, guid: 3f530d9bd29f8f9418412a4cacadd71e, type: 2}
 --- !u!4 &2048117689
 Transform:
   m_ObjectHideFlags: 0

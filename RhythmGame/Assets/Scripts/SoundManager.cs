@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [Serializable]
 public class MusicData
@@ -18,11 +19,20 @@ public class SoundManager : MonoBehaviour
     private List<AudioSource> listAudioSourcesSE = new List<AudioSource>();
     private int indexAudioSourcesSE;
 
+    [Space(2)]
+
     [SerializeField]
     private List<MusicData> listMusic = new List<MusicData> ();
     [SerializeField]
     private List<AudioClip> listSE = new List<AudioClip>();
 
+    [Space(2)]
+    private AudioMixer am;
+
+    [Header("クロスフェード秒数")]
+    public float secSelectSene = 0.5f;
+    public float secResultSene = 0.5f;
+    public float secMute = 1.0f;
 
     // Start is called before the first frame update
     void Awake()
@@ -32,6 +42,8 @@ public class SoundManager : MonoBehaviour
 
     void Init()
     {
+        am = RhythmGameManager.gameManager.amgSelectScene.audioMixer;
+
         listAudioSourcesBGM = this.gameObject.AddComponent<AudioSource>();
         listAudioSourcesBGM.volume = 0.5f;
 
@@ -48,9 +60,10 @@ public class SoundManager : MonoBehaviour
         listAudioSourcesBGM.clip = listMusic[index].audioClip;
         listAudioSourcesBGM.Play();
     }
-    public void StartBGM(AudioClip clip)
+    public void StartBGM(AudioClip clip,AudioMixerGroup group)
     {
         listAudioSourcesBGM.clip = clip;
+        listAudioSourcesBGM.outputAudioMixerGroup= group;
         listAudioSourcesBGM.Play();
     }
 
@@ -64,5 +77,10 @@ public class SoundManager : MonoBehaviour
     {
         int index = indexAudioSourcesSE < 3 ? indexAudioSourcesSE + 1 : 0;
         indexAudioSourcesSE = index;
+    }
+
+    public void ChangeSceneBGM(AudioMixerSnapshot[] snapshots, float[] weights,float fadeTime)
+    {
+        am.TransitionToSnapshots(snapshots,weights,fadeTime);
     }
 }

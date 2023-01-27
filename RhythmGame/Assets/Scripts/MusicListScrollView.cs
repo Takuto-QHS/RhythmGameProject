@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class MusicListScrollView : MonoBehaviour
 {
@@ -42,7 +43,7 @@ public class MusicListScrollView : MonoBehaviour
 
         // çXêV
         UpdateMusicDetail(data);
-        RhythmGameManager.soundManager.StartBGM(data.musicData.audioClip);
+        RhythmGameManager.soundManager.StartBGM(data.musicData.audioClip,RhythmGameManager.gameManager.amgSelectScene);
     }
 
     /// <summary>
@@ -58,6 +59,7 @@ public class MusicListScrollView : MonoBehaviour
         MusicDataParam data = (MusicDataParam)table[itemIndex];
 
         UpdateGameManager(data);
+        EnterTransitionBGM(RhythmGameManager.soundManager.secMute);
     }
     public void OnKeyDown(TableScrollViewer.KeyDownArgs args)
     {
@@ -83,5 +85,16 @@ public class MusicListScrollView : MonoBehaviour
     void UpdateGameManager(MusicDataParam param)
     {
         RhythmGameManager.gameManager.musicDataParam = param;
+    }
+    void EnterTransitionBGM(float sec)
+    {
+        AudioMixerSnapshot[] snapshots =
+            {
+            RhythmGameManager.gameManager.snapshotSelect,
+            RhythmGameManager.gameManager.snapshotMute
+        };
+        float[] weights = { 0.0f, 1.0f };
+
+        RhythmGameManager.soundManager.ChangeSceneBGM(snapshots,weights,sec);
     }
 }

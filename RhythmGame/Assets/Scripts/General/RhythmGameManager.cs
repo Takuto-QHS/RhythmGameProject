@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class RhythmGameManager : MonoBehaviour
 {
@@ -13,6 +14,15 @@ public class RhythmGameManager : MonoBehaviour
     [Space(5)]
     [Header("ëIëã»èÓïÒ")]
     public MusicDataParam musicDataParam;
+
+    [Space(5)]
+    [Header("SoundManager")]
+    public AudioMixerGroup amgSelectScene;
+    public AudioMixerGroup amgResultScene;
+    [Space(3)]
+    public AudioMixerSnapshot snapshotSelect;
+    public AudioMixerSnapshot snapshotResult;
+    public AudioMixerSnapshot snapshotMute;
 
     void Awake()
     {
