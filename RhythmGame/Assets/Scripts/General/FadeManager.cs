@@ -5,9 +5,11 @@ using UnityEngine;
 public class FadeManager : MonoBehaviour
 {
     [SerializeField]
-    Animator animator;
+    private Animator animator;
     [SerializeField]
-    string strAnimBoolName = "LoadingNow";
+    private string strAnimBoolName = "LoadingNow";
+
+    public FadeFinishCallback fadeFinishCallback;
 
     void Start()
     {

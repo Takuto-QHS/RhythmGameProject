@@ -8,11 +8,15 @@ public class RhythmGameManager : MonoBehaviour
     static public RhythmGameManager gameManager;
     static public SoundManager soundManager;
     static public FadeManager fadeManager;
-
+    static public RhythmSceneManager sceneManager;
+    
+    [Header("¶¬—pManagerPrefab")]
     [SerializeField]
     private GameObject prefabSoundManager;
     [SerializeField]
     private GameObject prefabFadeManager;
+    [SerializeField]
+    private GameObject prefabSceneManager;
 
     [Space(5)]
     [Header("‘I‘ğ‹Èî•ñ")]
@@ -43,6 +47,13 @@ public class RhythmGameManager : MonoBehaviour
         {
             AddFadeManager();
         }
+
+        if (sceneManager == null)
+        {
+            AddSceneManager();
+        }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     void AddSoundManager()
@@ -54,6 +65,11 @@ public class RhythmGameManager : MonoBehaviour
     {
         GameObject _FadeManager = Instantiate(prefabFadeManager, new Vector3(), Quaternion.identity, this.gameObject.transform);
         fadeManager = _FadeManager.GetComponent<FadeManager>();
+    }
+    void AddSceneManager()
+    {
+        GameObject _SceneManager = Instantiate(prefabSceneManager, new Vector3(), Quaternion.identity, this.gameObject.transform);
+        sceneManager = _SceneManager.GetComponent<RhythmSceneManager>();
     }
 
 }

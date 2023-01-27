@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2719993702447921242}
   - component: {fileID: 9000154948131132215}
   - component: {fileID: 4809369709829317437}
+  - component: {fileID: 690498134}
   m_Layer: 5
   m_Name: FadeImage
   m_TagString: Untagged
@@ -97,6 +98,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &690498134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875458933821153680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b03e0461418a0ea4a8f2bbf35260a9e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onComplete:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5872102801982665039
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,3 +229,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 4809369709829317437}
   strAnimBoolName: LoadingNow
+  fadeFinishCallback: {fileID: 690498134}

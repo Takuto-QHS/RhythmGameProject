@@ -304,37 +304,6 @@ RectTransform:
   m_AnchoredPosition: {x: 690, y: 0}
   m_SizeDelta: {x: -1380, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &618339525
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 618339526}
-  m_Layer: 0
-  m_Name: Select&ResultManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &618339526
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618339525}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 960, y: 540, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &641777670
 GameObject:
   m_ObjectHideFlags: 0
@@ -1676,6 +1645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabSoundManager: {fileID: 2917721237349872437, guid: aa311195b7f8a514799271ec5015727d, type: 3}
   prefabFadeManager: {fileID: 5872102801982665039, guid: b6d384535576b084aab98a29338b1a60, type: 3}
+  prefabSceneManager: {fileID: 9029478652322517082, guid: 31ccb82f357b1324290d4a569812130e, type: 3}
   musicDataParam:
     spriteLv: {fileID: 0}
     spriteMusic: {fileID: 0}
