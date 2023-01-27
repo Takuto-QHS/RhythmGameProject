@@ -60,6 +60,7 @@ public class MusicListScrollView : MonoBehaviour
 
         UpdateGameManager(data);
         EnterTransitionBGM(RhythmGameManager.soundManager.secMute);
+        RhythmGameManager.fadeManager.CanvasFadeOut();
     }
     public void OnKeyDown(TableScrollViewer.KeyDownArgs args)
     {
