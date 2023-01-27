@@ -1074,9 +1074,9 @@ MonoBehaviour:
   SkipIndexByPageScroll: 10
   ScrollbarAutoFadeout: 1
   AdsorptionTarget: 1
-  SelectAfterFocus: 0
+  SelectAfterFocus: 1
   EasyFocusForMouse: 0
-  DisabledAfterSelect: 0
+  DisabledAfterSelect: 1
   OnSelect:
     m_PersistentCalls:
       m_Calls: []

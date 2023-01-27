@@ -10,6 +10,10 @@ public class RhythmGameManager : MonoBehaviour
     [SerializeField]
     private GameObject prefabSoundManager;
 
+    [Space(5)]
+    [Header("‘I‘ğ‹Èî•ñ")]
+    public MusicDataParam musicDataParam;
+
     void Awake()
     {
         if (gameManager == null)
@@ -28,4 +32,6 @@ public class RhythmGameManager : MonoBehaviour
         GameObject _soundManager = Instantiate(prefabSoundManager, new Vector3(), Quaternion.identity, this.gameObject.transform);
         soundManager = _soundManager.GetComponent<SoundManager>();
     }
+
+
 }

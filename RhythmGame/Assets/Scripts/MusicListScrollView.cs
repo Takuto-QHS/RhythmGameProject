@@ -28,6 +28,13 @@ public class MusicListScrollView : MonoBehaviour
         viewer?.SetSelectedIndex(selectIndex);
     }
 
+    /// <summary>
+    /// 選択時の関数
+    /// </summary>
+    /// <param name="table"></param>
+    /// <param name="itemIndex"></param>
+    /// <param name="subIndex"></param>
+    /// <param name="userInput"></param>
     public void onCursorMove(List<object> table, int itemIndex, int subIndex, bool userInput)
     {
         // 選択したMusicData格納
@@ -37,14 +44,20 @@ public class MusicListScrollView : MonoBehaviour
         UpdateMusicDetail(data);
         RhythmGameManager.soundManager.StartBGM(data.musicData.audioClip);
     }
+
+    /// <summary>
+    /// 選択後、決定時の関数
+    /// </summary>
+    /// <param name="table"></param>
+    /// <param name="itemIndex"></param>
+    /// <param name="subIndex"></param>
+    /// <param name="isCancel"></param>
     public void OnSelect(List<object> table, int itemIndex, int subIndex, bool isCancel)
     {
         // 選択したMusicData格納
         MusicDataParam data = (MusicDataParam)table[itemIndex];
 
-        // 更新
-        UpdateMusicDetail(data);
-        RhythmGameManager.soundManager.StartBGM(data.musicData.audioClip);
+        UpdateGameManager(data);
     }
     public void OnKeyDown(TableScrollViewer.KeyDownArgs args)
     {
@@ -66,5 +79,9 @@ public class MusicListScrollView : MonoBehaviour
     void UpdateMusicDetail(MusicDataParam data)
     {
         boxMusicDetail.SelectMusicDetail(data);
+    }
+    void UpdateGameManager(MusicDataParam param)
+    {
+        RhythmGameManager.gameManager.musicDataParam = param;
     }
 }
