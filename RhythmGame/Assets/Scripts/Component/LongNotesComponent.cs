@@ -24,6 +24,7 @@ public class LongNotesComponent : MonoBehaviour
     public List<float> listNotesTime = new List<float>();
     [HideInInspector]
     public List<GameObject> listLongNotesObj = new List<GameObject>();
+    private List<GameObject> listLongNotesLineObj = new List<GameObject>();
 
     void Start()
     {
@@ -40,7 +41,7 @@ public class LongNotesComponent : MonoBehaviour
         }
 
         //本来ノーツをたたくべき時間から0.15秒たっても入力がなかった場合
-        if (Time.time > listNotesTime[0] + notesJudgeController.timeBadMiss)
+        if (PlaySceneManager.psManager.playStopWatchTime > listNotesTime[0] + notesJudgeController.timeBadMiss)
         {
             notesJudgeController.JudgeMiss(listLaneNum[0]);
             DeleteData();
@@ -56,26 +57,30 @@ public class LongNotesComponent : MonoBehaviour
         {
             if (inputJson.notes[i].type == 2)
             {
-                float time = PlaySceneManager.psManager.notesManager.GetNoteTime(inputJson.notes[i]); // ノーツの降ってくる時間
+                // ノーツの判定時間
+                float time = PlaySceneManager.psManager.notesManager.GetNoteTime(inputJson.notes[i]);
+
+                // ノーツの降ってくる時間
+                float posTime = PlaySceneManager.psManager.notesManager.GetNoteTime(inputJson.notes[i], true);
 
                 // 生成
-                InstantiateLongNotes(inputJson.notes[i], time);
+                InstantiateLongNotes(inputJson.notes[i], time ,posTime);
                 break;
             }
 
         }
     }
 
-    void InstantiateLongNotes(Note note, float time, LineRenderer line = null)
+    void InstantiateLongNotes(Note _note, float _time, float _posTime, LineRenderer _line = null)
     {
         // リスト追加
-        listNotesTime.Add(time);
-        listLaneNum.Add(note.block);
-        listNoteType.Add(note.type);
+        listNotesTime.Add(_time);
+        listLaneNum.Add(_note.block);
+        listNoteType.Add(_note.type);
 
         // 生成
-        float z = time * PlaySceneManager.psManager.notesSpeed;
-        GameObject obj1 = Instantiate(noteLongObj, new Vector3(note.block - 2.5f, 0.03f, z), noteLongObj.transform.rotation);
+        float z = _posTime * PlaySceneManager.psManager.notesSpeed;
+        GameObject obj1 = Instantiate(noteLongObj, new Vector3(_note.block - 2.5f, 0.03f, z), noteLongObj.transform.rotation);
         listLongNotesObj.Add(obj1);
 
         // 線を引く準備(Meshの下頂点)
@@ -85,19 +90,21 @@ public class LongNotesComponent : MonoBehaviour
         lineVerticesVec3[1] = upperVec3[1];
 
         // Noteの中のnotes配列から生成
-        for (int x = 0; x < note.notes.Length; x++)
+        for (int x = 0; x < _note.notes.Length; x++)
         {
+            // ノーツの判定時間
+            float timeLongNote = PlaySceneManager.psManager.notesManager.GetNoteTime(_note.notes[x]);
             // ノーツの降ってくる時間
-            float timeLongNote = PlaySceneManager.psManager.notesManager.GetNoteTime(note.notes[x]);
+            float postimeLongNote = PlaySceneManager.psManager.notesManager.GetNoteTime(_note.notes[x], true);
 
             // リスト追加
             listNotesTime.Add(timeLongNote);
-            listLaneNum.Add(note.notes[x].block);
-            listNoteType.Add(note.notes[x].type);
+            listLaneNum.Add(_note.notes[x].block);
+            listNoteType.Add(_note.notes[x].type);
 
             // 生成
-            float z2 = timeLongNote * PlaySceneManager.psManager.notesSpeed;
-            GameObject obj2 = Instantiate(noteLongObj, new Vector3(note.notes[x].block - 2.5f, 0.03f, z2), noteLongObj.transform.rotation);
+            float z2 = postimeLongNote * PlaySceneManager.psManager.notesSpeed;
+            GameObject obj2 = Instantiate(noteLongObj, new Vector3(_note.notes[x].block - 2.5f, 0.03f, z2), noteLongObj.transform.rotation);
             listLongNotesObj.Add(obj2);
 
             // 線を引く準備(Meshの上頂点)
@@ -168,6 +175,9 @@ public class LongNotesComponent : MonoBehaviour
         lineObj.GetComponent<MeshRenderer>().material = longNoteLineMaterial;
         Notes notes = lineObj.AddComponent<Notes>();
         notes.isMoveZ = true;
+        notes.isMove = false;
+
+        listLongNotesLineObj.Add(lineObj);
     }
 
     public void DeleteData()//すでにたたいたノーツ判定を削除する関数
@@ -196,6 +206,21 @@ public class LongNotesComponent : MonoBehaviour
                 notesJudgeController.Judgement(listNotesTime[0], listLaneNum[0]);
                 DeleteData();
             }
+        }
+    }
+
+    public void MoveNotes(bool _isMove)
+    {
+        foreach (GameObject note in listLongNotesObj)
+        {
+            Notes thisNote = note.GetComponent<Notes>();
+            thisNote.isMove = _isMove;
+        }
+
+        foreach (GameObject line in listLongNotesLineObj)
+        {
+            Notes thisNote = line.GetComponent<Notes>();
+            thisNote.isMove = _isMove;
         }
     }
 }

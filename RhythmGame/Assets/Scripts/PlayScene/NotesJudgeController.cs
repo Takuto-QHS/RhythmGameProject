@@ -35,7 +35,7 @@ public class NotesJudgeController : MonoBehaviour
     {
         // 本来ノーツを叩く時間と実際に叩いた時間がどれくらいずれているかを求め、
         // その絶対値をtimeLagとする
-        float timeLag = GetABS(Time.time - noteTime);
+        float timeLag = GetABS(PlaySceneManager.psManager.playStopWatchTime - noteTime);
         EJudgeType type = EJudgeType.Ignore;
 
         if (timeLag <= timePerfect)//本来ノーツをたたくべき時間と実際にノーツをたたいた時間の誤差がtimePerfect秒以下だったら

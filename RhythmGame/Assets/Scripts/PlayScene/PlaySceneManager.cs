@@ -7,7 +7,8 @@ public class PlaySceneManager : MonoBehaviour
     public static PlaySceneManager psManager = null;
     public static int initNum = 0;
 
-    public float preStartTime = 3.0f;
+    public float waitStartTime = 1.0f;
+    public float startMusicTime = 2.0f;
     public int notesSpeed = 8;
     [Space(10)]
     public int valueScore = 0;
@@ -30,6 +31,18 @@ public class PlaySceneManager : MonoBehaviour
     public ScoreBoxWindow scoreBoxWin;
     public SoundManager soundManager;
 
+    [Space(20), Header("StopWatch")]
+    /// <summary>
+    /// StopWatch
+    /// </summary>
+    public float playStopWatchTime = 0.0f;
+    private bool isStopWatch = false;
+
+    [SerializeField]
+    private bool isStart = false;
+    [SerializeField]
+    private bool isMusicStart = false;
+
     public void Awake()
     {
         if (psManager == null)
@@ -40,16 +53,61 @@ public class PlaySceneManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        Init();
     }
 
-    void Start()
+    void Update()
     {
-        StartCoroutine("StartScene");
+        if (isStopWatch)
+        {
+            // ストップウォッチ稼働時間
+            playStopWatchTime += Time.deltaTime;
+
+            // 各TapComponentStart時の生成完了待ち(AwakeだとMoveNotes関数でListが0)
+            if (!isStart && playStopWatchTime >= -startMusicTime)
+            {
+                isStart = true;
+                Play();
+            }
+
+            // BGMStart
+            if (!isMusicStart && playStopWatchTime >= 0.0f)
+            {
+                isMusicStart = true;
+                StartMusic();
+            }
+        }
     }
 
-    IEnumerator StartScene()
+    void Init()
     {
-        yield return new WaitForSeconds(preStartTime);
+        notesManager.Load();
+
+        isStart = false;
+        isMusicStart = false;
+        playStopWatchTime -= (startMusicTime + waitStartTime);
+
+        StopWatch(true);
+    }
+
+    void StartMusic()
+    {
         soundManager.StartBGM(0);
+    }
+
+    public void Play()
+    {
+        StopWatch(true);
+        notesManager.MoveNotes(true);
+    }
+
+    /// <summary>
+    /// 「StopWatch機能」
+    /// 一時停止用
+    /// </summary>
+    public void StopWatch(bool _isPlayTime)
+    {
+        isStopWatch = _isPlayTime;
     }
 }

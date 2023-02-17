@@ -35,7 +35,7 @@ public class TapNotesComponent : MonoBehaviour
         }
 
         //–{—ˆƒm[ƒc‚ğ‚½‚½‚­‚×‚«ŠÔ‚©‚ç0.15•b‚½‚Á‚Ä‚à“ü—Í‚ª‚È‚©‚Á‚½ê‡
-        if (Time.time > listNotesTime[0] + notesJudgeController.timeBadMiss)
+        if (PlaySceneManager.psManager.playStopWatchTime > listNotesTime[0] + notesJudgeController.timeBadMiss)
         {
             notesJudgeController.JudgeMiss(listLaneNum[0]);
             DeleteData();
@@ -52,13 +52,18 @@ public class TapNotesComponent : MonoBehaviour
         {
             if (inputJson.notes[i].type == 1)
             {
-                float time = PlaySceneManager.psManager.notesManager.GetNoteTime(inputJson.notes[i]); // ƒm[ƒc‚Ì~‚Á‚Ä‚­‚éŠÔ
-                InstantiateNote(time, inputJson.notes[i].block, inputJson.notes[i].type);
+                // ƒm[ƒc‚Ì”»’èŠÔ
+                float time = PlaySceneManager.psManager.notesManager.GetNoteTime(inputJson.notes[i]);
+
+                // ƒm[ƒc‚Ì~‚Á‚Ä‚­‚éŠÔ
+                float posTime = PlaySceneManager.psManager.notesManager.GetNoteTime(inputJson.notes[i], true);
+
+                InstantiateNote(time, posTime, inputJson.notes[i].block, inputJson.notes[i].type);
             }
         }
     }
 
-    public void InstantiateNote(float _time,int _block,int _type)
+    public void InstantiateNote(float _time, float _posTime, int _block,int _type)
     {
         // ƒŠƒXƒg’Ç‰Á
         listNotesTime.Add(_time);
@@ -66,7 +71,7 @@ public class TapNotesComponent : MonoBehaviour
         listNoteType.Add(_type);
 
         // ¶¬
-        float z = _time * PlaySceneManager.psManager.notesSpeed;
+        float z = _posTime * PlaySceneManager.psManager.notesSpeed;
         GameObject obj = Instantiate(noteTapObj, new Vector3(_block - 2.5f, 0.03f, z), noteTapObj.transform.rotation);
         listNotesObj.Add(obj);
     }
@@ -96,6 +101,15 @@ public class TapNotesComponent : MonoBehaviour
             {
                 DeleteData();
             }
+        }
+    }
+
+    public void MoveNotes(bool _isMove)
+    {
+        foreach(GameObject note in listNotesObj)
+        {
+            Notes thisNote = note.GetComponent<Notes>();
+            thisNote.isMove = _isMove;
         }
     }
 }

@@ -35,14 +35,17 @@ public class NotesManager : MonoBehaviour
     private int bpm;
     private int offset;
 
-    void Awake()
+    void Init()
     {
+        notesData = RhythmGameManager.gameManager.musicDataParam.notesDataSource;
+
         noteNum = 0;
-        Load();
     }
 
-    void Load()
+    public void Load()
     {
+        Init();
+
         string inputString = notesData.text;
         Data inputJson = JsonUtility.FromJson<Data>(inputString);
 
@@ -56,19 +59,24 @@ public class NotesManager : MonoBehaviour
         
     }
 
-    public float GetNoteTime(Note note)
+    public float GetNoteTime(Note note,bool isPos = false)
     {
         // 一小節の長さ
         float kankaku = 60 / (bpm * (float)note.LPB);
         // ノーツ間の長さ
         float beatSec = kankaku * (float)note.LPB;
         // 開始前の長さ
-        float preStartTime = offset * 0.01f + PlaySceneManager.psManager.preStartTime;
+        float preStartTime = offset * 0.01f;
+        if(isPos) preStartTime += PlaySceneManager.psManager.startMusicTime;
         // ノーツの降ってくる時間
         float time = (beatSec * note.num / (float)note.LPB) + preStartTime;
 
         return time;
     }
 
-    
+    public void MoveNotes(bool _isMove)
+    {
+        tapNotesComp.MoveNotes(_isMove);
+        longNotesComp.MoveNotes(_isMove);
+    }
 }
