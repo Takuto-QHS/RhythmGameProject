@@ -7,3 +7,4 @@
 ## 参考資料
 [【Unity】Unityで音ゲーの作り方を徹底解説！Part1【ゆっくり解説】](https://www.youtube.com/watch?v=WWeyn4TI0lI)</br>
 [【Unity】Unityで音ゲーの作り方を徹底解説！Part2【ゆっくり解説】](https://www.youtube.com/watch?v=TnKnwLIiY_8)</br>
+[【音ゲー】Unityでスマホ向けロングノーツを作ってみる【サマーブログリレー2021 1日目】](https://iconcreator.hatenablog.com/entry/2021/09/13/190000)</br>
