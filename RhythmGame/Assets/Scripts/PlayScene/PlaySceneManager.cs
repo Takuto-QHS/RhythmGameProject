@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlaySceneManager : MonoBehaviour
 {
+    [Space(10)]
     public static PlaySceneManager psManager = null;
     public static int initNum = 0;
 
@@ -29,7 +30,11 @@ public class PlaySceneManager : MonoBehaviour
     [Space(10)]
     public NotesManager notesManager;
     public ScoreBoxWindow scoreBoxWin;
+
+    [HideInInspector]
     public SoundManager soundManager;
+    [HideInInspector]
+    public InputPlayScene inputPlayScene;
 
     [Space(20), Header("StopWatch")]
     /// <summary>
@@ -75,13 +80,16 @@ public class PlaySceneManager : MonoBehaviour
             if (!isMusicStart && playStopWatchTime >= 0.0f)
             {
                 isMusicStart = true;
-                StartMusic();
+                soundManager.StartPlaySceneBGM();
             }
         }
     }
 
     void Init()
     {
+        inputPlayScene = this.gameObject.AddComponent<InputPlayScene>();
+
+        soundManager = RhythmGameManager.soundManager;
         notesManager.Load();
 
         isStart = false;
@@ -89,11 +97,6 @@ public class PlaySceneManager : MonoBehaviour
         playStopWatchTime -= (startMusicTime + waitStartTime);
 
         StopWatch(true);
-    }
-
-    void StartMusic()
-    {
-        soundManager.StartBGM(0);
     }
 
     public void Play()

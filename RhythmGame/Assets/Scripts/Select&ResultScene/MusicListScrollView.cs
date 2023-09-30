@@ -43,7 +43,8 @@ public class MusicListScrollView : MonoBehaviour
 
         // çXêV
         UpdateMusicDetail(data);
-        RhythmGameManager.soundManager.StartBGM(data.musicData.audioClip,RhythmGameManager.gameManager.amgSelectScene);
+        UpdateSelectMusic(data);
+        RhythmGameManager.soundManager.StartListBGM(data.musicData.audioClip,RhythmGameManager.gameManager.amgSelectScene);
     }
 
     /// <summary>
@@ -58,7 +59,6 @@ public class MusicListScrollView : MonoBehaviour
         // ëIëÇµÇΩMusicDataäiî[
         MusicDataParam data = (MusicDataParam)table[itemIndex];
 
-        UpdateGameManager(data);
         EnterTransitionBGM(RhythmGameManager.soundManager.secMute);
         RhythmGameManager.sceneManager.ChangePlayScene();
     }
@@ -83,9 +83,10 @@ public class MusicListScrollView : MonoBehaviour
     {
         boxMusicDetail.SelectMusicDetail(data);
     }
-    void UpdateGameManager(MusicDataParam param)
+    void UpdateSelectMusic(MusicDataParam param)
     {
         RhythmGameManager.gameManager.musicDataParam = param;
+        RhythmGameManager.soundManager.nowPlayMusicData = param.musicData;
     }
     void EnterTransitionBGM(float sec)
     {

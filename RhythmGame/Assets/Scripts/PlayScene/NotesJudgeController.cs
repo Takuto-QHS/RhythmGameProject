@@ -101,7 +101,7 @@ public class NotesJudgeController : MonoBehaviour
         scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo++);
         scoreBoxWindow.UpdateTxtPerfect(PlaySceneManager.psManager.valuePerfect++);
 
-        PlaySceneManager.psManager.soundManager.StartSE(0);
+        //PlaySceneManager.psManager.soundManager.StartSE(0);
     }
 
     public void JudgeGreat(int laneNum)
@@ -113,7 +113,7 @@ public class NotesJudgeController : MonoBehaviour
         scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo++);
         scoreBoxWindow.UpdateTxtGood(PlaySceneManager.psManager.valueGood++);
 
-        PlaySceneManager.psManager.soundManager.StartSE(0);
+        //PlaySceneManager.psManager.soundManager.StartSE(0);
     }
 
     public void JudgeGood(int laneNum)
@@ -125,7 +125,7 @@ public class NotesJudgeController : MonoBehaviour
         scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo++);
         scoreBoxWindow.UpdateTxtGreat(PlaySceneManager.psManager.valueGreat++);
 
-        PlaySceneManager.psManager.soundManager.StartSE(0);
+        //PlaySceneManager.psManager.soundManager.StartSE(0);
     }
 
     public void JudgeBad(int laneNum)
@@ -138,7 +138,7 @@ public class NotesJudgeController : MonoBehaviour
         scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo);
         scoreBoxWindow.UpdateTxtBad(PlaySceneManager.psManager.valueBad++);
 
-        PlaySceneManager.psManager.soundManager.StartSE(0);
+        //PlaySceneManager.psManager.soundManager.StartSE(0);
     }
 
     public void JudgeMiss(int laneNum)

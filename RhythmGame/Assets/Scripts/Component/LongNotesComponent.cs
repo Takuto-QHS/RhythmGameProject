@@ -29,7 +29,7 @@ public class LongNotesComponent : MonoBehaviour
     void Start()
     {
         InitNotes();
-        InputTouchManager.deligateLongTapJudge += RaneJudge;
+        PlaySceneManager.psManager.inputPlayScene.deligateLongTapJudge += RaneJudge;
     }
 
     // Update is called once per frame

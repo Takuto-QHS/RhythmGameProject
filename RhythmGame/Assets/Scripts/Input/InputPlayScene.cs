@@ -1,19 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.EnhancedTouch;
-using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
-using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.InputSystem;
 using UnityEngine.Events;
 
-public class InputTouchManager : MonoBehaviour
+public class InputPlayScene : MonoBehaviour , IInputtable
 {
+
     [SerializeField]
     private NotesJudgeController notesJudgeCon;
 
-    static public UnityAction<int> deligateTapJudge;
-    static public UnityAction<int> deligateLongTapJudge;
+    public UnityAction<int> deligateTapJudge;
+    public UnityAction<int> deligateLongTapJudge;
 
     enum ETouchType
     {
@@ -21,24 +20,29 @@ public class InputTouchManager : MonoBehaviour
         LongTap,
     }
 
-    public void Awake()
+    // Start is called before the first frame update
+    void Start()
     {
-        // EnhancedTouchの有効化
-        EnhancedTouchSupport.Enable();
+        RhythmGameManager.inputManager.inputtableInterface = this;
     }
 
-    public void OnPress(InputAction.CallbackContext context)
+    // Update is called once per frame
+    void Update()
     {
-        //Debug.Log("Press");
-        if(context.started)
-        {
-            TouchJudgement(ETouchType.Tap);
-        }
-        else if(context.performed)
-        {
-            Debug.Log("performed(長押し)");
-            TouchJudgement(ETouchType.LongTap);
-        }
+        
+    }
+
+    public void PressStarted()
+    {
+        Debug.Log("started(単押し)");
+        TouchJudgement(ETouchType.Tap);
+    }
+
+    public void PressPerformed()
+    {
+
+        Debug.Log("performed(長押し)");
+        TouchJudgement(ETouchType.LongTap);
     }
 
     void TouchJudgement(ETouchType eTouchType)
@@ -58,7 +62,7 @@ public class InputTouchManager : MonoBehaviour
 
                 // レーンを取得
                 Lites hitLitesLane = RaySerchLaneObj(ray);
-                if(hitLitesLane)
+                if (hitLitesLane)
                 {
                     hitLitesLane.ColorChange();
 
@@ -67,6 +71,7 @@ public class InputTouchManager : MonoBehaviour
                     {
                         case ETouchType.Tap:
                             if (deligateTapJudge != null) deligateTapJudge(hitLitesLane.lightNum);
+                            PlaySceneManager.psManager.soundManager.StartSE(0);
                             break;
                         case ETouchType.LongTap:
                             if (deligateLongTapJudge != null) deligateLongTapJudge(hitLitesLane.lightNum);
@@ -91,6 +96,7 @@ public class InputTouchManager : MonoBehaviour
                 {
                     case ETouchType.Tap:
                         if (deligateTapJudge != null) deligateTapJudge(hitLitesLane.lightNum);
+                        PlaySceneManager.psManager.soundManager.StartSE(0);
                         break;
                     case ETouchType.LongTap:
                         if (deligateLongTapJudge != null) deligateLongTapJudge(hitLitesLane.lightNum);
@@ -127,30 +133,5 @@ public class InputTouchManager : MonoBehaviour
         }
 
         return hitLites;
-    }
-
-    // Debug用
-    void Update()
-    {
-        if (Keyboard.current.aKey.isPressed)//〇キーが押されたとき
-        {
-            deligateTapJudge(0);
-            PlaySceneManager.psManager.listRaneLite[0].ColorChange();
-        }
-        else if (Keyboard.current.sKey.isPressed)
-        {
-            deligateTapJudge(1);
-            PlaySceneManager.psManager.listRaneLite[1].ColorChange();
-        }
-        else if (Keyboard.current.dKey.isPressed)
-        {
-            deligateTapJudge(2);
-            PlaySceneManager.psManager.listRaneLite[2].ColorChange();
-        }
-        else if (Keyboard.current.fKey.isPressed)
-        {
-            deligateTapJudge(3);
-            PlaySceneManager.psManager.listRaneLite[3].ColorChange();
-        }
     }
 }

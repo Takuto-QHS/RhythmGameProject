@@ -23,7 +23,7 @@ public class TapNotesComponent : MonoBehaviour
     void Start()
     {
         InitNotes();
-        InputTouchManager.deligateTapJudge += RaneJudge;
+        PlaySceneManager.psManager.inputPlayScene.deligateTapJudge += RaneJudge;
     }
 
     // Update is called once per frame

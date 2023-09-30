@@ -4,30 +4,29 @@ using System;
 using UnityEngine;
 using UnityEngine.Audio;
 
-[Serializable]
-public class MusicData
-{
-    public string name;
-    public string artist;
-    public AudioClip audioClip;
-}
-
 public class SoundManager : MonoBehaviour
 {
-    private AudioSource listAudioSourcesBGM;
-    [SerializeField]
+    private BGMController bgmController;
+
     private List<AudioSource> listAudioSourcesSE = new List<AudioSource>();
     private int indexAudioSourcesSE;
 
     [Space(2)]
 
+    /* 曲情報 */
     [SerializeField]
-    private List<MusicData> listMusic = new List<MusicData> ();
+    public List<MusicData> listMusic = new List<MusicData> ();
+
+    /* SE情報 */
     [SerializeField]
-    private List<AudioClip> listSE = new List<AudioClip>();
+    public List<AudioClip> listSE = new List<AudioClip>();
 
     [Space(2)]
-    private AudioMixer am;
+
+    // 今流れてるBGM情報
+    public MusicData nowPlayMusicData;
+
+    [Space(2)]
 
     [Header("クロスフェード秒数")]
     public float secSelectSene = 0.5f;
@@ -42,29 +41,28 @@ public class SoundManager : MonoBehaviour
 
     void Init()
     {
-        am = RhythmGameManager.gameManager.amgSelectScene.audioMixer;
 
-        listAudioSourcesBGM = this.gameObject.AddComponent<AudioSource>();
-        listAudioSourcesBGM.volume = 0.5f;
-
+        // SE用AudioSource
         for (int i = 0; i < 4; i++)
         {
             AudioSource audioSource = this.gameObject.AddComponent<AudioSource>();
             audioSource.volume = 0.5f;
             listAudioSourcesSE.Add(audioSource);
         }
+
+        // BGMController
+        bgmController = this.gameObject.AddComponent<BGMController>();
+        bgmController.soundManager = this;
     }
 
-    public void StartBGM(int index)
+    public void StartPlaySceneBGM()
     {
-        listAudioSourcesBGM.clip = listMusic[index].audioClip;
-        listAudioSourcesBGM.Play();
+        bgmController.StartPlaySceneBGM();
     }
-    public void StartBGM(AudioClip clip,AudioMixerGroup group)
+
+        public void StartListBGM(AudioClip clip,AudioMixerGroup group)
     {
-        listAudioSourcesBGM.clip = clip;
-        listAudioSourcesBGM.outputAudioMixerGroup= group;
-        listAudioSourcesBGM.Play();
+        bgmController.StartListBGM(clip,group);
     }
 
     public void StartSE(int index)
@@ -81,6 +79,6 @@ public class SoundManager : MonoBehaviour
 
     public void ChangeSceneBGM(AudioMixerSnapshot[] snapshots, float[] weights,float fadeTime)
     {
-        am.TransitionToSnapshots(snapshots,weights,fadeTime);
+        bgmController.FadeOut(snapshots, weights, fadeTime);
     }
 }

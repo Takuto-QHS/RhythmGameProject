@@ -9,6 +9,7 @@ public class RhythmGameManager : MonoBehaviour
     static public SoundManager soundManager;
     static public FadeManager fadeManager;
     static public RhythmSceneManager sceneManager;
+    static public InputManager inputManager;
     
     [Header("¶¬—pManagerPrefab")]
     [SerializeField]
@@ -17,6 +18,8 @@ public class RhythmGameManager : MonoBehaviour
     private GameObject prefabFadeManager;
     [SerializeField]
     private GameObject prefabSceneManager;
+    [SerializeField]
+    private GameObject prefabInputManager;
 
     [Space(5)]
     [Header("‘I‘ğ‹Èî•ñ")]
@@ -33,9 +36,14 @@ public class RhythmGameManager : MonoBehaviour
 
     void Awake()
     {
-        if (gameManager == null)
+        if (RhythmGameManager.gameManager == null)
         {
-            gameManager = this;
+            RhythmGameManager.gameManager = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
         }
 
         if (soundManager == null)
@@ -51,6 +59,11 @@ public class RhythmGameManager : MonoBehaviour
         if (sceneManager == null)
         {
             AddSceneManager();
+        }
+
+        if(inputManager == null)
+        {
+            AddInputManager();
         }
 
         DontDestroyOnLoad(gameObject);
@@ -70,6 +83,12 @@ public class RhythmGameManager : MonoBehaviour
     {
         GameObject _SceneManager = Instantiate(prefabSceneManager, new Vector3(), Quaternion.identity, this.gameObject.transform);
         sceneManager = _SceneManager.GetComponent<RhythmSceneManager>();
+    }
+
+    void AddInputManager()
+    {
+        GameObject _InputManager = Instantiate(prefabInputManager, new Vector3(), Quaternion.identity, this.gameObject.transform);
+        inputManager = _InputManager.GetComponent<InputManager>();
     }
 
 }
