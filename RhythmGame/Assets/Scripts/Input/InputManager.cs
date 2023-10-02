@@ -35,7 +35,7 @@ public class InputManager : MonoBehaviour
 
     public void OnPress(InputAction.CallbackContext context)
     {
-        Debug.Log("Press");
+        //Debug.Log("Press");
         if(context.started)
         {
             inputtableInterface.PressStarted();
@@ -43,6 +43,10 @@ public class InputManager : MonoBehaviour
         else if(context.performed)
         {
             inputtableInterface.PressPerformed();
+        }
+        else if (context.canceled)
+        {
+            inputtableInterface.PressCanceled();
         }
     }
 

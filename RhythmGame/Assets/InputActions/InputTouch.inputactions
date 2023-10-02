@@ -11,7 +11,7 @@
                     "id": "22c20050-4f4a-432e-9e55-35b4f92eb2c0",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "LongPressedRapidfire(duration=0.001)",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],

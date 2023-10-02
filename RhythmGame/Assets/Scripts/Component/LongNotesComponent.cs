@@ -173,9 +173,12 @@ public class LongNotesComponent : MonoBehaviour
         // 生成したQuadに各種情報をセット
         lineObj.GetComponent<MeshFilter>().mesh = mesh;
         lineObj.GetComponent<MeshRenderer>().material = longNoteLineMaterial;
+        lineObj.GetComponent<MeshCollider>().sharedMesh = mesh; // 当たり判定
+
         Notes notes = lineObj.AddComponent<Notes>();
         notes.isMoveZ = true;
         notes.isMove = false;
+        notes.isLongNote = true;
 
         listLongNotesLineObj.Add(lineObj);
     }

@@ -7,4 +7,6 @@ public interface IInputtable
     public void PressStarted();
 
     public void PressPerformed();
+
+    public void PressCanceled();
 }

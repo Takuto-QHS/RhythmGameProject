@@ -10,6 +10,7 @@ public class SoundManager : MonoBehaviour
 
     private List<AudioSource> listAudioSourcesSE = new List<AudioSource>();
     private int indexAudioSourcesSE;
+    private AudioSource audioLongPressSE;
 
     [Space(2)]
 
@@ -20,6 +21,8 @@ public class SoundManager : MonoBehaviour
     /* SEèÓïÒ */
     [SerializeField]
     public List<AudioClip> listSE = new List<AudioClip>();
+    [SerializeField]
+    private AudioClip clipLongPressSE;
 
     [Space(2)]
 
@@ -46,9 +49,15 @@ public class SoundManager : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             AudioSource audioSource = this.gameObject.AddComponent<AudioSource>();
-            audioSource.volume = 0.5f;
+            audioSource.volume = 1.0f;
             listAudioSourcesSE.Add(audioSource);
         }
+
+        // LongPressSEAudioSource
+        AudioSource audioSourceSE = this.gameObject.AddComponent<AudioSource>();
+        audioSourceSE.volume = 1.0f;
+        audioSourceSE.loop = true;
+        audioLongPressSE = audioSourceSE;
 
         // BGMController
         bgmController = this.gameObject.AddComponent<BGMController>();
@@ -69,6 +78,22 @@ public class SoundManager : MonoBehaviour
     {
         listAudioSourcesSE[indexAudioSourcesSE].PlayOneShot(listSE[index]);
         IncrementIndexSE();
+    }
+
+    public void StartLongPressSE()
+    {
+        if (audioLongPressSE.isPlaying) return;
+
+        audioLongPressSE.clip = clipLongPressSE;
+        audioLongPressSE.Play();
+    }
+
+    public void StopLongPressSE()
+    {
+        if (!audioLongPressSE.isPlaying) return;
+
+        audioLongPressSE.Stop();
+        StartSE(0);
     }
 
     void IncrementIndexSE()

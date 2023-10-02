@@ -10,9 +10,14 @@ public class Notes : MonoBehaviour
     public bool isMove = true;
     
     /// <summary>
-    /// LongノーツがZで動かす為
+    /// LongノーツがZで動かす為(いらないかも)
     /// </summary>
     public bool isMoveZ = false;
+
+    /// <summary>
+    /// ロングノーツ見分け用
+    /// </summary>
+    public bool isLongNote = false;
 
     // Update is called once per frame
     void Update()

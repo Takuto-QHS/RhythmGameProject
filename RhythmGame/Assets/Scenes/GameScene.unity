@@ -3141,7 +3141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aaf34819dda9a745964231fb4d4db6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitStartTime: 1
+  waitStartTime: 0
   startMusicTime: 2
   notesSpeed: 8
   valueScore: 0
