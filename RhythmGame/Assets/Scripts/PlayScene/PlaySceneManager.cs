@@ -97,6 +97,8 @@ public class PlaySceneManager : MonoBehaviour
         playStopWatchTime -= (startMusicTime + waitStartTime);
 
         StopWatch(true);
+
+        soundManager.deligateMusicEnd += EndMusic;
     }
 
     public void Play()
@@ -112,5 +114,15 @@ public class PlaySceneManager : MonoBehaviour
     public void StopWatch(bool _isPlayTime)
     {
         isStopWatch = _isPlayTime;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void EndMusic()
+    {
+        // ÉXÉRÉAï€éùèàóù
+
+        RhythmGameManager.sceneManager.ChangeResultScene();
     }
 }

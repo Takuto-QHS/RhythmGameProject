@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// プレイ時にフェードインが入るのはAnimatorが働いてる為
+/// </summary>
 public class FadeManager : MonoBehaviour
 {
     [SerializeField]

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Events;
 
 public class SoundManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class SoundManager : MonoBehaviour
     private List<AudioSource> listAudioSourcesSE = new List<AudioSource>();
     private int indexAudioSourcesSE;
     private AudioSource audioLongPressSE;
+
+    public UnityAction deligateMusicEnd;
 
     [Space(2)]
 
@@ -105,5 +108,10 @@ public class SoundManager : MonoBehaviour
     public void ChangeSceneBGM(AudioMixerSnapshot[] snapshots, float[] weights,float fadeTime)
     {
         bgmController.FadeOut(snapshots, weights, fadeTime);
+    }
+
+    void FinishMusic()
+    {
+
     }
 }

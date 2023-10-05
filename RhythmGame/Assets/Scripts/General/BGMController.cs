@@ -40,6 +40,8 @@ public class BGMController : MonoBehaviour
     [SerializeField]
     private float fadeOutTime = 1.0f;
 
+    private bool isFade = false;
+
     void Start()
     {
         _bgm_state = BGM_STATE.WAIT;
@@ -74,6 +76,15 @@ public class BGMController : MonoBehaviour
                 // 曲の終わりの時はフェードアウト
                 if (soundManager.nowPlayMusicData.audioClip.length - listAudioSourcesBGM.time <= fadeOutTime)
                 {
+                    _bgm_state = BGM_STATE.FADE_OUT;
+                }
+                break;
+
+            // フェードアウト処理
+            case BGM_STATE.FADE_OUT:
+
+                if(!isFade)
+                {
                     AudioMixerSnapshot[] snapshots =
                         {
                         RhythmGameManager.gameManager.snapshotSelect,
@@ -81,19 +92,21 @@ public class BGMController : MonoBehaviour
                     };
                     float[] weights = { 0.0f, 1.0f };
 
-                    FadeOut(snapshots,weights,fadeOutTime);
+                    isFade = true;
+                    FadeOut(snapshots, weights, fadeOutTime);
                 }
-                break;
-
-            // フェードアウト処理
-            case BGM_STATE.FADE_OUT:
 
                 // フェードアウト終了時、処理があれば入る
                 if (!listAudioSourcesBGM.isPlaying)
                 {
                     _bgm_state = BGM_STATE.END;
-                    // 留まってる後処理
+
+                    isFade = false;
+                    soundManager.deligateMusicEnd();
                 }
+                break;
+
+            case BGM_STATE.END:
                 break;
         }
     }
@@ -123,6 +136,7 @@ public class BGMController : MonoBehaviour
             RhythmGameManager.gameManager.snapshotSelect
         };
         float[] weights = { 0.0f, 1.0f };
+
         FadeIn(snapshots, weights, fadeInTime);
     }
 

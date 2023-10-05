@@ -24,6 +24,15 @@ public class RhythmSceneManager : MonoBehaviour
         RhythmGameManager.fadeManager.fadeFinishCallback.onComplete.AddListener(CompleateLoad);
     }
 
+    public void ChangeResultScene()
+    {
+        asyncLoad = SceneManager.LoadSceneAsync(sceneSelect);
+        asyncLoad.allowSceneActivation = false;
+
+        RhythmGameManager.fadeManager.CanvasFadeOut();
+        RhythmGameManager.fadeManager.fadeFinishCallback.onComplete.AddListener(CompleateLoad);
+    }
+
     /// <summary>
     /// フェードのAnimationClipの終了検知イベント用コールバック関数
     /// </summary>
