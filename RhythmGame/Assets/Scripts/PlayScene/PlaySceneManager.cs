@@ -31,6 +31,9 @@ public class PlaySceneManager : MonoBehaviour
     public NotesManager notesManager;
     public ScoreBoxWindow scoreBoxWin;
 
+    [SerializeField]
+    private ScriptableScoreData scrObjScore;
+
     [HideInInspector]
     public SoundManager soundManager;
     [HideInInspector]
@@ -80,6 +83,8 @@ public class PlaySceneManager : MonoBehaviour
             if (!isMusicStart && playStopWatchTime >= 0.0f)
             {
                 isMusicStart = true;
+
+                soundManager.InitSnapshot();
                 soundManager.StartPlaySceneBGM();
             }
         }
@@ -117,12 +122,20 @@ public class PlaySceneManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// 音楽が最後まで鳴り終わった時
     /// </summary>
     public void EndMusic()
     {
         // スコア保持処理
+        scrObjScore.score.valueScore    = valueScore;
+        scrObjScore.score.valueMaxCombo = 1000;
+        scrObjScore.score.valuePerfect  = valuePerfect;
+        scrObjScore.score.valueGreat    = valueGreat;
+        scrObjScore.score.valueGood     = valueGood;
+        scrObjScore.score.valueBad      = valueBad;
+        scrObjScore.score.valueMiss     = valueMiss;
 
+        // Result画面へ
         RhythmGameManager.sceneManager.ChangeResultScene();
     }
 }

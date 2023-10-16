@@ -15,7 +15,7 @@ public class SoundManager : MonoBehaviour
 
     public UnityAction deligateMusicEnd;
 
-    [Space(2)]
+    [Space(5)]
 
     /* ã»èÓïÒ */
     [SerializeField]
@@ -23,11 +23,20 @@ public class SoundManager : MonoBehaviour
 
     /* SEèÓïÒ */
     [SerializeField]
-    public List<AudioClip> listSE = new List<AudioClip>();
+    public AudioClip clipNortTapSE;
+
     [SerializeField]
     private AudioClip clipLongPressSE;
-
     [Space(2)]
+    [SerializeField]
+    private AudioClip clipPushBtnSE;
+    [SerializeField]
+    private AudioClip clipDecisionBtnSE;
+    [Space(2)]
+    [SerializeField]
+    private AudioClip clipResultSE;
+
+    [Space(5)]
 
     // ç°ó¨ÇÍÇƒÇÈBGMèÓïÒ
     public MusicData nowPlayMusicData;
@@ -47,7 +56,6 @@ public class SoundManager : MonoBehaviour
 
     void Init()
     {
-
         // SEópAudioSource
         for (int i = 0; i < 4; i++)
         {
@@ -72,15 +80,9 @@ public class SoundManager : MonoBehaviour
         bgmController.StartPlaySceneBGM();
     }
 
-        public void StartListBGM(AudioClip clip,AudioMixerGroup group)
+    public void StartListBGM(AudioClip clip, AudioMixerGroup group)
     {
-        bgmController.StartListBGM(clip,group);
-    }
-
-    public void StartSE(int index)
-    {
-        listAudioSourcesSE[indexAudioSourcesSE].PlayOneShot(listSE[index]);
-        IncrementIndexSE();
+        bgmController.StartListBGM(clip, group);
     }
 
     public void StartLongPressSE()
@@ -96,7 +98,7 @@ public class SoundManager : MonoBehaviour
         if (!audioLongPressSE.isPlaying) return;
 
         audioLongPressSE.Stop();
-        StartSE(0);
+        PlayNortTapSE();
     }
 
     void IncrementIndexSE()
@@ -110,8 +112,35 @@ public class SoundManager : MonoBehaviour
         bgmController.FadeOut(snapshots, weights, fadeTime);
     }
 
-    void FinishMusic()
+    public void InitSnapshot()
     {
+        bgmController.SnapshotTo();
+    }
 
+    public void Stop()
+    {
+        bgmController.Stop();
+    }
+
+    private void PlayOneShotSE(AudioClip clip)
+    {
+        listAudioSourcesSE[indexAudioSourcesSE].PlayOneShot(clip);
+        IncrementIndexSE();
+    }
+    public void PlayDecisionTapSE()
+    {
+        PlayOneShotSE(clipDecisionBtnSE);
+    }
+    public void PlayNortTapSE()
+    {
+        PlayOneShotSE(clipNortTapSE);
+    }
+    public void PlayPushBtnSE()
+    {
+        PlayOneShotSE(clipPushBtnSE);
+    }
+    public void PlayResultSE()
+    {
+        PlayOneShotSE(clipResultSE);
     }
 }

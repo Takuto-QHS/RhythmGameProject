@@ -3165,6 +3165,7 @@ MonoBehaviour:
   - {fileID: 2011758252}
   notesManager: {fileID: 1690243371}
   scoreBoxWin: {fileID: 1347926551}
+  scrObjScore: {fileID: 11400000, guid: e2537e0601d80ff429eb32764f7aa063, type: 2}
   soundManager: {fileID: 0}
   inputPlayScene: {fileID: 0}
   playStopWatchTime: 0
@@ -3749,6 +3750,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2096955845844535811, guid: 1f382b5f08f4e4e4f9102049b543a0e6, type: 3}
+      propertyPath: scrMusicData
+      value: 
+      objectReference: {fileID: 11400000, guid: 26fa7683adee98f4daa9429d15cdedec, type: 2}
     - target: {fileID: 2096955845844535811, guid: 1f382b5f08f4e4e4f9102049b543a0e6, type: 3}
       propertyPath: musicDataParam.musicData.audioClip
       value: 

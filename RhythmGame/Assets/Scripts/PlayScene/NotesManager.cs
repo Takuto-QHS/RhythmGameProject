@@ -37,7 +37,7 @@ public class NotesManager : MonoBehaviour
 
     void Init()
     {
-        notesData = RhythmGameManager.gameManager.musicDataParam.notesDataSource;
+        notesData = RhythmGameManager.gameManager.scrMusicData.musicDataParam.notesDataSource;
 
         noteNum = 0;
     }

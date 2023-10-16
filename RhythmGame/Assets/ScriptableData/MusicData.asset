@@ -18,7 +18,7 @@ MonoBehaviour:
     musicData:
       name: "\u3077\u3093\u3061\u304D\u3071\u3084\u3063\u3071\u30FC"
       artist: Carinho
-      audioClip: {fileID: 8300000, guid: 50dc922438344f1429f32e7506efe8e1, type: 3}
+      audioClip: {fileID: 8300000, guid: 07e42ef3143f32942ad0c676354940e2, type: 3}
     notesDataSource: {fileID: 4900000, guid: b2824d676fff400419df5c8aac278663, type: 3}
   - spriteLv: {fileID: 21300000, guid: 0a076cd4169614f4f8808b31cc617691, type: 3}
     spriteMusic: {fileID: 21300000, guid: 2c3fa093f05657b4ebec919786ff8e8d, type: 3}

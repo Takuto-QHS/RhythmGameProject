@@ -35,6 +35,8 @@ public class InputManager : MonoBehaviour
 
     public void OnPress(InputAction.CallbackContext context)
     {
+        if (inputtableInterface == null) return;
+
         //Debug.Log("Press");
         if(context.started)
         {

@@ -7,6 +7,9 @@ using TMPro;
 public class ResultScore : MonoBehaviour
 {
     [SerializeField]
+    private ScriptableScoreData scrObjScore;
+
+    [SerializeField]
     private Image imageMusic;
     [SerializeField]
     private TextMeshProUGUI txtMusicTire;
@@ -16,27 +19,19 @@ public class ResultScore : MonoBehaviour
     private TextMeshProUGUI txtMusicArtist;
     [Space(5)]
     [SerializeField]
-    private TextMeshProUGUI txtTotalScore;
-    [SerializeField]
-    private TextMeshProUGUI txtMaxCombo;
-    [SerializeField]
-    private TextMeshProUGUI txtPerfect;
-    [SerializeField]
-    private TextMeshProUGUI txtGreat;
-    [SerializeField]
-    private TextMeshProUGUI txtGood;
-    [SerializeField]
-    private TextMeshProUGUI txtBad;
-    [SerializeField]
-    private TextMeshProUGUI txtMiss;
+    private ScoreBoxWindow scoreBox;
 
-    void Start()
+    public void UpdateResultScoreBox()
     {
-        
+        ResultTxtMusicData(RhythmGameManager.gameManager.scrMusicData.musicDataParam);
+        scoreBox.UpdateScoreBoxWindow(scrObjScore.score);
     }
 
-    public void ResultTxtTotalScore(int index)
+    private void ResultTxtMusicData(MusicDataParam data)
     {
-        txtTotalScore.text = PlaySceneManager.psManager.valueScore.ToString();
+        imageMusic.sprite = data.spriteMusic;
+        //txtMusicTire = 
+        txtMusicName.text = data.musicData.name;
+        txtMusicArtist.text = data.musicData.artist;
     }
 }

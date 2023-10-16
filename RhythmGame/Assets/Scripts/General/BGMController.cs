@@ -30,7 +30,7 @@ public class BGMController : MonoBehaviour
     [SerializeField]
     private BGM_STATE _bgm_state;
 
-    private AudioSource listAudioSourcesBGM;
+    private AudioSource audioSourceBGM;
 
     private AudioMixer audioMixer;
 
@@ -47,8 +47,8 @@ public class BGMController : MonoBehaviour
         _bgm_state = BGM_STATE.WAIT;
 
         // BGM用AudioSource
-        listAudioSourcesBGM = this.gameObject.AddComponent<AudioSource>();
-        listAudioSourcesBGM.volume = 0.5f;
+        audioSourceBGM = this.gameObject.AddComponent<AudioSource>();
+        audioSourceBGM.volume = 0.5f;
 
         // AudioMixer
         audioMixer = RhythmGameManager.gameManager.amgSelectScene.audioMixer;
@@ -74,7 +74,7 @@ public class BGMController : MonoBehaviour
             case BGM_STATE.NOW_PLAY:
 
                 // 曲の終わりの時はフェードアウト
-                if (soundManager.nowPlayMusicData.audioClip.length - listAudioSourcesBGM.time <= fadeOutTime)
+                if (soundManager.nowPlayMusicData.audioClip.length - audioSourceBGM.time <= fadeOutTime)
                 {
                     _bgm_state = BGM_STATE.FADE_OUT;
                 }
@@ -97,11 +97,12 @@ public class BGMController : MonoBehaviour
                 }
 
                 // フェードアウト終了時、処理があれば入る
-                if (!listAudioSourcesBGM.isPlaying)
+                if (!audioSourceBGM.isPlaying)
                 {
                     _bgm_state = BGM_STATE.END;
 
                     isFade = false;
+                    Stop();
                     soundManager.deligateMusicEnd();
                 }
                 break;
@@ -114,11 +115,11 @@ public class BGMController : MonoBehaviour
     // 最初にフェードインさせない
     public void StartPlaySceneBGM()
     {
-        RhythmGameManager.soundManager.nowPlayMusicData = RhythmGameManager.gameManager.musicDataParam.musicData;
+        RhythmGameManager.soundManager.nowPlayMusicData = RhythmGameManager.gameManager.scrMusicData.musicDataParam.musicData;
 
-        listAudioSourcesBGM.clip = RhythmGameManager.soundManager.nowPlayMusicData.audioClip;
-        listAudioSourcesBGM.outputAudioMixerGroup = RhythmGameManager.gameManager.amgSelectScene;
-        listAudioSourcesBGM.Play();
+        audioSourceBGM.clip = RhythmGameManager.soundManager.nowPlayMusicData.audioClip;
+        audioSourceBGM.outputAudioMixerGroup = RhythmGameManager.gameManager.amgSelectScene;
+        audioSourceBGM.Play();
 
         _bgm_state = BGM_STATE.NOW_PLAY;
     }
@@ -126,9 +127,9 @@ public class BGMController : MonoBehaviour
     // 最初にフェードインさせる
     public void StartListBGM(AudioClip clip, AudioMixerGroup group)
     {
-        listAudioSourcesBGM.clip = clip;
-        listAudioSourcesBGM.outputAudioMixerGroup = group;
-        listAudioSourcesBGM.Play();
+        audioSourceBGM.clip = clip;
+        audioSourceBGM.outputAudioMixerGroup = group;
+        audioSourceBGM.Play();
 
         AudioMixerSnapshot[] snapshots =
             {
@@ -150,5 +151,21 @@ public class BGMController : MonoBehaviour
     {
         _bgm_state = BGM_STATE.FADE_IN;
         audioMixer.TransitionToSnapshots(snapshots, weights, fadeTime);
+    }
+
+    public void Stop()
+    {
+        audioSourceBGM.Stop();
+    }
+
+    public void SnapshotTo()
+    {
+        AudioMixerSnapshot[] snapshots =
+            {
+            RhythmGameManager.gameManager.snapshotMute,
+            RhythmGameManager.gameManager.snapshotSelect
+        };
+        float[] weights = { 0.0f, 1.0f };
+        audioMixer.TransitionToSnapshots(snapshots, weights, 0.0f);
     }
 }

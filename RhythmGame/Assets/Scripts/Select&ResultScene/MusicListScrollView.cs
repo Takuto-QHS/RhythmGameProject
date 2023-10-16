@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 
 public class MusicListScrollView : MonoBehaviour
 {
-    public ScriptableMusicData sourceData;
+    public ScriptableMusicListData sourceData;
     public SelectBoxMusicDetail boxMusicDetail;
 
     private List<object> viewerList = new List<object>();
@@ -32,10 +32,6 @@ public class MusicListScrollView : MonoBehaviour
     /// <summary>
     /// 選択時の関数
     /// </summary>
-    /// <param name="table"></param>
-    /// <param name="itemIndex"></param>
-    /// <param name="subIndex"></param>
-    /// <param name="userInput"></param>
     public void onCursorMove(List<object> table, int itemIndex, int subIndex, bool userInput)
     {
         // 選択したMusicData格納
@@ -50,15 +46,15 @@ public class MusicListScrollView : MonoBehaviour
     /// <summary>
     /// 選択後、決定時の関数
     /// </summary>
-    /// <param name="table"></param>
-    /// <param name="itemIndex"></param>
-    /// <param name="subIndex"></param>
-    /// <param name="isCancel"></param>
     public void OnSelect(List<object> table, int itemIndex, int subIndex, bool isCancel)
     {
         // 選択したMusicData格納
         MusicDataParam data = (MusicDataParam)table[itemIndex];
+        RhythmGameManager.gameManager.scrMusicData.musicDataParam = data;
 
+        RhythmGameManager.soundManager.PlayDecisionTapSE();
+
+        // シーンチェンジ処理
         EnterTransitionBGM(RhythmGameManager.soundManager.secMute);
         RhythmGameManager.sceneManager.ChangePlayScene();
     }
@@ -85,7 +81,7 @@ public class MusicListScrollView : MonoBehaviour
     }
     void UpdateSelectMusic(MusicDataParam param)
     {
-        RhythmGameManager.gameManager.musicDataParam = param;
+        RhythmGameManager.gameManager.scrMusicData.musicDataParam = param;
         RhythmGameManager.soundManager.nowPlayMusicData = param.musicData;
     }
     void EnterTransitionBGM(float sec)

@@ -12,10 +12,6 @@ public class MusicListScrollElement : TableNodeElement
     public TextMeshProUGUI txtMusicArtist;
     public Image imageFocus;
 
-    [Space]
-    [SerializeField]
-    private int num = 0;
-
     /// <summary>
     /// フォーカス ON/OFF の表示をここに記述する
     /// </summary>

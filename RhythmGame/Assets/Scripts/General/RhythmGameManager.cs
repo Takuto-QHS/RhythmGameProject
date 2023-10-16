@@ -10,7 +10,8 @@ public class RhythmGameManager : MonoBehaviour
     static public FadeManager fadeManager;
     static public RhythmSceneManager sceneManager;
     static public InputManager inputManager;
-    
+
+    [Space(10)]
     [Header("¶¬—pManagerPrefab")]
     [SerializeField]
     private GameObject prefabSoundManager;
@@ -23,7 +24,7 @@ public class RhythmGameManager : MonoBehaviour
 
     [Space(5)]
     [Header("‘I‘ğ‹Èî•ñ")]
-    public MusicDataParam musicDataParam;
+    public ScriptableMusicData scrMusicData;
 
     [Space(5)]
     [Header("SoundManager")]

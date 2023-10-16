@@ -48,9 +48,11 @@ MonoBehaviour:
   - name: 
     artist: 
     audioClip: {fileID: 8300000, guid: 50dc922438344f1429f32e7506efe8e1, type: 3}
-  listSE:
-  - {fileID: 8300000, guid: 8cae3ea171ad6494faffd168dac2378a, type: 3}
+  clipNortTapSE: {fileID: 8300000, guid: 8cae3ea171ad6494faffd168dac2378a, type: 3}
   clipLongPressSE: {fileID: 8300000, guid: 67b2c0d47a8046842bed66dd2d224d2c, type: 3}
+  clipPushBtnSE: {fileID: 8300000, guid: e0482c93750842b4f94ea3ce5ed84a63, type: 3}
+  clipDecisionBtnSE: {fileID: 8300000, guid: 5e1eaa2b81f94124ab1502b051e631de, type: 3}
+  clipResultSE: {fileID: 8300000, guid: 07e42ef3143f32942ad0c676354940e2, type: 3}
   nowPlayMusicData:
     name: 
     artist: 

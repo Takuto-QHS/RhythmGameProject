@@ -5,6 +5,8 @@ using TMPro;
 
 public class ScoreBoxWindow : MonoBehaviour
 {
+    static int initNum = 0;
+
     [SerializeField]
     private TextMeshProUGUI txtScoreNum;
     [SerializeField]
@@ -20,55 +22,60 @@ public class ScoreBoxWindow : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI txtMissNum;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        Init();
+        UpdateTxtScore(initNum);
+        UpdateTxtCombo(initNum);
+        UpdateTxtPerfect(initNum);
+        UpdateTxtGreat(initNum);
+        UpdateTxtGood(initNum);
+        UpdateTxtBad(initNum);
+        UpdateTxtMiss(initNum);
     }
 
-    void Init()
+    public void UpdateScoreBoxWindow(ScoreData score)
     {
-        UpdateTxtScore(PlaySceneManager.initNum);
-        UpdateTxtCombo(PlaySceneManager.initNum);
-        UpdateTxtPerfect(PlaySceneManager.initNum);
-        UpdateTxtGreat(PlaySceneManager.initNum);
-        UpdateTxtGood(PlaySceneManager.initNum);
-        UpdateTxtBad(PlaySceneManager.initNum);
-        UpdateTxtMiss(PlaySceneManager.initNum);
+        UpdateTxtScore(score.valueScore);
+        UpdateTxtCombo(score.valueMaxCombo);
+        UpdateTxtPerfect(score.valuePerfect);
+        UpdateTxtGreat(score.valueGreat);
+        UpdateTxtGood(score.valueGood);
+        UpdateTxtBad(score.valueBad);
+        UpdateTxtMiss(score.valueMiss);
     }
 
     public void UpdateTxtScore(int index)
     {
-        txtScoreNum.text = PlaySceneManager.psManager.valueScore.ToString();
+        txtScoreNum.text = index.ToString();
     }
 
     public void UpdateTxtCombo(int index)
     {
-        txtMaxComboNum.text = PlaySceneManager.psManager.valueCombo.ToString();
+        txtMaxComboNum.text = index.ToString();
     }
 
     public void UpdateTxtPerfect(int index)
     {
-        txtPerfectNum.text = PlaySceneManager.psManager.valuePerfect.ToString();
+        txtPerfectNum.text = index.ToString();
     }
 
     public void UpdateTxtGreat(int index)
     {
-        txtGreatNum.text = PlaySceneManager.psManager.valueGreat.ToString();
+        txtGreatNum.text = index.ToString();
     }
 
     public void UpdateTxtGood(int index)
     {
-        txtGoodNum.text = PlaySceneManager.psManager.valueGood.ToString();
+        txtGoodNum.text = index.ToString();
     }
 
     public void UpdateTxtBad(int index)
     {
-        txtBadNum.text = PlaySceneManager.psManager.valueBad.ToString();
+        txtBadNum.text = index.ToString();
     }
 
     public void UpdateTxtMiss(int index)
     {
-        txtMissNum.text = PlaySceneManager.psManager.valueMiss.ToString();
+        txtMissNum.text = index.ToString();
     }
 }

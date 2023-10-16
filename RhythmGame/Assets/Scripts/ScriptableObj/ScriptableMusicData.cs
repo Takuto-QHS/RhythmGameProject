@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class ScriptableMusicData : ScriptableObject
 {
-    public List<MusicDataParam> musicDataList = new List<MusicDataParam>();
+    public MusicDataParam musicDataParam = new MusicDataParam();
 }
 
 [System.Serializable]

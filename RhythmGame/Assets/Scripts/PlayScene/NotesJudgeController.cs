@@ -98,8 +98,11 @@ public class NotesJudgeController : MonoBehaviour
         Message(0, laneNum);
         PlaySceneManager.psManager.valueScore = PlaySceneManager.psManager.valueScore + PlaySceneManager.psManager.addScoreValuePerfect;
         scoreBoxWindow.UpdateTxtScore(PlaySceneManager.psManager.valueScore);
-        scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo++);
-        scoreBoxWindow.UpdateTxtPerfect(PlaySceneManager.psManager.valuePerfect++);
+
+        PlaySceneManager.psManager.valueCombo++;
+        scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo);
+        PlaySceneManager.psManager.valuePerfect++;
+        scoreBoxWindow.UpdateTxtPerfect(PlaySceneManager.psManager.valuePerfect);
 
         //PlaySceneManager.psManager.soundManager.StartSE(0);
     }
@@ -110,8 +113,12 @@ public class NotesJudgeController : MonoBehaviour
         Message(1, laneNum);
         PlaySceneManager.psManager.valueScore = PlaySceneManager.psManager.valueScore + PlaySceneManager.psManager.addScoreValueGood;
         scoreBoxWindow.UpdateTxtScore(PlaySceneManager.psManager.valueScore);
-        scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo++);
-        scoreBoxWindow.UpdateTxtGood(PlaySceneManager.psManager.valueGood++);
+
+        PlaySceneManager.psManager.valueCombo++;
+        scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo);
+
+        PlaySceneManager.psManager.valueGreat++;
+        scoreBoxWindow.UpdateTxtGreat(PlaySceneManager.psManager.valueGreat);
 
         //PlaySceneManager.psManager.soundManager.StartSE(0);
     }
@@ -122,8 +129,12 @@ public class NotesJudgeController : MonoBehaviour
         Message(2, laneNum);
         PlaySceneManager.psManager.valueScore = PlaySceneManager.psManager.valueScore + PlaySceneManager.psManager.addScoreValueGreat;
         scoreBoxWindow.UpdateTxtScore(PlaySceneManager.psManager.valueScore);
-        scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo++);
-        scoreBoxWindow.UpdateTxtGreat(PlaySceneManager.psManager.valueGreat++);
+
+        PlaySceneManager.psManager.valueCombo++;
+        scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo);
+
+        PlaySceneManager.psManager.valueGood++;
+        scoreBoxWindow.UpdateTxtGood(PlaySceneManager.psManager.valueGood);
 
         //PlaySceneManager.psManager.soundManager.StartSE(0);
     }
@@ -134,9 +145,12 @@ public class NotesJudgeController : MonoBehaviour
         Message(3,laneNum);
         PlaySceneManager.psManager.valueScore = PlaySceneManager.psManager.valueScore + PlaySceneManager.psManager.addScoreValueBad;
         scoreBoxWindow.UpdateTxtScore(PlaySceneManager.psManager.valueScore);
+
         PlaySceneManager.psManager.valueCombo = 0;
         scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo);
-        scoreBoxWindow.UpdateTxtBad(PlaySceneManager.psManager.valueBad++);
+
+        PlaySceneManager.psManager.valueBad++;
+        scoreBoxWindow.UpdateTxtBad(PlaySceneManager.psManager.valueBad);
 
         //PlaySceneManager.psManager.soundManager.StartSE(0);
     }
@@ -147,8 +161,11 @@ public class NotesJudgeController : MonoBehaviour
         Message(4,laneNum);
         PlaySceneManager.psManager.valueScore = PlaySceneManager.psManager.valueScore + PlaySceneManager.psManager.addScoreValueBad;
         scoreBoxWindow.UpdateTxtScore(PlaySceneManager.psManager.valueScore);
+
         PlaySceneManager.psManager.valueCombo = 0;
         scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo);
-        scoreBoxWindow.UpdateTxtBad(PlaySceneManager.psManager.valueBad++);
+
+        PlaySceneManager.psManager.valueBad++;
+        scoreBoxWindow.UpdateTxtBad(PlaySceneManager.psManager.valueBad);
     }
 }

@@ -5,15 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class RhythmSceneManager : MonoBehaviour
 {
+    public enum SCENE_STATE
+    {
+        SELECT,
+        RESULT
+    }
+    public SCENE_STATE sceneState;
+
     public string sceneSelect = "Select&ResultScene";
     public string scenePlay = "GameScene";
 
     private AsyncOperation asyncLoad;
-
-    void Start()
-    {
-        
-    }
 
     public void ChangePlayScene()
     {
@@ -31,6 +33,14 @@ public class RhythmSceneManager : MonoBehaviour
 
         RhythmGameManager.fadeManager.CanvasFadeOut();
         RhythmGameManager.fadeManager.fadeFinishCallback.onComplete.AddListener(CompleateLoad);
+
+        sceneState = SCENE_STATE.RESULT;
+    }
+
+    public void ChangeSelectScene(SelectResultManager manager)
+    {
+        sceneState = SCENE_STATE.SELECT;
+        manager.ChangeState(sceneState);
     }
 
     /// <summary>

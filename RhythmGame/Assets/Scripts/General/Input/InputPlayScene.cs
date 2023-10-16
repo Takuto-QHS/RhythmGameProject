@@ -178,7 +178,7 @@ public class InputPlayScene : MonoBehaviour , IInputtable
         {
             case ETouchType.Tap:
                 if (deligateTapJudge != null) deligateTapJudge(_hitLitesLane.lightNum);
-                PlaySceneManager.psManager.soundManager.StartSE(0);
+                PlaySceneManager.psManager.soundManager.PlayNortTapSE();
                 break;
             case ETouchType.LongTap:
                 if (deligateLongTapJudge != null) deligateLongTapJudge(_hitLitesLane.lightNum);
