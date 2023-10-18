@@ -7,6 +7,9 @@ public class FadeFinishCallback : MonoBehaviour
 {
     public UnityEvent onComplete = new UnityEvent();
 
+    /// <summary>
+    /// FadeOutAnimのフェード終わりにイベントClipを仕込んで起動
+    /// </summary>
     public void CompleateFadeAnimation()
     {
         bool isSeceneCompleate = RhythmGameManager.sceneManager.GetCompleateLoad();
@@ -14,6 +17,7 @@ public class FadeFinishCallback : MonoBehaviour
         if (isSeceneCompleate)
         {
             onComplete.Invoke();
+            onComplete.RemoveAllListeners();
         }
         else
         {
@@ -32,6 +36,7 @@ public class FadeFinishCallback : MonoBehaviour
             if (isSeceneCompleate)
             {
                 onComplete.Invoke();
+                onComplete.RemoveAllListeners();
                 break;
             }
         }

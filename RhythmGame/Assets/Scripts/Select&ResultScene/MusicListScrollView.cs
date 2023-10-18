@@ -40,7 +40,7 @@ public class MusicListScrollView : MonoBehaviour
         // çXêV
         UpdateMusicDetail(data);
         UpdateSelectMusic(data);
-        RhythmGameManager.soundManager.StartListBGM(data.musicData.audioClip,RhythmGameManager.gameManager.amgSelectScene);
+        RhythmGameManager.soundManager.StartSelectListBGM(data.musicData.audioClip,RhythmGameManager.gameManager.amgSelectScene);
     }
 
     /// <summary>

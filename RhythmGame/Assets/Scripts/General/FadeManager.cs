@@ -13,10 +13,6 @@ public class FadeManager : MonoBehaviour
 
     public FadeFinishCallback fadeFinishCallback;
 
-    void Start()
-    {
-    }
-
     public void CanvasFadeIn()
     {
         animator.SetBool(strAnimBoolName, false);

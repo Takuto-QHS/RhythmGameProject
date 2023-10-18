@@ -122,13 +122,7 @@ public class BGMController : MonoBehaviour
         }
     }
 
-    // 選択中の音源ループ処理
-    void SelectProcess()
-    {
-
-    }
-
-    // 最初にフェードインさせない
+    // プレイシーンで音源をスタートさせる処理（最初にフェードインさせない）
     public void StartPlaySceneBGM()
     {
         RhythmGameManager.soundManager.nowPlayMusicData = RhythmGameManager.gameManager.scrMusicData.musicDataParam.musicData;
@@ -140,8 +134,8 @@ public class BGMController : MonoBehaviour
         _bgm_state = BGM_STATE.NOW_PLAY;
     }
 
-    // 最初にフェードインさせる
-    public void StartListBGM(AudioClip clip, AudioMixerGroup group)
+    // 曲選択時の処理（最初にフェードインさせる）
+    public void StartSelectListBGM(AudioClip clip, AudioMixerGroup group)
     {
         audioSourceBGM.clip = clip;
         audioSourceBGM.outputAudioMixerGroup = group;

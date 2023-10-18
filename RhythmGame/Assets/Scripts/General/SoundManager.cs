@@ -80,9 +80,9 @@ public class SoundManager : MonoBehaviour
         bgmController.StartPlaySceneBGM();
     }
 
-    public void StartListBGM(AudioClip clip, AudioMixerGroup group)
+    public void StartSelectListBGM(AudioClip clip, AudioMixerGroup group)
     {
-        bgmController.StartListBGM(clip, group);
+        bgmController.StartSelectListBGM(clip, group);
     }
 
     public void StartLongPressSE()

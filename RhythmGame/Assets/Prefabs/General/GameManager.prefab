@@ -48,14 +48,7 @@ MonoBehaviour:
   prefabFadeManager: {fileID: 5872102801982665039, guid: b6d384535576b084aab98a29338b1a60, type: 3}
   prefabSceneManager: {fileID: 9029478652322517082, guid: 31ccb82f357b1324290d4a569812130e, type: 3}
   prefabInputManager: {fileID: 3586231509293085075, guid: c7d181a8e1a8a6b4d908c04fcafb6517, type: 3}
-  musicDataParam:
-    spriteLv: {fileID: 0}
-    spriteMusic: {fileID: 0}
-    musicData:
-      name: "\u3077\u3093\u3061\u304D"
-      artist: 
-      audioClip: {fileID: 8300000, guid: 50dc922438344f1429f32e7506efe8e1, type: 3}
-    notesDataSource: {fileID: 4900000, guid: b2824d676fff400419df5c8aac278663, type: 3}
+  scrMusicData: {fileID: 11400000, guid: 26fa7683adee98f4daa9429d15cdedec, type: 2}
   amgSelectScene: {fileID: 6049236655301633653, guid: 3f530d9bd29f8f9418412a4cacadd71e, type: 2}
   amgResultScene: {fileID: 5837658200423479410, guid: 3f530d9bd29f8f9418412a4cacadd71e, type: 2}
   snapshotSelect: {fileID: 24500006, guid: 3f530d9bd29f8f9418412a4cacadd71e, type: 2}

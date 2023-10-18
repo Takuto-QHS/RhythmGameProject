@@ -103,7 +103,7 @@ public class PlaySceneManager : MonoBehaviour
 
         StopWatch(true);
 
-        soundManager.deligateMusicEnd += EndMusic;
+        soundManager.deligateMusicEnd = EndMusic;
     }
 
     public void Play()
