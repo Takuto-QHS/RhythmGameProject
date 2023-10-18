@@ -8,6 +8,7 @@ public class RhythmSceneManager : MonoBehaviour
     public enum SCENE_STATE
     {
         SELECT,
+        PLAY,
         RESULT
     }
     public SCENE_STATE sceneState;
@@ -24,6 +25,8 @@ public class RhythmSceneManager : MonoBehaviour
 
         RhythmGameManager.fadeManager.CanvasFadeOut();
         RhythmGameManager.fadeManager.fadeFinishCallback.onComplete.AddListener(CompleateLoad);
+
+        sceneState = SCENE_STATE.PLAY;
     }
 
     public void ChangeResultScene()

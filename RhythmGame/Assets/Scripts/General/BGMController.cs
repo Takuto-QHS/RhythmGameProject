@@ -57,6 +57,16 @@ public class BGMController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        switch (RhythmGameManager.sceneManager.sceneState)
+        {
+            case RhythmSceneManager.SCENE_STATE.PLAY:
+                UpdatePlayProcess();
+                break;
+        }
+    }
+
+    void UpdatePlayProcess()
+    {
         switch (_bgm_state)
         {
             // 何もしてない時
@@ -83,7 +93,7 @@ public class BGMController : MonoBehaviour
             // フェードアウト処理
             case BGM_STATE.FADE_OUT:
 
-                if(!isFade)
+                if (!isFade)
                 {
                     AudioMixerSnapshot[] snapshots =
                         {
@@ -110,6 +120,12 @@ public class BGMController : MonoBehaviour
             case BGM_STATE.END:
                 break;
         }
+    }
+
+    // 選択中の音源ループ処理
+    void SelectProcess()
+    {
+
     }
 
     // 最初にフェードインさせない
