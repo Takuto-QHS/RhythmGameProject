@@ -2,6 +2,8 @@
 音ゲー制作プロジェクト</br>
 </br>
 </br>
+## UnityVersion
+Unity 2021.3.7f1</br>
 ## 使用アセット
 譜面制作用：[NotesEditor](https://github.com/setchi/NoteEditor)</br>
 リスト制作用：[TableScrollView](https://www.create-forever.games/table-scroll-view4/)</br>
