@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4331619196327845260}
   - component: {fileID: 4331619196327845263}
   - component: {fileID: 5676684544556459035}
+  - component: {fileID: 1512954580673778465}
   m_Layer: 0
   m_Name: Effect_Good
   m_TagString: Untagged
@@ -189,3 +190,15 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &1512954580673778465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4331619196327845257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e15db82d6442cbd45a67259aa3d33246, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

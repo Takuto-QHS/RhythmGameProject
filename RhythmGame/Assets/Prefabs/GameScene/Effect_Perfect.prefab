@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7904614710978310545}
   - component: {fileID: 7904614710978310546}
   - component: {fileID: 2263189668083189766}
+  - component: {fileID: 5927474746346490350}
   m_Layer: 0
   m_Name: Effect_Perfect
   m_TagString: Untagged
@@ -110,7 +111,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278255103
+    rgba: 4278255615
   m_fontColor: {r: 1, g: 1, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -189,3 +190,15 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &5927474746346490350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7904614710978310548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e15db82d6442cbd45a67259aa3d33246, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
