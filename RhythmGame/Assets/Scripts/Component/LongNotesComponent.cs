@@ -6,6 +6,25 @@ using UnityEngine;
  * 生成→InputTouchManagerで判定→Perfect内時にレーンを押した状態ならOK
  * */
 
+/// <summary>
+/// 1つのロングノーツストラクト
+/// </summary>
+[System.Serializable]
+public class LongNoteGroup
+{
+    public List<LongNote> listLongNoteGroup = new List<LongNote>();
+}
+
+/// <summary>
+/// ロングノーツを形成する最小グループストラクト
+/// </summary>
+[System.Serializable]
+public class LongNote
+{
+    public GameObject objLongNote;
+    public GameObject objLongNoteLine;
+}
+
 public class LongNotesComponent : MonoBehaviour
 {
     [SerializeField]
@@ -16,15 +35,18 @@ public class LongNotesComponent : MonoBehaviour
     [SerializeField]
     GameObject noteLongObj;
 
-    [HideInInspector]
+    [SerializeField]
+    float destroyNoteTime = 3.0f;
+
+    //[HideInInspector]
     public List<int> listLaneNum = new List<int>();
-    [HideInInspector]
+    //[HideInInspector]
     public List<int> listNoteType = new List<int>();
     //[HideInInspector]
     public List<float> listNotesTime = new List<float>();
-    [HideInInspector]
-    public List<GameObject> listLongNotesObj = new List<GameObject>();
-    private List<GameObject> listLongNotesLineObj = new List<GameObject>();
+
+    // 全ロングノーツObjを格納
+    private List<LongNoteGroup> listLongNotesObj = new List<LongNoteGroup>();
 
     void Start()
     {
@@ -81,7 +103,10 @@ public class LongNotesComponent : MonoBehaviour
         // 生成
         float z = _posTime * PlaySceneManager.psManager.notesSpeed;
         GameObject obj1 = Instantiate(noteLongObj, new Vector3(_note.block - 2.5f, 0.03f, z), noteLongObj.transform.rotation);
-        listLongNotesObj.Add(obj1);
+        List<LongNote> listLongNote = new List<LongNote>();
+        LongNote longNote1 = new LongNote();
+        longNote1.objLongNote = obj1;
+        listLongNote.Add(longNote1);
 
         // 線を引く準備(Meshの下頂点)
         Vector3[] lineVerticesVec3 = new Vector3[4];
@@ -105,14 +130,16 @@ public class LongNotesComponent : MonoBehaviour
             // 生成
             float z2 = postimeLongNote * PlaySceneManager.psManager.notesSpeed;
             GameObject obj2 = Instantiate(noteLongObj, new Vector3(_note.notes[x].block - 2.5f, 0.03f, z2), noteLongObj.transform.rotation);
-            listLongNotesObj.Add(obj2);
+            LongNote longNote2 = new LongNote();
+            longNote2.objLongNote = obj2;
 
             // 線を引く準備(Meshの上頂点)
             Vector3[] lowerVec3 = GetObjVerticsUpperLower(obj2, false);
             lineVerticesVec3[2] = lowerVec3[0];
             lineVerticesVec3[3] = lowerVec3[1];
 
-            InstantiateLongNotesLine(lineVerticesVec3);
+            longNote2.objLongNoteLine = InstantiateLongNotesLine(lineVerticesVec3);
+            listLongNote.Add(longNote2);
 
             // 次の線を引く準備(Meshの下頂点)
             Vector3[] upperVec3Obj2 = GetObjVerticsUpperLower(obj2, true);
@@ -120,8 +147,10 @@ public class LongNotesComponent : MonoBehaviour
             lineVerticesVec3[1] = upperVec3Obj2[1];
         }
 
-        // リスト内を降ってくる時間順に整理
-
+        // 出来た1つのロングノーツをAdd
+        LongNoteGroup result = new LongNoteGroup();
+        result.listLongNoteGroup = listLongNote;
+        listLongNotesObj.Add(result);
     }
 
     Vector3[] GetObjVerticsUpperLower(GameObject obj, bool upper)
@@ -150,7 +179,7 @@ public class LongNotesComponent : MonoBehaviour
         return pos;
     }
 
-    void InstantiateLongNotesLine(Vector3[] _lineVerticesVec3)
+    GameObject InstantiateLongNotesLine(Vector3[] _lineVerticesVec3)
     {
         // Quadを生成
         GameObject lineObj = GameObject.CreatePrimitive(PrimitiveType.Quad);
@@ -180,7 +209,7 @@ public class LongNotesComponent : MonoBehaviour
         notes.isMove = false;
         notes.isLongNote = true;
 
-        listLongNotesLineObj.Add(lineObj);
+        return lineObj;
     }
 
     public void DeleteData()//すでにたたいたノーツ判定を削除する関数
@@ -188,6 +217,17 @@ public class LongNotesComponent : MonoBehaviour
         listNotesTime.RemoveAt(0);
         listLaneNum.RemoveAt(0);
         listNoteType.RemoveAt(0);
+
+
+        // ロングノーツObjとデータの削除
+        StartCoroutine("ObjDelayDestroy", listLongNotesObj[0].listLongNoteGroup[0]);
+        listLongNotesObj[0].listLongNoteGroup.RemoveAt(0);
+
+        // ロングノーツ終わりの場合はlistLongNotesObjの要素自体を削除
+        if (listLongNotesObj[0].listLongNoteGroup.Count == 0)
+        {
+            listLongNotesObj.RemoveAt(0);
+        }
     }
 
     public void RaneJudge(int _hitsRaneNum)
@@ -214,16 +254,25 @@ public class LongNotesComponent : MonoBehaviour
 
     public void MoveNotes(bool _isMove)
     {
-        foreach (GameObject note in listLongNotesObj)
+        foreach (LongNoteGroup listLongNoteGroup in listLongNotesObj)
         {
-            Notes thisNote = note.GetComponent<Notes>();
-            thisNote.isMove = _isMove;
-        }
+            foreach(LongNote longNotes in listLongNoteGroup.listLongNoteGroup)
+            {
+                if (longNotes.objLongNote == null) continue;
+                Notes thisNote = longNotes.objLongNote.GetComponent<Notes>();
+                thisNote.isMove = _isMove;
 
-        foreach (GameObject line in listLongNotesLineObj)
-        {
-            Notes thisNote = line.GetComponent<Notes>();
-            thisNote.isMove = _isMove;
+                if (longNotes.objLongNoteLine == null) continue;
+                Notes thisNoteLine = longNotes.objLongNoteLine.GetComponent<Notes>();
+                thisNoteLine.isMove = _isMove;
+            }
         }
+    }
+
+    IEnumerator ObjDelayDestroy(LongNote obj)
+    {
+        yield return new WaitForSeconds(destroyNoteTime);
+        Destroy(obj.objLongNote);
+        Destroy(obj.objLongNoteLine);
     }
 }

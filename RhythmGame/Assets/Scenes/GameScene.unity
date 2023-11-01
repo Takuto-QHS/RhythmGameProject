@@ -5363,6 +5363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notesJudgeController: {fileID: 1690243370}
   noteTapObj: {fileID: 468231567830911126, guid: 60219f7d5c0589d45a0923eba8825e96, type: 3}
+  destroyNoteTime: 1
   listLaneNum: 
   listNoteType: 
   listNotesTime: []
@@ -5382,10 +5383,10 @@ MonoBehaviour:
   notesJudgeController: {fileID: 1690243370}
   longNoteLineMaterial: {fileID: 2100000, guid: e2611590d38a77d4b8ba596adbbfb4f4, type: 2}
   noteLongObj: {fileID: 759364179843213216, guid: 4a855c4e449a00e47be04d501b15c7e1, type: 3}
+  destroyNoteTime: 3
   listLaneNum: 
   listNoteType: 
   listNotesTime: []
-  listLongNotesObj: []
 --- !u!1 &1709295035
 GameObject:
   m_ObjectHideFlags: 0
