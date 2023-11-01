@@ -165,7 +165,7 @@ public class NotesJudgeController : MonoBehaviour
         PlaySceneManager.psManager.valueCombo = 0;
         scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo);
 
-        PlaySceneManager.psManager.valueBad++;
-        scoreBoxWindow.UpdateTxtBad(PlaySceneManager.psManager.valueBad);
+        PlaySceneManager.psManager.valueMiss++;
+        scoreBoxWindow.UpdateTxtBad(PlaySceneManager.psManager.valueMiss);
     }
 }

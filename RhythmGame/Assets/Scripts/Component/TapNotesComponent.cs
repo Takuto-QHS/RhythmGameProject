@@ -10,6 +10,9 @@ public class TapNotesComponent : MonoBehaviour
     [SerializeField]
     GameObject noteTapObj;
 
+    [SerializeField]
+    float destroyNoteTime = 1.0f;
+
     [HideInInspector]
     public List<int> listLaneNum = new List<int>();
     [HideInInspector]
@@ -78,9 +81,17 @@ public class TapNotesComponent : MonoBehaviour
 
     public void DeleteData()//Ç∑Ç≈Ç…ÇΩÇΩÇ¢ÇΩÉmÅ[ÉcîªíËÇçÌèúÇ∑ÇÈä÷êî
     {
+        StartCoroutine("ObjDelayDestroy",listNotesObj[0]);
         listNotesTime.RemoveAt(0);
         listLaneNum.RemoveAt(0);
         listNoteType.RemoveAt(0);
+        listNotesObj.RemoveAt(0);
+    }
+
+    IEnumerator ObjDelayDestroy(GameObject obj)
+    {
+        yield return new WaitForSeconds(destroyNoteTime);
+        Destroy(obj);
     }
 
     public void RaneJudge(int _hitsRaneNum)
