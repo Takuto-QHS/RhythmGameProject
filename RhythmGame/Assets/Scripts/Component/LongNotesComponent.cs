@@ -9,7 +9,6 @@ using UnityEngine;
 /// <summary>
 /// 1つのロングノーツグループ
 /// </summary>
-[System.Serializable]
 public class LongNoteGroup
 {
     public List<LongNote> listLongNoteGroup = new List<LongNote>();
@@ -18,7 +17,6 @@ public class LongNoteGroup
 /// <summary>
 /// ロングノーツを形成する最小グループ
 /// </summary>
-[System.Serializable]
 public class LongNote
 {
     public GameObject objLongNote;
