@@ -27,6 +27,13 @@ public class BGMController : MonoBehaviour
         END,
     }
 
+    public enum BGM_LOOP_STATE
+    {
+        FADE_IN,
+        LOOP,
+        FADE_OUT,
+    }
+
     [SerializeField]
     private BGM_STATE _bgm_state;
 
@@ -42,6 +49,13 @@ public class BGMController : MonoBehaviour
 
     private bool isFade = false;
 
+    [SerializeField]
+    private float loopTimer;
+    private float loopStartTime = 0.0f;
+    private float loopFinishTime = 8.0f;
+    [SerializeField]
+    private BGM_LOOP_STATE _loop_bgm_state = BGM_LOOP_STATE.LOOP;
+
     void Start()
     {
         _bgm_state = BGM_STATE.WAIT;
@@ -54,13 +68,63 @@ public class BGMController : MonoBehaviour
         audioMixer = RhythmGameManager.gameManager.amgSelectScene.audioMixer;
     }
 
-    // Update is called once per frame
     void Update()
     {
         switch (RhythmGameManager.sceneManager.sceneState)
         {
+            case RhythmSceneManager.SCENE_STATE.SELECT:
+                UpdateSelectProcess();
+                break;
+
             case RhythmSceneManager.SCENE_STATE.PLAY:
                 UpdatePlayProcess();
+                break;
+        }
+    }
+
+    void UpdateSelectProcess()
+    {
+        loopTimer += Time.deltaTime;
+
+        switch (_loop_bgm_state)
+        {
+            case BGM_LOOP_STATE.FADE_IN:
+                if (loopTimer >= loopStartTime + 1.0f)
+                {
+                    _loop_bgm_state = BGM_LOOP_STATE.LOOP;
+                }
+                break;
+
+            case BGM_LOOP_STATE.LOOP:
+                if (loopTimer >= loopFinishTime - 1.0f)
+                {
+                    _loop_bgm_state = BGM_LOOP_STATE.FADE_OUT;
+
+                    // FadeOut
+                    AudioMixerSnapshot[] snapshots = {
+                            RhythmGameManager.gameManager.snapshotSelect,
+                            RhythmGameManager.gameManager.snapshotMute
+                    };
+                    float[] weights = { 0.0f, 1.0f };
+                    audioMixer.TransitionToSnapshots(snapshots, weights, 2.0f);
+                }
+                break;
+
+            case BGM_LOOP_STATE.FADE_OUT:
+                if (loopTimer >= loopFinishTime)
+                {
+                    loopTimer = 0.0f;
+                    audioSourceBGM.time = loopStartTime;
+                    _loop_bgm_state = BGM_LOOP_STATE.FADE_IN;
+
+                    //FadeIn
+                    AudioMixerSnapshot[] snapshots = {
+                        RhythmGameManager.gameManager.snapshotMute,
+                        RhythmGameManager.gameManager.snapshotSelect
+                    };
+                    float[] weights = { 0.0f, 1.0f };
+                    audioMixer.TransitionToSnapshots(snapshots, weights, 2.0f);
+                }
                 break;
         }
     }
