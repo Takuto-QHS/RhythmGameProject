@@ -7,7 +7,7 @@ using UnityEngine;
  * */
 
 /// <summary>
-/// 1つのロングノーツストラクト
+/// 1つのロングノーツグループ
 /// </summary>
 [System.Serializable]
 public class LongNoteGroup
@@ -16,7 +16,7 @@ public class LongNoteGroup
 }
 
 /// <summary>
-/// ロングノーツを形成する最小グループストラクト
+/// ロングノーツを形成する最小グループ
 /// </summary>
 [System.Serializable]
 public class LongNote
@@ -38,14 +38,15 @@ public class LongNotesComponent : MonoBehaviour
     [SerializeField]
     float destroyNoteTime = 3.0f;
 
-    //[HideInInspector]
-    public List<int> listLaneNum = new List<int>();
-    //[HideInInspector]
-    public List<int> listNoteType = new List<int>();
-    //[HideInInspector]
-    public List<float> listNotesTime = new List<float>();
-
-    // 全ロングノーツObjを格納
+    /// <summary>
+    /// ロングノーツ押下中でのロングノーツ複数判定対応(同時押し等)は現在対応していません
+    /// する場合はlistLongNotesObjと同様にする事で、データの持ち方は正しくなると思います
+    /// </summary>
+    // ロングノーツ判定時用
+    private List<int> listLaneNum = new List<int>();
+    private List<int> listNoteType = new List<int>();
+    private List<float> listNotesTime = new List<float>();
+    // ロングノーツObj削除用
     private List<LongNoteGroup> listLongNotesObj = new List<LongNoteGroup>();
 
     void Start()
