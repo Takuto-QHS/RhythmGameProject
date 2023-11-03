@@ -15,6 +15,8 @@ public class SelectBoxMusicDetail : MonoBehaviour
 
     public void SelectMusicDetail(MusicDataParam data)
     {
+        if (data == null) return;
+
         imageMusic.sprite = data.spriteMusic;
         txtMusicName.text = data.musicData.name;
         txtMusicArtist.text = data.musicData.artist;

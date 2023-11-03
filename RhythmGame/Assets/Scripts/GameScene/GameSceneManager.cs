@@ -29,8 +29,10 @@ public class GameSceneManager : MonoBehaviour
     public List<Lites> listRaneLite = new List<Lites>();
     [Space(10)]
     public NotesManager notesManager;
-    public ScoreBoxWindow scoreBoxWin;
+    [Space(10)]
 
+    [SerializeField]
+    private MusicDetailBox musicDetailBox;
     [SerializeField]
     private ScriptableScoreData scrObjScore;
 
@@ -96,6 +98,8 @@ public class GameSceneManager : MonoBehaviour
 
         soundManager = RhythmGameManager.soundManager;
         notesManager.Load();
+
+        musicDetailBox.UpdateMusicDetailBox();
 
         isStart = false;
         isMusicStart = false;
