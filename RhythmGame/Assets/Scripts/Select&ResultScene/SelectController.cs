@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class SelectController : MonoBehaviour
 {
+    [SerializeField]
+    MusicListScrollView musicListView;
+
     private void OnEnable()
     {
-
+        musicListView.Init();
     }
 }
