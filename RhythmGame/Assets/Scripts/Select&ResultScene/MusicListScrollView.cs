@@ -11,6 +11,7 @@ public class MusicListScrollView : MonoBehaviour
 
     private List<object> viewerList = new List<object>();
     private int selectIndex = 0;
+    private bool isEnter = false;
 
     public void Init()
     {
@@ -48,6 +49,10 @@ public class MusicListScrollView : MonoBehaviour
     /// </summary>
     public void OnSelect(List<object> table, int itemIndex, int subIndex, bool isCancel)
     {
+        // 2‰ñ–ÚˆÈ~A‚±‚ÌŠÖ”‚É•¡”‰ñ“ü‚Á‚Ä‚é‚Ì‚Å
+        if (isEnter) return;
+        isEnter = true;
+
         // ‘I‘ğ‚µ‚½MusicDataŠi”[
         MusicDataParam data = (MusicDataParam)table[itemIndex];
         RhythmGameManager.gameManager.scrMusicData.musicDataParam = data;

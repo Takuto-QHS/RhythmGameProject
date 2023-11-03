@@ -101,6 +101,8 @@ public class GameSceneManager : MonoBehaviour
     {
         inputPlayScene = this.gameObject.AddComponent<InputPlayScene>();
 
+        RhythmGameManager.sceneManager.sceneState = RhythmSceneManager.SCENE_STATE.PLAY;
+
         soundManager = RhythmGameManager.soundManager;
         notesManager.Load();
 
