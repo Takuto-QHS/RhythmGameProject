@@ -26,7 +26,7 @@ public class TapNotesComponent : MonoBehaviour
     void Start()
     {
         InitNotes();
-        PlaySceneManager.psManager.inputPlayScene.deligateTapJudge += RaneJudge;
+        GameSceneManager.gsManager.inputPlayScene.deligateTapJudge += RaneJudge;
     }
 
     // Update is called once per frame
@@ -38,7 +38,7 @@ public class TapNotesComponent : MonoBehaviour
         }
 
         //–{—ˆƒm[ƒc‚ğ‚½‚½‚­‚×‚«ŠÔ‚©‚ç0.15•b‚½‚Á‚Ä‚à“ü—Í‚ª‚È‚©‚Á‚½ê‡
-        if (PlaySceneManager.psManager.playStopWatchTime > listNotesTime[0] + notesJudgeController.timeBadMiss)
+        if (GameSceneManager.gsManager.playStopWatchTime > listNotesTime[0] + notesJudgeController.timeBadMiss)
         {
             notesJudgeController.JudgeMiss(listLaneNum[0]);
             DeleteData();
@@ -47,7 +47,7 @@ public class TapNotesComponent : MonoBehaviour
 
     void InitNotes()
     {
-        string inputString = PlaySceneManager.psManager.notesManager.notesData.text;
+        string inputString = GameSceneManager.gsManager.notesManager.notesData.text;
         Data inputJson = JsonUtility.FromJson<Data>(inputString);
 
         // ŠÔŒvZ•List’Ç‰Á•¶¬ŠÖ”
@@ -56,10 +56,10 @@ public class TapNotesComponent : MonoBehaviour
             if (inputJson.notes[i].type == 1)
             {
                 // ƒm[ƒc‚Ì”»’èŠÔ
-                float time = PlaySceneManager.psManager.notesManager.GetNoteTime(inputJson.notes[i]);
+                float time = GameSceneManager.gsManager.notesManager.GetNoteTime(inputJson.notes[i]);
 
                 // ƒm[ƒc‚Ì~‚Á‚Ä‚­‚éŠÔ
-                float posTime = PlaySceneManager.psManager.notesManager.GetNoteTime(inputJson.notes[i], true);
+                float posTime = GameSceneManager.gsManager.notesManager.GetNoteTime(inputJson.notes[i], true);
 
                 InstantiateNote(time, posTime, inputJson.notes[i].block, inputJson.notes[i].type);
             }
@@ -74,7 +74,7 @@ public class TapNotesComponent : MonoBehaviour
         listNoteType.Add(_type);
 
         // ¶¬
-        float z = _posTime * PlaySceneManager.psManager.notesSpeed;
+        float z = _posTime * GameSceneManager.gsManager.notesSpeed;
         GameObject obj = Instantiate(noteTapObj, new Vector3(_block - 2.5f, 0.03f, z), noteTapObj.transform.rotation);
         listNotesObj.Add(obj);
     }

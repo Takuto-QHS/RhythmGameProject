@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaySceneManager : MonoBehaviour
+public class GameSceneManager : MonoBehaviour
 {
     [Space(10)]
-    public static PlaySceneManager psManager = null;
+    public static GameSceneManager gsManager = null;
     public static int initNum = 0;
 
     public float waitStartTime = 1.0f;
@@ -53,9 +53,9 @@ public class PlaySceneManager : MonoBehaviour
 
     public void Awake()
     {
-        if (psManager == null)
+        if (gsManager == null)
         {
-            psManager = this;
+            gsManager = this;
         }
         else
         {

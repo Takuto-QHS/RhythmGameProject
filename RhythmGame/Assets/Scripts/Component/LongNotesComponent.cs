@@ -50,7 +50,7 @@ public class LongNotesComponent : MonoBehaviour
     void Start()
     {
         InitNotes();
-        PlaySceneManager.psManager.inputPlayScene.deligateLongTapJudge += RaneJudge;
+        GameSceneManager.gsManager.inputPlayScene.deligateLongTapJudge += RaneJudge;
     }
 
     // Update is called once per frame
@@ -62,7 +62,7 @@ public class LongNotesComponent : MonoBehaviour
         }
 
         //–{—ˆƒm[ƒc‚ð‚½‚½‚­‚×‚«ŽžŠÔ‚©‚ç0.15•b‚½‚Á‚Ä‚à“ü—Í‚ª‚È‚©‚Á‚½ê‡
-        if (PlaySceneManager.psManager.playStopWatchTime > listNotesTime[0] + notesJudgeController.timeBadMiss)
+        if (GameSceneManager.gsManager.playStopWatchTime > listNotesTime[0] + notesJudgeController.timeBadMiss)
         {
             notesJudgeController.JudgeMiss(listLaneNum[0]);
             DeleteData();
@@ -71,7 +71,7 @@ public class LongNotesComponent : MonoBehaviour
 
     void InitNotes()
     {
-        string inputString = PlaySceneManager.psManager.notesManager.notesData.text;
+        string inputString = GameSceneManager.gsManager.notesManager.notesData.text;
         Data inputJson = JsonUtility.FromJson<Data>(inputString);
 
         for (int i = 0; i < inputJson.notes.Length; i++)
@@ -79,10 +79,10 @@ public class LongNotesComponent : MonoBehaviour
             if (inputJson.notes[i].type == 2)
             {
                 // ƒm[ƒc‚Ì”»’èŽžŠÔ
-                float time = PlaySceneManager.psManager.notesManager.GetNoteTime(inputJson.notes[i]);
+                float time = GameSceneManager.gsManager.notesManager.GetNoteTime(inputJson.notes[i]);
 
                 // ƒm[ƒc‚Ì~‚Á‚Ä‚­‚éŽžŠÔ
-                float posTime = PlaySceneManager.psManager.notesManager.GetNoteTime(inputJson.notes[i], true);
+                float posTime = GameSceneManager.gsManager.notesManager.GetNoteTime(inputJson.notes[i], true);
 
                 // ¶¬
                 InstantiateLongNotes(inputJson.notes[i], time ,posTime);
@@ -100,7 +100,7 @@ public class LongNotesComponent : MonoBehaviour
         listNoteType.Add(_note.type);
 
         // ¶¬
-        float z = _posTime * PlaySceneManager.psManager.notesSpeed;
+        float z = _posTime * GameSceneManager.gsManager.notesSpeed;
         GameObject obj1 = Instantiate(noteLongObj, new Vector3(_note.block - 2.5f, 0.03f, z), noteLongObj.transform.rotation);
         List<LongNote> listLongNote = new List<LongNote>();
         LongNote longNote1 = new LongNote();
@@ -117,9 +117,9 @@ public class LongNotesComponent : MonoBehaviour
         for (int x = 0; x < _note.notes.Length; x++)
         {
             // ƒm[ƒc‚Ì”»’èŽžŠÔ
-            float timeLongNote = PlaySceneManager.psManager.notesManager.GetNoteTime(_note.notes[x]);
+            float timeLongNote = GameSceneManager.gsManager.notesManager.GetNoteTime(_note.notes[x]);
             // ƒm[ƒc‚Ì~‚Á‚Ä‚­‚éŽžŠÔ
-            float postimeLongNote = PlaySceneManager.psManager.notesManager.GetNoteTime(_note.notes[x], true);
+            float postimeLongNote = GameSceneManager.gsManager.notesManager.GetNoteTime(_note.notes[x], true);
 
             // ƒŠƒXƒg’Ç‰Á
             listNotesTime.Add(timeLongNote);
@@ -127,7 +127,7 @@ public class LongNotesComponent : MonoBehaviour
             listNoteType.Add(_note.notes[x].type);
 
             // ¶¬
-            float z2 = postimeLongNote * PlaySceneManager.psManager.notesSpeed;
+            float z2 = postimeLongNote * GameSceneManager.gsManager.notesSpeed;
             GameObject obj2 = Instantiate(noteLongObj, new Vector3(_note.notes[x].block - 2.5f, 0.03f, z2), noteLongObj.transform.rotation);
             LongNote longNote2 = new LongNote();
             longNote2.objLongNote = obj2;

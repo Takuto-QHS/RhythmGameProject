@@ -67,7 +67,7 @@ public class NotesManager : MonoBehaviour
         float beatSec = kankaku * (float)note.LPB;
         // 開始前の長さ
         float preStartTime = offset * 0.01f;
-        if(isPos) preStartTime += PlaySceneManager.psManager.startMusicTime;
+        if(isPos) preStartTime += GameSceneManager.gsManager.startMusicTime;
         // ノーツの降ってくる時間
         float time = (beatSec * note.num / (float)note.LPB) + preStartTime;
 

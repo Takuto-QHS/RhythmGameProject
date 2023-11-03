@@ -60,7 +60,7 @@ public class InputPlayScene : MonoBehaviour , IInputtable
         if(isPressed)
         {
             isPressed = false;
-            PlaySceneManager.psManager.soundManager.StopLongPressSE();
+            GameSceneManager.gsManager.soundManager.StopLongPressSE();
         }
         Debug.Log("Canceled(ƒLƒƒƒ“ƒZƒ‹)");
     }
@@ -178,7 +178,7 @@ public class InputPlayScene : MonoBehaviour , IInputtable
         {
             case ETouchType.Tap:
                 if (deligateTapJudge != null) deligateTapJudge(_hitLitesLane.lightNum);
-                PlaySceneManager.psManager.soundManager.PlayNortTapSE();
+                GameSceneManager.gsManager.soundManager.PlayNortTapSE();
                 break;
             case ETouchType.LongTap:
                 if (deligateLongTapJudge != null) deligateLongTapJudge(_hitLitesLane.lightNum);

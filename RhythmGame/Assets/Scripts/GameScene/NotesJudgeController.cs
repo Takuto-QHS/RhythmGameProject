@@ -35,7 +35,7 @@ public class NotesJudgeController : MonoBehaviour
     {
         // 本来ノーツを叩く時間と実際に叩いた時間がどれくらいずれているかを求め、
         // その絶対値をtimeLagとする
-        float timeLag = GetABS(PlaySceneManager.psManager.playStopWatchTime - noteTime);
+        float timeLag = GetABS(GameSceneManager.gsManager.playStopWatchTime - noteTime);
         EJudgeType type = EJudgeType.Ignore;
 
         if (timeLag <= timePerfect)//本来ノーツをたたくべき時間と実際にノーツをたたいた時間の誤差がtimePerfect秒以下だったら
@@ -96,13 +96,13 @@ public class NotesJudgeController : MonoBehaviour
     {
         //Debug.Log("Perfect");
         Message(0, laneNum);
-        PlaySceneManager.psManager.valueScore = PlaySceneManager.psManager.valueScore + PlaySceneManager.psManager.addScoreValuePerfect;
-        scoreBoxWindow.UpdateTxtScore(PlaySceneManager.psManager.valueScore);
+        GameSceneManager.gsManager.valueScore = GameSceneManager.gsManager.valueScore + GameSceneManager.gsManager.addScoreValuePerfect;
+        scoreBoxWindow.UpdateTxtScore(GameSceneManager.gsManager.valueScore);
 
-        PlaySceneManager.psManager.valueCombo++;
-        scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo);
-        PlaySceneManager.psManager.valuePerfect++;
-        scoreBoxWindow.UpdateTxtPerfect(PlaySceneManager.psManager.valuePerfect);
+        GameSceneManager.gsManager.valueCombo++;
+        scoreBoxWindow.UpdateTxtCombo(GameSceneManager.gsManager.valueCombo);
+        GameSceneManager.gsManager.valuePerfect++;
+        scoreBoxWindow.UpdateTxtPerfect(GameSceneManager.gsManager.valuePerfect);
 
         //PlaySceneManager.psManager.soundManager.StartSE(0);
     }
@@ -111,14 +111,14 @@ public class NotesJudgeController : MonoBehaviour
     {
         //Debug.Log("Great");
         Message(1, laneNum);
-        PlaySceneManager.psManager.valueScore = PlaySceneManager.psManager.valueScore + PlaySceneManager.psManager.addScoreValueGood;
-        scoreBoxWindow.UpdateTxtScore(PlaySceneManager.psManager.valueScore);
+        GameSceneManager.gsManager.valueScore = GameSceneManager.gsManager.valueScore + GameSceneManager.gsManager.addScoreValueGood;
+        scoreBoxWindow.UpdateTxtScore(GameSceneManager.gsManager.valueScore);
 
-        PlaySceneManager.psManager.valueCombo++;
-        scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo);
+        GameSceneManager.gsManager.valueCombo++;
+        scoreBoxWindow.UpdateTxtCombo(GameSceneManager.gsManager.valueCombo);
 
-        PlaySceneManager.psManager.valueGreat++;
-        scoreBoxWindow.UpdateTxtGreat(PlaySceneManager.psManager.valueGreat);
+        GameSceneManager.gsManager.valueGreat++;
+        scoreBoxWindow.UpdateTxtGreat(GameSceneManager.gsManager.valueGreat);
 
         //PlaySceneManager.psManager.soundManager.StartSE(0);
     }
@@ -127,14 +127,14 @@ public class NotesJudgeController : MonoBehaviour
     {
         //Debug.Log("Good");
         Message(2, laneNum);
-        PlaySceneManager.psManager.valueScore = PlaySceneManager.psManager.valueScore + PlaySceneManager.psManager.addScoreValueGreat;
-        scoreBoxWindow.UpdateTxtScore(PlaySceneManager.psManager.valueScore);
+        GameSceneManager.gsManager.valueScore = GameSceneManager.gsManager.valueScore + GameSceneManager.gsManager.addScoreValueGreat;
+        scoreBoxWindow.UpdateTxtScore(GameSceneManager.gsManager.valueScore);
 
-        PlaySceneManager.psManager.valueCombo++;
-        scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo);
+        GameSceneManager.gsManager.valueCombo++;
+        scoreBoxWindow.UpdateTxtCombo(GameSceneManager.gsManager.valueCombo);
 
-        PlaySceneManager.psManager.valueGood++;
-        scoreBoxWindow.UpdateTxtGood(PlaySceneManager.psManager.valueGood);
+        GameSceneManager.gsManager.valueGood++;
+        scoreBoxWindow.UpdateTxtGood(GameSceneManager.gsManager.valueGood);
 
         //PlaySceneManager.psManager.soundManager.StartSE(0);
     }
@@ -143,14 +143,14 @@ public class NotesJudgeController : MonoBehaviour
     {
         //Debug.Log("Bad");
         Message(3,laneNum);
-        PlaySceneManager.psManager.valueScore = PlaySceneManager.psManager.valueScore + PlaySceneManager.psManager.addScoreValueBad;
-        scoreBoxWindow.UpdateTxtScore(PlaySceneManager.psManager.valueScore);
+        GameSceneManager.gsManager.valueScore = GameSceneManager.gsManager.valueScore + GameSceneManager.gsManager.addScoreValueBad;
+        scoreBoxWindow.UpdateTxtScore(GameSceneManager.gsManager.valueScore);
 
-        PlaySceneManager.psManager.valueCombo = 0;
-        scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo);
+        GameSceneManager.gsManager.valueCombo = 0;
+        scoreBoxWindow.UpdateTxtCombo(GameSceneManager.gsManager.valueCombo);
 
-        PlaySceneManager.psManager.valueBad++;
-        scoreBoxWindow.UpdateTxtBad(PlaySceneManager.psManager.valueBad);
+        GameSceneManager.gsManager.valueBad++;
+        scoreBoxWindow.UpdateTxtBad(GameSceneManager.gsManager.valueBad);
 
         //PlaySceneManager.psManager.soundManager.StartSE(0);
     }
@@ -159,13 +159,13 @@ public class NotesJudgeController : MonoBehaviour
     {
         //Debug.Log("Miss");
         Message(4,laneNum);
-        PlaySceneManager.psManager.valueScore = PlaySceneManager.psManager.valueScore + PlaySceneManager.psManager.addScoreValueBad;
-        scoreBoxWindow.UpdateTxtScore(PlaySceneManager.psManager.valueScore);
+        GameSceneManager.gsManager.valueScore = GameSceneManager.gsManager.valueScore + GameSceneManager.gsManager.addScoreValueBad;
+        scoreBoxWindow.UpdateTxtScore(GameSceneManager.gsManager.valueScore);
 
-        PlaySceneManager.psManager.valueCombo = 0;
-        scoreBoxWindow.UpdateTxtCombo(PlaySceneManager.psManager.valueCombo);
+        GameSceneManager.gsManager.valueCombo = 0;
+        scoreBoxWindow.UpdateTxtCombo(GameSceneManager.gsManager.valueCombo);
 
-        PlaySceneManager.psManager.valueMiss++;
-        scoreBoxWindow.UpdateTxtBad(PlaySceneManager.psManager.valueMiss);
+        GameSceneManager.gsManager.valueMiss++;
+        scoreBoxWindow.UpdateTxtBad(GameSceneManager.gsManager.valueMiss);
     }
 }

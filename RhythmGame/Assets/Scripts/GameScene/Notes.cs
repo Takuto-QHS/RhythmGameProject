@@ -29,11 +29,11 @@ public class Notes : MonoBehaviour
 
         if(isMoveZ)
         {
-            transform.position -= transform.forward * Time.deltaTime * PlaySceneManager.psManager.notesSpeed;
+            transform.position -= transform.forward * Time.deltaTime * GameSceneManager.gsManager.notesSpeed;
         }
         else
         {
-            transform.position -= transform.up * Time.deltaTime * PlaySceneManager.psManager.notesSpeed;
+            transform.position -= transform.up * Time.deltaTime * GameSceneManager.gsManager.notesSpeed;
         }
     }
 }
