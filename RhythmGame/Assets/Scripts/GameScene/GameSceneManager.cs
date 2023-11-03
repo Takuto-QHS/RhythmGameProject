@@ -80,14 +80,19 @@ public class GameSceneManager : MonoBehaviour
                 isStart = true;
                 Play();
             }
-
             // BGMStart
-            if (!isMusicStart && playStopWatchTime >= 0.0f)
+            else if (!isMusicStart && playStopWatchTime >= 0.0f)
             {
                 isMusicStart = true;
 
                 soundManager.InitSnapshot();
                 soundManager.StartPlaySceneBGM();
+                musicDetailBox.UpdateMusicSeekBar(playStopWatchTime);
+            }
+            // GamePlay’†
+            else if (isMusicStart && playStopWatchTime <= RhythmGameManager.gameManager.scrMusicData.musicDataParam.musicData.audioClip.length)
+            {
+                musicDetailBox.UpdateMusicSeekBar(playStopWatchTime);
             }
         }
     }
@@ -99,7 +104,8 @@ public class GameSceneManager : MonoBehaviour
         soundManager = RhythmGameManager.soundManager;
         notesManager.Load();
 
-        musicDetailBox.UpdateMusicDetailBox();
+        musicDetailBox.UpdateMusicDetailBox
+            (RhythmGameManager.gameManager.scrMusicData.musicDataParam.musicData.audioClip.length);
 
         isStart = false;
         isMusicStart = false;
