@@ -101,7 +101,7 @@ public class LongNotesComponent : MonoBehaviour
 
         // ê∂ê¨
         float z = _posTime * GameSceneManager.gsManager.notesSpeed;
-        GameObject obj1 = Instantiate(noteLongObj, new Vector3(_note.block - 2.5f, 0.03f, z), noteLongObj.transform.rotation);
+        GameObject obj1 = Instantiate(noteLongObj, new Vector3(_note.block - 2.5f, 0.01f, z), noteLongObj.transform.rotation);
         List<LongNote> listLongNote = new List<LongNote>();
         LongNote longNote1 = new LongNote();
         longNote1.objLongNote = obj1;
@@ -128,7 +128,7 @@ public class LongNotesComponent : MonoBehaviour
 
             // ê∂ê¨
             float z2 = postimeLongNote * GameSceneManager.gsManager.notesSpeed;
-            GameObject obj2 = Instantiate(noteLongObj, new Vector3(_note.notes[x].block - 2.5f, 0.03f, z2), noteLongObj.transform.rotation);
+            GameObject obj2 = Instantiate(noteLongObj, new Vector3(_note.notes[x].block - 2.5f, 0.01f, z2), noteLongObj.transform.rotation);
             LongNote longNote2 = new LongNote();
             longNote2.objLongNote = obj2;
 

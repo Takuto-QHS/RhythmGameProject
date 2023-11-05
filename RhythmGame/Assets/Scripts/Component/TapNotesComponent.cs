@@ -13,6 +13,9 @@ public class TapNotesComponent : MonoBehaviour
     [SerializeField]
     float destroyNoteTime = 1.0f;
 
+    [SerializeField]
+    private GameObject tapEffect;
+
     [HideInInspector]
     public List<int> listLaneNum = new List<int>();
     [HideInInspector]
@@ -75,7 +78,7 @@ public class TapNotesComponent : MonoBehaviour
 
         // ê∂ê¨
         float z = _posTime * GameSceneManager.gsManager.notesSpeed;
-        GameObject obj = Instantiate(noteTapObj, new Vector3(_block - 2.5f, 0.03f, z), noteTapObj.transform.rotation);
+        GameObject obj = Instantiate(noteTapObj, new Vector3(_block - 2.5f, 0.01f, z), noteTapObj.transform.rotation);
         listNotesObj.Add(obj);
     }
 
@@ -94,7 +97,7 @@ public class TapNotesComponent : MonoBehaviour
         Destroy(obj);
     }
 
-    public void RaneJudge(int _hitsRaneNum)
+    public void RaneJudge(Lites lites)
     {
         if (listNotesTime.Count == 0)
         {
@@ -102,7 +105,7 @@ public class TapNotesComponent : MonoBehaviour
         }
         //Debug.Log(notesManager.listNotesTime.Count);
 
-        if (listLaneNum[0] == _hitsRaneNum)
+        if (listLaneNum[0] == lites.lightNum)
         {
             // îªíËÉ^ÉCÉvéÊìæ
             NotesJudgeController.EJudgeType eJudgeType;
@@ -110,6 +113,8 @@ public class TapNotesComponent : MonoBehaviour
 
             if(eJudgeType != NotesJudgeController.EJudgeType.Ignore)
             {
+                Transform[] effectPos = lites.gameObject.GetComponentsInChildren<Transform>();
+                Instantiate(tapEffect, effectPos[1].position, Quaternion.Euler(0, 0, 0));
                 DeleteData();
             }
         }

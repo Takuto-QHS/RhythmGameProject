@@ -11,7 +11,7 @@ public class InputPlayScene : MonoBehaviour , IInputtable
     [SerializeField]
     private NotesJudgeController notesJudgeCon;
 
-    public UnityAction<int> deligateTapJudge;
+    public UnityAction<Lites> deligateTapJudge;
     public UnityAction<int> deligateLongTapJudge;
 
     enum ETouchType
@@ -177,7 +177,7 @@ public class InputPlayScene : MonoBehaviour , IInputtable
         switch (_eTouchType)
         {
             case ETouchType.Tap:
-                if (deligateTapJudge != null) deligateTapJudge(_hitLitesLane.lightNum);
+                if (deligateTapJudge != null) deligateTapJudge(_hitLitesLane);
                 GameSceneManager.gsManager.soundManager.PlayNortTapSE();
                 break;
             case ETouchType.LongTap:
