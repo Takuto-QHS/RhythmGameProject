@@ -44,6 +44,7 @@ public class TapNotesComponent : MonoBehaviour
         if (GameSceneManager.gsManager.playStopWatchTime > listNotesTime[0] + notesJudgeController.timeBadMiss)
         {
             notesJudgeController.JudgeMiss(listLaneNum[0]);
+            StartCoroutine("ObjDelayDestroy", listNotesObj[0]);
             DeleteData();
         }
     }
@@ -84,7 +85,6 @@ public class TapNotesComponent : MonoBehaviour
 
     public void DeleteData()//Ç∑Ç≈Ç…ÇΩÇΩÇ¢ÇΩÉmÅ[ÉcîªíËÇçÌèúÇ∑ÇÈä÷êî
     {
-        StartCoroutine("ObjDelayDestroy",listNotesObj[0]);
         listNotesTime.RemoveAt(0);
         listLaneNum.RemoveAt(0);
         listNoteType.RemoveAt(0);
@@ -115,6 +115,7 @@ public class TapNotesComponent : MonoBehaviour
             {
                 Transform[] effectPos = lites.gameObject.GetComponentsInChildren<Transform>();
                 Instantiate(tapEffect, effectPos[1].position, Quaternion.Euler(0, 0, 0));
+                Destroy(listNotesObj[0]);
                 DeleteData();
             }
         }
