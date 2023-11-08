@@ -68,6 +68,13 @@ public class SoundManager : MonoBehaviour
         AudioSource audioSourceSE = this.gameObject.AddComponent<AudioSource>();
         audioSourceSE.volume = 1.0f;
         audioSourceSE.loop = true;
+
+        // ロングノーツの音が最初切れてるように感じる。
+        // AudioMixerのAudio Mixer Suspendにチェックが入っていると、最初の音の頭がちょっと切れるらしい。
+        // デフォがどうなってるか分からないが、チェック無しを当てはめて切れないように試してみる。
+        // …が、改善している時もあればしてない時もあり。
+        audioSourceSE.outputAudioMixerGroup = RhythmGameManager.gameManager.amgSelectScene;
+
         audioLongPressSE = audioSourceSE;
 
         // BGMController
@@ -104,6 +111,7 @@ public class SoundManager : MonoBehaviour
     void IncrementIndexSE()
     {
         int index = indexAudioSourcesSE < 3 ? indexAudioSourcesSE + 1 : 0;
+        //Debug.Log(index);
         indexAudioSourcesSE = index;
     }
 
