@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
-
+/// <summary>
+/// Gameシーンでしか使用しません
+/// </summary>
 public class InputPlayScene : MonoBehaviour , IInputtable
 {
 
@@ -12,7 +14,7 @@ public class InputPlayScene : MonoBehaviour , IInputtable
     private NotesJudgeController notesJudgeCon;
 
     public UnityAction<Lites> deligateTapJudge;
-    public UnityAction<int> deligateLongTapJudge;
+    public UnityAction<Lites> deligateLongTapJudge;
 
     enum ETouchType
     {
@@ -20,12 +22,14 @@ public class InputPlayScene : MonoBehaviour , IInputtable
         LongTap,
     }
 
+    LongNotesComponent longNotesComponent;
     bool isPressed = false;
 
     // Start is called before the first frame update
     void Start()
     {
         RhythmGameManager.inputManager.inputtableInterface = this;
+        longNotesComponent = GameSceneManager.gsManager.notesManager.longNotesComp;
     }
 
     // Update is called once per frame
@@ -67,7 +71,7 @@ public class InputPlayScene : MonoBehaviour , IInputtable
 
     void TouchJudgement(ETouchType _eTouchType)
     {
-        Ray ray;
+        Ray _ray;
 
         if (Touchscreen.current != null) /* Androidタップ時の処理 */
         {
@@ -78,19 +82,19 @@ public class InputPlayScene : MonoBehaviour , IInputtable
             {
                 // Cameraからタッチした座標へRayを生成
                 touchCtl = Touchscreen.current.touches[i];
-                ray = Camera.main.ScreenPointToRay(touchCtl.position.ReadValue());
+                _ray = Camera.main.ScreenPointToRay(touchCtl.position.ReadValue());
 
-                RayHitProcess(_eTouchType, ray);
+                RayHitProcess(_eTouchType, _ray);
             }
         }
         else if (Mouse.current != null) /* マウスクリック時の処理 */
         {
             // Cameraからクリックした座標へRayを生成
             Vector2 vec = Mouse.current.position.ReadValue();
-            ray = Camera.main.ScreenPointToRay(vec);
-            Debug.DrawRay(ray.origin, ray.direction * 10, Color.red);
+            _ray = Camera.main.ScreenPointToRay(vec);
+            Debug.DrawRay(_ray.origin, _ray.direction * 10, Color.red);
 
-            RayHitProcess(_eTouchType, ray);
+            RayHitProcess(_eTouchType, _ray);
         }
     }
 
@@ -108,6 +112,7 @@ public class InputPlayScene : MonoBehaviour , IInputtable
         }
 
         LongNoteSE(hits);
+        LongNoteEffect(hits, posHitRane);
     }
 
     Vector3 RayHitJudgeLinePos(Ray _ray)
@@ -181,7 +186,7 @@ public class InputPlayScene : MonoBehaviour , IInputtable
                 GameSceneManager.gsManager.soundManager.PlayNortTapSE();
                 break;
             case ETouchType.LongTap:
-                if (deligateLongTapJudge != null) deligateLongTapJudge(_hitLitesLane.lightNum);
+                if (deligateLongTapJudge != null) deligateLongTapJudge(_hitLitesLane);
                 break;
         }
     }
@@ -200,4 +205,22 @@ public class InputPlayScene : MonoBehaviour , IInputtable
         }
     }
 
+    void LongNoteEffect(RaycastHit[] _hits , Vector3 _effectPos)
+    {
+        Notes hitLongNote = RaySerchLongNote(_hits);
+        //Debug.Log(hitLongNote);
+        if (hitLongNote)
+        {
+            // エフェクト
+            if(longNotesComponent)
+            {
+                longNotesComponent.LongEffectActiveSwitch(true);
+                longNotesComponent.LongEffectMove(_effectPos);
+            }
+        }
+        else
+        {
+            longNotesComponent.LongEffectActiveSwitch(false);
+        }
+    }
 }

@@ -36,6 +36,12 @@ public class LongNotesComponent : MonoBehaviour
     [SerializeField]
     float destroyNoteTime = 3.0f;
 
+    [SerializeField]
+    GameObject tapEffect;
+
+    [SerializeField]
+    private GameObject tappingLongEffect;
+
     /// <summary>
     /// ロングノーツ押下中でのロングノーツ複数判定対応(同時押し等)は現在対応していません
     /// する場合はlistLongNotesObjと同様にする事で、データの持ち方は正しくなると思います
@@ -46,6 +52,8 @@ public class LongNotesComponent : MonoBehaviour
     private List<float> listNotesTime = new List<float>();
     // ロングノーツObj削除用
     private List<LongNoteGroup> listLongNotesObj = new List<LongNoteGroup>();
+
+    private GameObject longEffectObj;
 
     void Start()
     {
@@ -74,6 +82,7 @@ public class LongNotesComponent : MonoBehaviour
         string inputString = GameSceneManager.gsManager.notesManager.notesData.text;
         Data inputJson = JsonUtility.FromJson<Data>(inputString);
 
+        // リストを元にロングノーツ生成
         for (int i = 0; i < inputJson.notes.Length; i++)
         {
             if (inputJson.notes[i].type == 2)
@@ -88,8 +97,10 @@ public class LongNotesComponent : MonoBehaviour
                 InstantiateLongNotes(inputJson.notes[i], time ,posTime);
                 break;
             }
-
         }
+
+        // 長押し用エフェクト生成
+        LongEffectInstantiate();
     }
 
     void InstantiateLongNotes(Note _note, float _time, float _posTime, LineRenderer _line = null)
@@ -229,23 +240,30 @@ public class LongNotesComponent : MonoBehaviour
         }
     }
 
-    public void RaneJudge(int _hitsRaneNum)
+    public void RaneJudge(Lites lites)
     {
         if (listNotesTime.Count == 0)
         {
             return;
         }
 
-        if (listLaneNum[0] == _hitsRaneNum)
+        if (listLaneNum[0] == lites.lightNum)
         {
             // 判定タイプ取得
             NotesJudgeController.EJudgeType eJudgeType;
             eJudgeType = notesJudgeController.Judgement(listNotesTime[0], listLaneNum[0], true);
             
-            // パーフェクト時、判定処理後にList要素削除
+            // パーフェクト時
             if (eJudgeType == NotesJudgeController.EJudgeType.Perfect)
             {
+                // 判定
                 notesJudgeController.Judgement(listNotesTime[0], listLaneNum[0]);
+
+                // エフェクト
+                Transform[] effectPos = lites.gameObject.GetComponentsInChildren<Transform>();
+                Instantiate(tapEffect, effectPos[1].position, Quaternion.Euler(0, 0, 0));
+
+                // 削除
                 DeleteData();
             }
         }
@@ -273,5 +291,20 @@ public class LongNotesComponent : MonoBehaviour
         yield return new WaitForSeconds(destroyNoteTime);
         Destroy(obj.objLongNote);
         Destroy(obj.objLongNoteLine);
+    }
+
+    void LongEffectInstantiate()
+    {
+        longEffectObj = Instantiate(tappingLongEffect, Vector3.zero, Quaternion.Euler(0, 0, 0));
+        LongEffectActiveSwitch(false);
+    }
+    public void LongEffectActiveSwitch(bool isActive)
+    {
+        if (longEffectObj.activeSelf == isActive) return;
+        longEffectObj.SetActive(isActive);
+    }
+    public void LongEffectMove(Vector3 pos)
+    {
+        longEffectObj.transform.position = pos;
     }
 }
