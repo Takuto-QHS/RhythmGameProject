@@ -95,7 +95,6 @@ public class LongNotesComponent : MonoBehaviour
 
                 // ê∂ê¨
                 InstantiateLongNotes(inputJson.notes[i], time ,posTime);
-                break;
             }
         }
 
