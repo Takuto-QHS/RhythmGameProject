@@ -37,6 +37,9 @@ public class RhythmSceneManager : MonoBehaviour
         RhythmGameManager.fadeManager.CanvasFadeOut();
         RhythmGameManager.fadeManager.fadeFinishCallback.onComplete.AddListener(CompleateLoad);
 
+        // ƒV[ƒ“Ø‚è‘Ö‚¦‚ÅŸè‚ÉÁ‚¦‚Änull‚É‚È‚é‚ªAIF•¶‚Ånull”»’è‚É‚È‚ç‚È‚¢ˆ×
+        RhythmGameManager.inputManager.inputtableInterface = null;
+
         sceneState = SCENE_STATE.RESULT;
     }
 
