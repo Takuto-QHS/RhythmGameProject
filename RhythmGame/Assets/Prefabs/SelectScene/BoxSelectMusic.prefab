@@ -32,7 +32,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8719091870941461482}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -129,7 +128,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8719091869819688188}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -225,12 +223,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8719091870941461482}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 850, y: 3}
+  m_SizeDelta: {x: 740, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8719091869687168498
 CanvasRenderer:
@@ -282,7 +279,7 @@ GameObject:
   - component: {fileID: 8719091869819688191}
   - component: {fileID: 8579690420682439760}
   m_Layer: 5
-  m_Name: BoxSelectMusic_1
+  m_Name: BoxSelectMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -304,7 +301,6 @@ RectTransform:
   - {fileID: 8719091869389645880}
   - {fileID: 8719091870941461482}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -355,7 +351,6 @@ MonoBehaviour:
   txtMusicName: {fileID: 8719091870937417098}
   txtMusicArtist: {fileID: 8719091870680101415}
   imageFocus: {fileID: 5619033958721079344}
-  num: 0
 --- !u!1 &8719091869819774752
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,7 +383,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8719091869819688188}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -423,8 +417,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 79a5432ee62b882469d5e97a32e0486e, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -446,10 +440,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 50
-  m_MinHeight: 50
-  m_PreferredWidth: 150
-  m_PreferredHeight: 150
+  m_MinWidth: 100
+  m_MinHeight: 40
+  m_PreferredWidth: 300
+  m_PreferredHeight: 120
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -484,12 +478,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8719091870941461482}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 850, y: 54}
+  m_SizeDelta: {x: 720, y: 54}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8719091870680101414
 CanvasRenderer:
@@ -619,12 +612,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8719091870941461482}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 850, y: 84}
+  m_SizeDelta: {x: 720, y: 84}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8719091870937417101
 CanvasRenderer:
@@ -758,7 +750,6 @@ RectTransform:
   - {fileID: 8719091870680101412}
   - {fileID: 5366710319492913306}
   m_Father: {fileID: 8719091869819688188}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

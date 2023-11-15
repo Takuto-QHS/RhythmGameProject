@@ -54,6 +54,7 @@ public class LongNotesComponent : MonoBehaviour
     private List<LongNoteGroup> listLongNotesObj = new List<LongNoteGroup>();
 
     private GameObject longEffectObj;
+    int maxLongNotes = 0;   // 最大ロングノーツ判定数
 
     void Start()
     {
@@ -100,6 +101,9 @@ public class LongNotesComponent : MonoBehaviour
 
         // 長押し用エフェクト生成
         LongEffectInstantiate();
+
+        // Maxノーツ数更新
+        GameSceneManager.gsManager.maxNotes = GameSceneManager.gsManager.maxNotes + maxLongNotes;
     }
 
     void InstantiateLongNotes(Note _note, float _time, float _posTime, LineRenderer _line = null)
@@ -116,6 +120,7 @@ public class LongNotesComponent : MonoBehaviour
         LongNote longNote1 = new LongNote();
         longNote1.objLongNote = obj1;
         listLongNote.Add(longNote1);
+        maxLongNotes++;
 
         // 線を引く準備(Meshの下頂点)
         Vector3[] lineVerticesVec3 = new Vector3[4];
@@ -141,6 +146,7 @@ public class LongNotesComponent : MonoBehaviour
             GameObject obj2 = Instantiate(noteLongObj, new Vector3(_note.notes[x].block - 2.5f, 0.01f, z2), noteLongObj.transform.rotation);
             LongNote longNote2 = new LongNote();
             longNote2.objLongNote = obj2;
+            maxLongNotes++;
 
             // 線を引く準備(Meshの上頂点)
             Vector3[] lowerVec3 = GetObjVerticsUpperLower(obj2, false);

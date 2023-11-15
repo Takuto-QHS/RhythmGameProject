@@ -100,8 +100,8 @@ public class NotesJudgeController : MonoBehaviour
         Message(0, laneNum);
 
         // Score更新処理
-        GameSceneManager.gsManager.valueScore = GameSceneManager.gsManager.valueScore + GameSceneManager.gsManager.addScoreValuePerfect;
-        scoreBoxWindow.UpdateTxtScore(GameSceneManager.gsManager.valueScore);
+        GameSceneManager.gsManager.valueScore = GameSceneManager.gsManager.valueScore + GameSceneManager.gsManager.addScoreData.addScoreValuePerfect;
+        scoreBoxWindow.UpdateTxtScore((int)GameSceneManager.gsManager.valueScore);
         GameSceneManager.gsManager.valueCombo++;
         laneTxtBox.UpdateLaneTxtCombo(GameSceneManager.gsManager.valueCombo);
         GameSceneManager.gsManager.UpdateMaxCombo();
@@ -116,8 +116,8 @@ public class NotesJudgeController : MonoBehaviour
         Message(1, laneNum);
 
         // Score更新処理
-        GameSceneManager.gsManager.valueScore = GameSceneManager.gsManager.valueScore + GameSceneManager.gsManager.addScoreValueGood;
-        scoreBoxWindow.UpdateTxtScore(GameSceneManager.gsManager.valueScore);
+        GameSceneManager.gsManager.valueScore = GameSceneManager.gsManager.valueScore + GameSceneManager.gsManager.addScoreData.addScoreValueGreat;
+        scoreBoxWindow.UpdateTxtScore((int)GameSceneManager.gsManager.valueScore);
         GameSceneManager.gsManager.valueCombo++;
         laneTxtBox.UpdateLaneTxtCombo(GameSceneManager.gsManager.valueCombo);
         GameSceneManager.gsManager.UpdateMaxCombo();
@@ -132,8 +132,8 @@ public class NotesJudgeController : MonoBehaviour
         Message(2, laneNum);
 
         // Score更新処理
-        GameSceneManager.gsManager.valueScore = GameSceneManager.gsManager.valueScore + GameSceneManager.gsManager.addScoreValueGreat;
-        scoreBoxWindow.UpdateTxtScore(GameSceneManager.gsManager.valueScore);
+        GameSceneManager.gsManager.valueScore = GameSceneManager.gsManager.valueScore + GameSceneManager.gsManager.addScoreData.addScoreValueGood;
+        scoreBoxWindow.UpdateTxtScore((int)GameSceneManager.gsManager.valueScore);
         GameSceneManager.gsManager.valueCombo++;
         laneTxtBox.UpdateLaneTxtCombo(GameSceneManager.gsManager.valueCombo);
         GameSceneManager.gsManager.UpdateMaxCombo();
@@ -148,8 +148,8 @@ public class NotesJudgeController : MonoBehaviour
         Message(3,laneNum);
 
         // Score更新処理
-        GameSceneManager.gsManager.valueScore = GameSceneManager.gsManager.valueScore + GameSceneManager.gsManager.addScoreValueBad;
-        scoreBoxWindow.UpdateTxtScore(GameSceneManager.gsManager.valueScore);
+        GameSceneManager.gsManager.valueScore = GameSceneManager.gsManager.valueScore + GameSceneManager.gsManager.addScoreData.addScoreValueBad;
+        scoreBoxWindow.UpdateTxtScore((int)GameSceneManager.gsManager.valueScore);
         GameSceneManager.gsManager.valueCombo = 0;
         laneTxtBox.UpdateLaneTxtCombo(GameSceneManager.gsManager.valueCombo);
         GameSceneManager.gsManager.valueBad++;
@@ -162,8 +162,8 @@ public class NotesJudgeController : MonoBehaviour
         Message(4,laneNum);
 
         // Score更新処理
-        GameSceneManager.gsManager.valueScore = GameSceneManager.gsManager.valueScore + GameSceneManager.gsManager.addScoreValueBad;
-        scoreBoxWindow.UpdateTxtScore(GameSceneManager.gsManager.valueScore);
+        GameSceneManager.gsManager.valueScore = GameSceneManager.gsManager.valueScore + GameSceneManager.gsManager.addScoreData.addScoreValueMiss;
+        scoreBoxWindow.UpdateTxtScore((int)GameSceneManager.gsManager.valueScore);
         GameSceneManager.gsManager.valueCombo = 0;
         laneTxtBox.UpdateLaneTxtCombo(GameSceneManager.gsManager.valueCombo);
         GameSceneManager.gsManager.valueMiss++;

@@ -12,7 +12,7 @@ public class ScriptableScoreData : ScriptableObject
 [System.Serializable]
 public class ScoreData
 {
-    public int valueScore       = 0;
+    public float valueScore     = 0;
     public int valueMaxCombo    = 0;
     [Space(5)]
     public int valuePerfect     = 0;

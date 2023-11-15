@@ -35,7 +35,7 @@ public class ScoreBoxWindow : MonoBehaviour
 
     public void UpdateScoreBoxWindow(ScoreData score)
     {
-        UpdateTxtScore(score.valueScore);
+        UpdateTxtScore((int)score.valueScore);
         UpdateTxtMaxCombo(score.valueMaxCombo);
         UpdateTxtPerfect(score.valuePerfect);
         UpdateTxtGreat(score.valueGreat);

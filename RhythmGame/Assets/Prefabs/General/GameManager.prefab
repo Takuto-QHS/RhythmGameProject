@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2096955845844535820}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1021.73254, y: 748.16174, z: -0.7937622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2096955845844535811
 MonoBehaviour:
@@ -49,6 +49,7 @@ MonoBehaviour:
   prefabSceneManager: {fileID: 9029478652322517082, guid: 31ccb82f357b1324290d4a569812130e, type: 3}
   prefabInputManager: {fileID: 3586231509293085075, guid: c7d181a8e1a8a6b4d908c04fcafb6517, type: 3}
   scrMusicData: {fileID: 11400000, guid: 26fa7683adee98f4daa9429d15cdedec, type: 2}
+  scrLevelData: {fileID: 11400000, guid: bf566a28a513b0b4dbc3cf550b403549, type: 2}
   amgSelectScene: {fileID: 6049236655301633653, guid: 3f530d9bd29f8f9418412a4cacadd71e, type: 2}
   amgResultScene: {fileID: 5837658200423479410, guid: 3f530d9bd29f8f9418412a4cacadd71e, type: 2}
   snapshotSelect: {fileID: 24500006, guid: 3f530d9bd29f8f9418412a4cacadd71e, type: 2}

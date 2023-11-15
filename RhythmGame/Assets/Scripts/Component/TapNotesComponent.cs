@@ -51,8 +51,12 @@ public class TapNotesComponent : MonoBehaviour
 
     void InitNotes()
     {
+        // •ˆ–Ê“Ç‚İ‚İ
         string inputString = GameSceneManager.gsManager.notesManager.notesData.text;
         Data inputJson = JsonUtility.FromJson<Data>(inputString);
+
+        // Maxƒm[ƒc”
+        GameSceneManager.gsManager.maxNotes = GameSceneManager.gsManager.maxNotes + (inputJson.notes.Length + 1);
 
         // ŠÔŒvZ•List’Ç‰Á•¶¬ŠÖ”
         for (int i = 0; i < inputJson.notes.Length; i++)
