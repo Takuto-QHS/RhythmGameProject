@@ -65,6 +65,7 @@ public class InputPlayScene : MonoBehaviour , IInputtable
         {
             isPressed = false;
             GameSceneManager.gsManager.soundManager.StopLongPressSE();
+            longNotesComponent.LongEffectActiveSwitch(false);
         }
         Debug.Log("Canceled(ƒLƒƒƒ“ƒZƒ‹)");
     }
