@@ -14,6 +14,7 @@ public class GameSceneManager : MonoBehaviour
     [Space(10)]
     public int valueScore = 0;
     public int valueCombo = 0;
+    public int valueMaxCombo = 0;
     public int valuePerfect = 0;
     public int valueGreat = 0;
     public int valueGood = 0;
@@ -140,7 +141,7 @@ public class GameSceneManager : MonoBehaviour
     {
         // ÉXÉRÉAï€éùèàóù
         scrObjScore.score.valueScore    = valueScore;
-        scrObjScore.score.valueMaxCombo = 1000;
+        scrObjScore.score.valueMaxCombo = valueMaxCombo;
         scrObjScore.score.valuePerfect  = valuePerfect;
         scrObjScore.score.valueGreat    = valueGreat;
         scrObjScore.score.valueGood     = valueGood;
@@ -149,5 +150,11 @@ public class GameSceneManager : MonoBehaviour
 
         // ResultâÊñ Ç÷
         RhythmGameManager.sceneManager.ChangeResultScene();
+    }
+
+    public void UpdateMaxCombo()
+    {
+        if (valueCombo < valueMaxCombo) return;
+        valueMaxCombo = valueCombo;
     }
 }

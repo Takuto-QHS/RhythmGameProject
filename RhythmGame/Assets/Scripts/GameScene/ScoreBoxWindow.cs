@@ -25,7 +25,7 @@ public class ScoreBoxWindow : MonoBehaviour
     private void Awake()
     {
         UpdateTxtScore(initNum);
-        UpdateTxtCombo(initNum);
+        UpdateTxtMaxCombo(initNum);
         UpdateTxtPerfect(initNum);
         UpdateTxtGreat(initNum);
         UpdateTxtGood(initNum);
@@ -36,7 +36,7 @@ public class ScoreBoxWindow : MonoBehaviour
     public void UpdateScoreBoxWindow(ScoreData score)
     {
         UpdateTxtScore(score.valueScore);
-        UpdateTxtCombo(score.valueMaxCombo);
+        UpdateTxtMaxCombo(score.valueMaxCombo);
         UpdateTxtPerfect(score.valuePerfect);
         UpdateTxtGreat(score.valueGreat);
         UpdateTxtGood(score.valueGood);
@@ -49,7 +49,7 @@ public class ScoreBoxWindow : MonoBehaviour
         txtScoreNum.text = index.ToString();
     }
 
-    public void UpdateTxtCombo(int index)
+    public void UpdateTxtMaxCombo(int index)
     {
         txtMaxComboNum.text = index.ToString();
     }

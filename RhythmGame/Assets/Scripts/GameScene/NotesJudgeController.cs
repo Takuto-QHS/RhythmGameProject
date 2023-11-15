@@ -14,6 +14,8 @@ public class NotesJudgeController : MonoBehaviour
     [SerializeField]
     private ScoreBoxWindow scoreBoxWindow;
     [SerializeField]
+    private LaneTxt laneTxtBox;
+    [SerializeField]
     private GameObject[] MessageObj;//プレイヤーに判定を伝えるゲームオブジェクト
 
     public float timePerfect = 0.05f;
@@ -96,75 +98,74 @@ public class NotesJudgeController : MonoBehaviour
     {
         //Debug.Log("Perfect");
         Message(0, laneNum);
+
+        // Score更新処理
         GameSceneManager.gsManager.valueScore = GameSceneManager.gsManager.valueScore + GameSceneManager.gsManager.addScoreValuePerfect;
         scoreBoxWindow.UpdateTxtScore(GameSceneManager.gsManager.valueScore);
-
         GameSceneManager.gsManager.valueCombo++;
-        scoreBoxWindow.UpdateTxtCombo(GameSceneManager.gsManager.valueCombo);
+        laneTxtBox.UpdateLaneTxtCombo(GameSceneManager.gsManager.valueCombo);
+        GameSceneManager.gsManager.UpdateMaxCombo();
+        scoreBoxWindow.UpdateTxtMaxCombo(GameSceneManager.gsManager.valueMaxCombo);
         GameSceneManager.gsManager.valuePerfect++;
         scoreBoxWindow.UpdateTxtPerfect(GameSceneManager.gsManager.valuePerfect);
-
-        //PlaySceneManager.psManager.soundManager.StartSE(0);
     }
 
     public void JudgeGreat(int laneNum)
     {
         //Debug.Log("Great");
         Message(1, laneNum);
+
+        // Score更新処理
         GameSceneManager.gsManager.valueScore = GameSceneManager.gsManager.valueScore + GameSceneManager.gsManager.addScoreValueGood;
         scoreBoxWindow.UpdateTxtScore(GameSceneManager.gsManager.valueScore);
-
         GameSceneManager.gsManager.valueCombo++;
-        scoreBoxWindow.UpdateTxtCombo(GameSceneManager.gsManager.valueCombo);
-
+        laneTxtBox.UpdateLaneTxtCombo(GameSceneManager.gsManager.valueCombo);
+        GameSceneManager.gsManager.UpdateMaxCombo();
+        scoreBoxWindow.UpdateTxtMaxCombo(GameSceneManager.gsManager.valueMaxCombo);
         GameSceneManager.gsManager.valueGreat++;
         scoreBoxWindow.UpdateTxtGreat(GameSceneManager.gsManager.valueGreat);
-
-        //PlaySceneManager.psManager.soundManager.StartSE(0);
     }
 
     public void JudgeGood(int laneNum)
     {
         //Debug.Log("Good");
         Message(2, laneNum);
+
+        // Score更新処理
         GameSceneManager.gsManager.valueScore = GameSceneManager.gsManager.valueScore + GameSceneManager.gsManager.addScoreValueGreat;
         scoreBoxWindow.UpdateTxtScore(GameSceneManager.gsManager.valueScore);
-
         GameSceneManager.gsManager.valueCombo++;
-        scoreBoxWindow.UpdateTxtCombo(GameSceneManager.gsManager.valueCombo);
-
+        laneTxtBox.UpdateLaneTxtCombo(GameSceneManager.gsManager.valueCombo);
+        GameSceneManager.gsManager.UpdateMaxCombo();
+        scoreBoxWindow.UpdateTxtMaxCombo(GameSceneManager.gsManager.valueMaxCombo);
         GameSceneManager.gsManager.valueGood++;
         scoreBoxWindow.UpdateTxtGood(GameSceneManager.gsManager.valueGood);
-
-        //PlaySceneManager.psManager.soundManager.StartSE(0);
     }
 
     public void JudgeBad(int laneNum)
     {
         //Debug.Log("Bad");
         Message(3,laneNum);
+
+        // Score更新処理
         GameSceneManager.gsManager.valueScore = GameSceneManager.gsManager.valueScore + GameSceneManager.gsManager.addScoreValueBad;
         scoreBoxWindow.UpdateTxtScore(GameSceneManager.gsManager.valueScore);
-
         GameSceneManager.gsManager.valueCombo = 0;
-        scoreBoxWindow.UpdateTxtCombo(GameSceneManager.gsManager.valueCombo);
-
+        laneTxtBox.UpdateLaneTxtCombo(GameSceneManager.gsManager.valueCombo);
         GameSceneManager.gsManager.valueBad++;
         scoreBoxWindow.UpdateTxtBad(GameSceneManager.gsManager.valueBad);
-
-        //PlaySceneManager.psManager.soundManager.StartSE(0);
     }
 
     public void JudgeMiss(int laneNum)
     {
         //Debug.Log("Miss");
         Message(4,laneNum);
+
+        // Score更新処理
         GameSceneManager.gsManager.valueScore = GameSceneManager.gsManager.valueScore + GameSceneManager.gsManager.addScoreValueBad;
         scoreBoxWindow.UpdateTxtScore(GameSceneManager.gsManager.valueScore);
-
         GameSceneManager.gsManager.valueCombo = 0;
-        scoreBoxWindow.UpdateTxtCombo(GameSceneManager.gsManager.valueCombo);
-
+        laneTxtBox.UpdateLaneTxtCombo(GameSceneManager.gsManager.valueCombo);
         GameSceneManager.gsManager.valueMiss++;
         scoreBoxWindow.UpdateTxtMiss(GameSceneManager.gsManager.valueMiss);
     }
