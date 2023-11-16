@@ -15,6 +15,7 @@ public class MusicListScrollView : MonoBehaviour
 
     public void Init()
     {
+        viewerList.Clear();
         TableScrollViewer viewer = this.gameObject.GetComponentInChildren<TableScrollViewer>();
         for (int i = 0; i < sourceData.musicDataList.Count; i++)
         {
