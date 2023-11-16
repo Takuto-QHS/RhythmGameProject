@@ -151,4 +151,9 @@ public class SoundManager : MonoBehaviour
     {
         PlayOneShotSE(clipResultSE);
     }
+
+    public void LoopReset()
+    {
+        bgmController.SelectResetLoopTimer();
+    }
 }

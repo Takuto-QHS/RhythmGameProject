@@ -242,4 +242,9 @@ public class BGMController : MonoBehaviour
         float[] weights = { 0.0f, 1.0f };
         audioMixer.TransitionToSnapshots(snapshots, weights, 0.0f);
     }
+
+    public void SelectResetLoopTimer()
+    {
+        loopTimer = 0.0f;
+    }
 }
