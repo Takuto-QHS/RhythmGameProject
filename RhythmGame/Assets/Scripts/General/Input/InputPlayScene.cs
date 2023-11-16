@@ -73,22 +73,7 @@ public class InputPlayScene : MonoBehaviour , IInputtable
     void TouchJudgement(ETouchType _eTouchType)
     {
         Ray _ray;
-
-        if (Touchscreen.current != null) /* Androidタップ時の処理 */
-        {
-            TouchControl touchCtl;
-
-            // タッチ数分、Rayを飛ばす
-            for (int i = 0; i < Touchscreen.current.touches.Count; i++)
-            {
-                // Cameraからタッチした座標へRayを生成
-                touchCtl = Touchscreen.current.touches[i];
-                _ray = Camera.main.ScreenPointToRay(touchCtl.position.ReadValue());
-
-                RayHitProcess(_eTouchType, _ray);
-            }
-        }
-        else if (Mouse.current != null) /* マウスクリック時の処理 */
+        if (Mouse.current != null) /* マウスクリック時の処理 */
         {
             // Cameraからクリックした座標へRayを生成
             Vector2 vec = Mouse.current.position.ReadValue();
@@ -97,6 +82,23 @@ public class InputPlayScene : MonoBehaviour , IInputtable
 
             RayHitProcess(_eTouchType, _ray);
         }
+
+        /* GooglePlayの動向次第でちゃんと作るか決める */
+        //else if (Touchscreen.current != null) /* Androidタップ時の処理 */
+        //{
+        //    //Debug.Log("Touchscreen");   // デバッグ用
+        //    TouchControl touchCtl;
+
+        //    // タッチ数分、Rayを飛ばす
+        //    for (int i = 0; i < Touchscreen.current.touches.Count; i++)
+        //    {
+        //        // Cameraからタッチした座標へRayを生成
+        //        touchCtl = Touchscreen.current.touches[i];
+        //        _ray = Camera.main.ScreenPointToRay(touchCtl.position.ReadValue());
+
+        //        RayHitProcess(_eTouchType, _ray);
+        //    }
+        //}
     }
 
     void RayHitProcess(ETouchType _eTouchType, Ray _ray)

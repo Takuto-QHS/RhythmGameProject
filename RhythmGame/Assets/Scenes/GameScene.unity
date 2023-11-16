@@ -3710,6 +3710,7 @@ MonoBehaviour:
   waitStartTime: 0
   startMusicTime: 2
   notesSpeed: 8
+  maxNotes: 0
   valueScore: 0
   valueCombo: 0
   valueMaxCombo: 0
@@ -3718,11 +3719,12 @@ MonoBehaviour:
   valueGood: 0
   valueBad: 0
   valueMiss: 0
-  addScoreValuePerfect: 50
-  addScoreValueGreat: 40
-  addScoreValueGood: 20
-  addScoreValueBad: 10
-  addScoreValueMiss: 0
+  addScoreData:
+    addScoreValuePerfect: 50
+    addScoreValueGreat: 40
+    addScoreValueGood: 20
+    addScoreValueBad: 10
+    addScoreValueMiss: 0
   listRaneLite:
   - {fileID: 1267238851}
   - {fileID: 1666685763}
